@@ -1,10 +1,28 @@
 .user-info {
     display        : flex;
-    min-height     : 30px;
     justify-content: center;
+    min-height     : 30px;
+
+    @media @phone {
+        width      : 100%;
+        min-height : 34px;
+        align-items: center;
+        padding    : 20px;
+
+        &:hover {
+            background-color: rgba(177, 156, 118, 0.5);
+            border-radius   : 4px;
+        }
+
+        &:active {
+            background-color: rgba(177, 156, 118, 0.7);
+            border-radius   : 4px;
+        }
+    }
 
     >.connect-wallet,
     >.wallet-address {
+        color           : @primary;
         padding         : 8px 12px 8px 12px;
         font-size       : 0.875rem;
         text-decoration : none;
@@ -12,14 +30,11 @@
         background-color: rgba(177, 156, 118, 0.7);
         border-radius   : 4px;
 
-        &:hover {
-            background-color: rgba(177, 156, 118, 0.6);
-            border-radius   : 4px;
-        }
-
-        &:active {
-            background-color: rgba(177, 156, 118, 0.5);
-            border-radius   : 4px;
+        @media @phone {
+            color           : #e0d8c8;
+            width           : 100%;
+            padding         : 0px;
+            background-color: transparent;
         }
     }
 }

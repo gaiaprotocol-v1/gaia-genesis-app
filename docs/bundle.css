@@ -322,11 +322,28 @@ body {
 }
 .user-info {
   display: flex;
-  min-height: 30px;
   justify-content: center;
+  min-height: 30px;
+}
+@media only screen and (max-width: 719px) {
+  .user-info {
+    width: 100%;
+    min-height: 34px;
+    align-items: center;
+    padding: 20px;
+  }
+  .user-info:hover {
+    background-color: rgba(177, 156, 118, 0.5);
+    border-radius: 4px;
+  }
+  .user-info:active {
+    background-color: rgba(177, 156, 118, 0.7);
+    border-radius: 4px;
+  }
 }
 .user-info > .connect-wallet,
 .user-info > .wallet-address {
+  color: "#B19C76";
   padding: 8px 12px 8px 12px;
   font-size: 0.875rem;
   text-decoration: none;
@@ -334,15 +351,14 @@ body {
   background-color: rgba(177, 156, 118, 0.7);
   border-radius: 4px;
 }
-.user-info > .connect-wallet:hover,
-.user-info > .wallet-address:hover {
-  background-color: rgba(177, 156, 118, 0.6);
-  border-radius: 4px;
-}
-.user-info > .connect-wallet:active,
-.user-info > .wallet-address:active {
-  background-color: rgba(177, 156, 118, 0.5);
-  border-radius: 4px;
+@media only screen and (max-width: 719px) {
+  .user-info > .connect-wallet,
+  .user-info > .wallet-address {
+    color: #e0d8c8;
+    width: 100%;
+    padding: 0px;
+    background-color: transparent;
+  }
 }
 .layout {
   width: 100%;
@@ -488,6 +504,7 @@ body {
 }
 .layout > main {
   max-width: 1240px;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -518,6 +535,53 @@ body {
   font-size: 0.75rem;
   margin-bottom: 32px;
 }
+.dashboard-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-top: 64px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  padding: 32px;
+}
+@media only screen and (max-width: 719px) {
+  .dashboard-view {
+    margin: 64px 8px;
+  }
+}
+.dashboard-view > .title > h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.dashboard-view > .title > p {
+  font-size: 0.725rem;
+  padding-top: 8px;
+  color: #e0d8c8;
+  font-weight: 300;
+}
+.dashboard-view > .content {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+}
+@media only screen and (max-width: 719px) {
+  .dashboard-view > .content {
+    grid-template-columns: 100%;
+  }
+}
+.dashboard-view > .content .content-wrap {
+  margin-top: 64px;
+}
+.dashboard-view > .content .content-wrap > h2 {
+  font-size: 1rem;
+  color: #e0d8c8;
+  font-weight: 300;
+}
+.dashboard-view > .content .content-wrap > p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 8px;
+}
 .mining-view {
   display: flex;
   flex-direction: column;
@@ -527,6 +591,11 @@ body {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
   padding: 32px;
+}
+@media only screen and (max-width: 719px) {
+  .mining-view {
+    margin: 64px 8px;
+  }
 }
 .mining-view > .title > h1 {
   font-size: 2rem;
@@ -553,6 +622,11 @@ body {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   margin-top: 32px;
+}
+@media only screen and (max-width: 719px) {
+  .mining-view > .nft-container {
+    grid-template-columns: 100%;
+  }
 }
 .mining-view > .nft-container > .nft-item {
   display: flex;
@@ -594,6 +668,11 @@ body {
   border-radius: 1rem;
   padding: 32px;
 }
+@media only screen and (max-width: 719px) {
+  .buyback-view {
+    margin: 64px 8px;
+  }
+}
 .buyback-view > .title > h1 {
   font-size: 2rem;
   font-weight: 700;
@@ -608,6 +687,11 @@ body {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   margin-top: 32px;
+}
+@media only screen and (max-width: 719px) {
+  .buyback-view > .nft-container {
+    grid-template-columns: 100%;
+  }
 }
 .buyback-view > .nft-container > .nft-item {
   display: flex;
@@ -645,6 +729,11 @@ body {
   border-radius: 1rem;
   padding: 32px;
 }
+@media only screen and (max-width: 719px) {
+  .hourglass-view {
+    margin: 64px 8px;
+  }
+}
 .hourglass-view > .title > h1 {
   font-size: 2rem;
   font-weight: 700;
@@ -656,12 +745,19 @@ body {
   font-weight: 300;
 }
 .hourglass-view > .content {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+}
+@media only screen and (max-width: 719px) {
+  .hourglass-view > .content {
+    grid-template-columns: 100%;
+  }
+}
+.hourglass-view > .content .content-wrap {
   margin-top: 64px;
 }
 .hourglass-view > .content .content-wrap > h2 {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #e0d8c8;
   font-weight: 300;
 }

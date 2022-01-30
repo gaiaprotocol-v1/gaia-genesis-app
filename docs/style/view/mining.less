@@ -8,6 +8,10 @@
     border-radius   : 1rem;
     padding         : 32px;
 
+    @media @phone {
+        margin: 64px 8px;
+    }
+
     >.title {
         >h1 {
             font-size  : 2rem;
@@ -40,6 +44,10 @@
         display              : grid;
         grid-template-columns: 25% 25% 25% 25%;
         margin-top           : 32px;
+
+        @media @phone {
+            grid-template-columns: 100%;
+        }
 
         >.nft-item {
             display       : flex;
