@@ -1,0 +1,212 @@
+.layout {
+    width: 100%;
+
+    >header {
+        display         : flex;
+        justify-items   : center;
+        width           : 100%;
+        background-color: black;
+        height          : 52px;
+        position        : fixed;
+        top             : 0;
+        z-index         : 3;
+
+        >.nav {
+            display    : flex;
+            flex-wrap  : wrap;
+            align-items: center;
+            width      : 100%;
+            max-width  : 1240px;
+            margin     : auto;
+
+            >.logo {
+                flex-grow: 1;
+
+                >a {
+                    >img {
+                        height      : 36px;
+                        padding-left: 8px;
+                    }
+                }
+            }
+
+            >.menu-btn,
+            .menu-icon {
+                display: none;
+            }
+
+            >.menu {
+                >.item {
+                    display    : flex;
+                    float      : left;
+                    font-weight: 600;
+
+                    >a {
+                        cursor         : pointer;
+                        padding        : 8px 12px 8px 12px;
+                        font-size      : 0.875rem;
+                        text-decoration: none;
+                        color          : white;
+
+                        &:hover {
+                            background-color: rgba(177, 156, 118, 0.5);
+                            border-radius   : 4px;
+                        }
+
+                        &:active {
+                            background-color: rgba(177, 156, 118, 0.7);
+                            border-radius   : 4px;
+                        }
+                    }
+
+                    >.connect-wallet {
+                        background-color: rgba(177, 156, 118, 0.5);
+                        border-radius   : 4px;
+                    }
+                }
+            }
+
+            @media @phone {
+                >.menu-btn {
+                    display: none;
+                }
+
+                >.menu-btn:checked~.menu {
+                    display   : block;
+                    max-height: 52px;
+                }
+
+                >.menu-btn:checked~.menu-icon .navicon {
+                    background: transparent;
+                }
+
+                >.menu-btn:checked~.menu-icon .navicon:before {
+                    transform: rotate(-45deg);
+                }
+
+                >.menu-btn:checked~.menu-icon .navicon:after {
+                    transform: rotate(45deg);
+                }
+
+                >.menu-btn:checked~.menu-icon:not(.steps) .navicon:before,
+                >.menu-btn:checked~.menu-icon:not(.steps) .navicon:after {
+                    top: 0;
+                }
+
+                >.menu-icon {
+                    cursor     : pointer;
+                    display    : inline-block;
+                    padding    : 28px 8px;
+                    position   : relative;
+                    user-select: none;
+
+                    >.navicon {
+                        background: white;
+                        display   : block;
+                        height    : 2px;
+                        position  : relative;
+                        transition: background .2s ease-out;
+                        width     : 18px;
+                    }
+
+                    .navicon:before,
+                    .navicon:after {
+                        background: white;
+                        content   : '';
+                        display   : block;
+                        height    : 100%;
+                        position  : absolute;
+                        transition: all .2s ease-out;
+                        width     : 100%;
+                    }
+
+                    .navicon:before {
+                        top: 5px;
+                    }
+
+                    .navicon:after {
+                        top: -5px;
+                    }
+                }
+
+                >.menu {
+                    display   : none;
+                    margin    : 0;
+                    padding   : 0;
+                    list-style: none;
+                    clear     : both;
+                    max-height: 0;
+                    transition: max-height .2s ease-out;
+
+                    >.item {
+                        display         : block;
+                        width           : 100%;
+                        background-color: black;
+
+                        >a {
+                            display        : block;
+                            padding        : 20px 20px;
+                            text-decoration: none;
+
+                            &:hover {
+                                color           : white;
+                                background-color: #333332;
+                            }
+                        }
+
+                        >.connect-wallet {
+                            background-color: transparent;
+                            color           : rgba(177, 156, 118, 1);
+
+                            &:hover {
+                                color: white;
+                            }
+
+                            &:active {
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    >main {
+        max-width      : 1240px;
+        display        : flex;
+        flex-direction : column;
+        justify-content: center;
+        margin         : auto;
+        margin-top     : 54px;
+    }
+
+    >footer {
+        margin-top      : 12rem;
+        color           : white;
+        background-color: black;
+
+        .footer-container {
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+            flex-direction : column;
+            max-width      : 1240px;
+            margin         : auto;
+
+            >.sns {
+                margin-top   : 32px;
+                margin-bottom: 32px;
+
+                img {
+                    padding: 8px;
+                }
+            }
+
+            >.copyright {
+                font-size    : 0.75rem;
+                margin-bottom: 32px;
+            }
+        }
+    }
+}

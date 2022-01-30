@@ -1,0 +1,61 @@
+.buyback-view {
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+    text-align      : center;
+    margin-top      : 64px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius   : 1rem;
+    padding         : 32px;
+
+    >.title {
+        >h1 {
+            font-size  : 2rem;
+            font-weight: 700;
+        }
+
+        >p {
+            font-size  : 0.725rem;
+            padding-top: 8px;
+            color      : #e0d8c8;
+            font-weight: 300;
+        }
+    }
+
+    >.nft-container {
+        display              : grid;
+        grid-template-columns: 25% 25% 25% 25%;
+        margin-top           : 32px;
+
+        >.nft-item {
+            display       : flex;
+            flex-direction: column;
+            justify-items : center;
+            text-align    : center;
+
+            >img {
+                border-radius: 4px;
+            }
+
+            >h3 {
+                margin     : 8px;
+                font-size  : 1.25rem;
+                font-weight: 500;
+            }
+
+            >p {
+                margin-bottom: 8px;
+                font-size    : 0.825rem;
+                font-weight  : 300;
+                color        : #e0d8c8;
+            }
+
+            >button {
+                cursor       : pointer;
+                padding      : 8px 12px 9px;
+                font-weight  : 700;
+                border-radius: 4px;
+            }
+        }
+    }
+}
