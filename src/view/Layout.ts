@@ -1,6 +1,7 @@
 import { BodyNode, DomNode, el } from "@hanul/skynode";
 import { SkyRouter, View, ViewParams } from "skyrouter";
 import AOS from 'aos';
+import UserInfo from "../component/userInfo";
 
 export default class Layout implements View {
 
@@ -26,9 +27,9 @@ export default class Layout implements View {
                             el("li.item", el("a", "Mining", { click: () => { SkyRouter.go("/mining") } })),
                             el("li.item", el("a", "Buyback", { click: () => { SkyRouter.go("/buyback") } })),
                             el("li.item", el("a", "Hourglass", { click: () => { SkyRouter.go("/hourglass") } })),
-                            el("li.item", el("a.connect-wallet", "Connect Wallet"))
-                        ),
-                    )
+                            el("li.item", new UserInfo())
+                        )
+                    ),
                 ),
                 el("main", (this.content = el(".content"))),
                 el("footer",
