@@ -9,23 +9,41 @@ export default class Mining implements View {
 
     constructor() {
         Layout.current.content.append(
-            this.container = el(".mining-view", { "data-aos": "zoom-in" },
-                el(".title",
+            this.container = el(".mining-view",
+                el(".title", { "data-aos": "zoom-in" },
                     el("h1", "Mining"),
-                    el("p", "Mining Your NFT")
+                    el("p", "Mining Your NFT"),
                 ),
-                el(".tool-box",
-                    el("button.all-mining-button", "All Mining"),
+                el(".team-nft-container", { "data-aos": "zoom-in" },
+                    el(".content",
+                        el("h2", "Team NFT"),
+                        el(".team-item",
+                            el("img", { src: "/images/nft/sneakpeek1.jpeg" }),
+                            el("h3", "가이아#0"),
+                            el("p.amount", "KRNO 12"),
+                            el("p.caption", "(= 1,200 KLAY)"),
+                        ),
+                    ),
                 ),
-                el(".nft-container",
-                    el(".nft-item",
-                        el("img", { src: "/images/nft/sneakpeek1.jpeg" }),
-                        el("h3", "가이아#3212"),
-                        el("p.amount", "KRNO 12"),
-                        el("p.caption", "1,200 KLAY"),
-                        el("button", "Mining")
-                    )
-                )
+                el(".my-nft-container", { "data-aos": "zoom-in" },
+                    el(".tool-box",
+                        el(".title-wrap",
+                            el("h2", "My NFT"),
+                            el("p", "총 이자: KRNO 12"),
+                        ),
+                        el("button.all-mining-button", "All Mining"),
+                    ),
+                    el(".nft-container", { "data-aos": "zoom-in" },
+                        el(".nft-item",
+                            el("img", { src: "/images/nft/sneakpeek1.jpeg" }),
+                            el("h3", "가이아#3212"),
+                            el(".content-wrap",
+                                el("p.amount", "KRNO 12"),
+                                el("button", "Mining")
+                            ),
+                        ),
+                    ),
+                ),
             ).appendTo(BodyNode)
         )
     }

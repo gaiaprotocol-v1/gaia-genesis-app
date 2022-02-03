@@ -588,9 +588,6 @@ body {
   justify-content: center;
   text-align: center;
   margin-top: 64px;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 1rem;
-  padding: 32px;
 }
 @media only screen and (max-width: 719px) {
   .mining-view {
@@ -607,52 +604,110 @@ body {
   color: #e0d8c8;
   font-weight: 300;
 }
-.mining-view > .tool-box {
+.mining-view > .team-nft-container {
   display: flex;
-  justify-content: flex-end;
-}
-.mining-view > .tool-box > .all-mining-button {
-  cursor: pointer;
-  padding: 8px 12px 9px;
-  font-weight: 700;
-  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
   margin-top: 32px;
 }
-.mining-view > .nft-container {
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  margin-top: 32px;
+.mining-view > .team-nft-container > .content {
+  border-radius: 1rem;
+  padding: 32px;
+  background-color: rgba(0, 0, 0, 0.2);
 }
-@media only screen and (max-width: 719px) {
-  .mining-view > .nft-container {
-    grid-template-columns: 100%;
-  }
+.mining-view > .team-nft-container > .content > h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 32px;
 }
-.mining-view > .nft-container > .nft-item {
+.mining-view > .team-nft-container > .content > .team-item {
   display: flex;
   flex-direction: column;
   justify-items: center;
   text-align: center;
 }
-.mining-view > .nft-container > .nft-item > img {
+.mining-view > .team-nft-container > .content > .team-item > img {
   border-radius: 4px;
+  max-width: 300px;
+  width: 100%;
+  margin: auto;
 }
-.mining-view > .nft-container > .nft-item > h3 {
+.mining-view > .team-nft-container > .content > .team-item > h3 {
   margin: 8px;
   font-size: 1.25rem;
   font-weight: 500;
 }
-.mining-view > .nft-container > .nft-item > .amount {
+.mining-view > .team-nft-container > .content > .team-item > .amount {
   margin-bottom: 4px;
+  font-weight: 300;
+}
+.mining-view > .team-nft-container > .content > .team-item > .caption {
+  margin-bottom: 4px;
+  font-weight: 300;
+  font-size: 0.725rem;
+  color: #e0d8c8;
+}
+.mining-view > .my-nft-container {
+  margin-top: 32px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  padding: 32px;
+}
+.mining-view > .my-nft-container > .tool-box {
+  display: flex;
+  justify-content: space-between;
+}
+.mining-view > .my-nft-container > .tool-box > .title-wrap > h2 {
+  font-size: 1.5rem;
   font-weight: 500;
 }
-.mining-view > .nft-container > .nft-item > .caption {
-  margin-bottom: 8px;
-  font-size: 0.5rem;
+.mining-view > .my-nft-container > .tool-box > .title-wrap > p {
+  font-size: 0.725rem;
+  padding-top: 8px;
+  color: #e0d8c8;
+  font-weight: 300;
+}
+.mining-view > .my-nft-container > .tool-box > .all-mining-button {
+  cursor: pointer;
+  padding: 8px 12px 9px;
+  font-weight: 700;
+  border-radius: 4px;
+  margin-bottom: 32px;
+}
+.mining-view > .my-nft-container > .nft-container {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+@media only screen and (max-width: 719px) {
+  .mining-view > .my-nft-container > .nft-container {
+    grid-template-columns: 100%;
+  }
+}
+.mining-view > .my-nft-container > .nft-container > .nft-item {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  text-align: center;
+}
+.mining-view > .my-nft-container > .nft-container > .nft-item > img {
+  border-radius: 4px;
+}
+.mining-view > .my-nft-container > .nft-container > .nft-item > h3 {
+  margin: 8px;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+.mining-view > .my-nft-container > .nft-container > .nft-item > .content-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mining-view > .my-nft-container > .nft-container > .nft-item > .content-wrap > .amount {
+  margin-bottom: 4px;
   font-weight: 300;
   color: #e0d8c8;
 }
-.mining-view > .nft-container > .nft-item > button {
+.mining-view > .my-nft-container > .nft-container > .nft-item > .content-wrap > button {
   cursor: pointer;
   padding: 8px 12px 9px;
   font-weight: 700;
