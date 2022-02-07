@@ -1,0 +1,41 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IKlaySwapFactory",
+  "sourceName": "contracts/interfaces/IKlaySwapFactory.sol",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "inToken",
+          "type": "address"
+        },
+        {
+          "name": "inAmount",
+          "type": "uint256"
+        },
+        {
+          "name": "outToken",
+          "type": "address"
+        },
+        {
+          "name": "outAmountMin",
+          "type": "uint256"
+        },
+        {
+          "name": "path",
+          "type": "address[]"
+        }
+      ],
+      "name": "exchangeKctPos",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
