@@ -1,7 +1,7 @@
 import { BodyNode, DomNode, el } from "@hanul/skynode";
 import { SkyRouter, View, ViewParams } from "skyrouter";
-import AOS from 'aos';
-import UserInfo from "../component/userInfo";
+import AOS from "aos";
+import UserInfo from "../component/UserInfo";
 
 export default class Layout implements View {
 

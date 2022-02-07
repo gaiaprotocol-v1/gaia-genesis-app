@@ -33,15 +33,6 @@ class ExtWallet extends EventContainer {
         return this.caver === undefined ? -1 : await this.caver.klay.getBlockNumber();
     }
 
-    public async balanceOf(address: string) {
-        return this.caver === undefined ? undefined : BigNumber.from(await this.caver.klay.getBalance(address));
-    }
-
-    public async loadBalance() {
-        const address = await this.loadAddress();
-        return address === undefined ? BigNumber.from(0) : await this.balanceOf(address);
-    }
-
     public async connected() {
         return await this.loadAddress() !== undefined;
     }

@@ -1,6 +1,8 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import EventContainer from "eventcontainer";
+import ConnectWalletPopup from "../component/ConnectWalletPopup";
 import ExtWallet from "./ExtWallet";
+import Klip from "./Klip";
 
 class Wallet extends EventContainer {
 
@@ -9,6 +11,7 @@ class Wallet extends EventContainer {
         this.checkConnected();
 
         ExtWallet.toss("connect", this);
+        Klip.toss("connect", this);
     }
 
     private async checkConnected() {
@@ -20,18 +23,8 @@ class Wallet extends EventContainer {
     public async loadAddress(): Promise<string | undefined> {
         if (ExtWallet.installed === true) {
             return await ExtWallet.loadAddress();
-        }
-    }
-
-    public async loadBalance(): Promise<BigNumber | undefined> {
-        if (ExtWallet.installed === true) {
-            return await ExtWallet.loadBalance();
-        }
-    }
-
-    public async balanceOf(address: string): Promise<BigNumber | undefined> {
-        if (ExtWallet.installed === true) {
-            return await ExtWallet.balanceOf(address);
+        } else {
+            return Klip.address;
         }
     }
 
@@ -43,26 +36,7 @@ class Wallet extends EventContainer {
         if (ExtWallet.installed === true) {
             return await ExtWallet.connect();
         } else {
-            if (confirm("카이카스가 필요합니다. 카이카스를 설치하시겠습니까?")) {
-                location.href = "https://chrome.google.com/webstore/detail/kaikas/jblndlipeogpafnldhgmapagcccfchpi";
-            }
-        }
-    }
-
-    public async addToken(
-        address: string,
-        symbol: string,
-        decimals: number,
-        image: string,
-    ) {
-        if (ExtWallet.installed === true) {
-            ExtWallet.addToken(address, symbol, decimals, image);
-        }
-    }
-
-    public async signMessage(message: string) {
-        if (ExtWallet.installed === true) {
-            return await ExtWallet.signMessage(message);
+            return new Promise<void>((resolve) => new ConnectWalletPopup(resolve));
         }
     }
 }
