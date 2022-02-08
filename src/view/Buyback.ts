@@ -9,11 +9,11 @@ export default class Buyback implements View {
     private interval: any;
 
     constructor() {
-        Layout.current.title = "바이백"
+        Layout.current.title = "Buyback";
         Layout.current.content.append(
             this.container = el(".buyback-view", { "data-aos": "zoom-in" },
                 el(".title",
-                    el("h1", "바이백"),
+                    el("h1", "Buyback"),
                     el("p", "가이아 바이백 펀드")
                 ),
                 new TeamNFT(),
@@ -23,10 +23,10 @@ export default class Buyback implements View {
                         el("h3", "가이아#3212"),
                         el("p", "1,000 KLAY"),
                         el("button", "바이백")
-                    )
-                )
-            ).appendTo(BodyNode)
-        )
+                    ),
+                ),
+            ),
+        );
     }
 
     public changeParams(params: ViewParams, uri: string): void { }

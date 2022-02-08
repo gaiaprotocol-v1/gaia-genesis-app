@@ -4,4 +4,4 @@ declare class GaiaOperationContract extends Contract {
 }
 declare const _default: GaiaOperationContract;
 export default _default;
-//# sourceMappingURL=GaiaOperationContract.d.ts.map
+//# sourceMappingURL=GaiaOperationContract%20copy.d.ts.map

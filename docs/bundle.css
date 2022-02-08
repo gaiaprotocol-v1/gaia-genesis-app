@@ -535,6 +535,9 @@ body {
   float: left;
   font-weight: 600;
 }
+.layout > header > .nav > .menu > .item.user-info {
+  margin-left: 8px;
+}
 .layout > header > .nav > .menu > .item > a {
   cursor: pointer;
   padding: 8px 12px 8px 12px;

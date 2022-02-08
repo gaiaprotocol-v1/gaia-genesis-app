@@ -1,4 +1,4 @@
-import { BodyNode, DomNode, el } from "@hanul/skynode";
+import { DomNode, el } from "@hanul/skynode";
 import { View, ViewParams } from "skyrouter";
 import Layout from "./Layout";
 
@@ -13,11 +13,11 @@ export default class Hourglass implements View {
     private interval: any;
 
     constructor() {
-        Layout.current.title = "아워글라스"
+        Layout.current.title = "Hourglass";
         Layout.current.content.append(
             this.container = el(".hourglass-view", { "data-aos": "zoom-in" },
                 el(".title",
-                    el("h1", "아워글라스"),
+                    el("h1", "Hourglass"),
                     el("p", "수익률 산정")
                 ),
                 el(".content",
@@ -30,7 +30,7 @@ export default class Hourglass implements View {
                         el("p", "0.664%"),
                     ),
                     el(".content-wrap",
-                        el("h2", "소유한 sKRNO 잔고"),
+                        el("h2", "보유한 NFT의 총 sKRNO"),
                         el("p", "0"),
                     ),
                 ),
@@ -112,8 +112,8 @@ export default class Hourglass implements View {
                         el(".swiper-button-prev"),
                     ),
                 ),
-            ).appendTo(BodyNode)
-        )
+            ),
+        );
     }
 
     getInitialInvestment(): number {

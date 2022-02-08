@@ -7,4 +7,4 @@ export default class UserInfo extends DomNode {
     private loadAddress;
     delete(): void;
 }
-//# sourceMappingURL=userInfo.d.ts.map
+//# sourceMappingURL=UserInfo.d.ts.map
