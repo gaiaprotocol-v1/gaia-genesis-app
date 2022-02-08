@@ -40,8 +40,13 @@ export default class Buyback implements View {
             const promises: Promise<void>[] = [];
             SkyUtil.repeat(balance, (i: number) => {
                 const promise = async (index: number) => {
-                    const tokenId = await GaiaNFTContract.tokenOfOwnerByIndex(address, index);
-                    new BuybackItem(tokenId.toNumber()).appendTo(this.nftList);
+                    const item = new BuybackItem().appendTo(this.nftList);
+                    const tokenId = (await GaiaNFTContract.tokenOfOwnerByIndex(address, index)).toNumber();
+                    if (tokenId === 0) {
+                        item.delete();
+                    } else {
+                        item.init(tokenId);
+                    }
                 };
                 promises.push(promise(i));
             });
