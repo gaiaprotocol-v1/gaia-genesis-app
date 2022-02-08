@@ -28,6 +28,10 @@ export default class Mining implements View {
                         el("h2", "Buyback Fund"),
                         el("p", "231,321 KLAY"),
                     ),
+                    /*el(".content-wrap",
+                        el("h2", "Holders"),
+                        el("p", "1,000"),
+                    ),*/
                 ),
             ),
         );

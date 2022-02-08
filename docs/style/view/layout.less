@@ -11,6 +11,10 @@
         top             : 0;
         z-index         : 3;
 
+        @media @phone {
+            height: auto;
+        }
+
         >.nav {
             display    : flex;
             flex-wrap  : wrap;
@@ -71,6 +75,7 @@
             }
 
             @media @phone {
+
                 >.menu-btn {
                     display: none;
                 }

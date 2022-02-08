@@ -1,7 +1,8 @@
 import { BodyNode, DomNode, el } from "@hanul/skynode";
 import AOS from "aos";
-import { SkyRouter, View, ViewParams } from "skyrouter";
+import { View, ViewParams } from "skyrouter";
 import UserInfo from "../component/UserInfo";
+import ViewUtil from "./ViewUtil";
 
 export default class Layout implements View {
 
@@ -21,13 +22,13 @@ export default class Layout implements View {
                         ),
                         el("input.menu-btn", { type: "checkbox", id: "menu-btn" }),
                         el("label.menu-icon", { for: "menu-btn" },
-                            el("span.navicon")
+                            el("span.navicon"),
                         ),
                         el("ul.menu",
-                            el("li.item", el("a", "Dashboard", { click: () => { SkyRouter.go("/") } })),
-                            el("li.item", el("a", "Mining", { click: () => { SkyRouter.go("/mining") } })),
-                            el("li.item", el("a", "Buyback", { click: () => { SkyRouter.go("/buyback") } })),
-                            el("li.item", el("a", "Hourglass", { click: () => { SkyRouter.go("/hourglass") } })),
+                            el("li.item", el("a", "Dashboard", { click: () => { ViewUtil.go("/") } })),
+                            el("li.item", el("a", "Mining", { click: () => { ViewUtil.go("/mining") } })),
+                            el("li.item", el("a", "Buyback", { click: () => { ViewUtil.go("/buyback") } })),
+                            el("li.item", el("a", "Hourglass", { click: () => { ViewUtil.go("/hourglass") } })),
                             el("li.item.user-info", new UserInfo()),
                         ),
                     ),

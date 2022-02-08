@@ -37,11 +37,11 @@ export default class Hourglass implements View {
                 el("hr"),
                 el(".input-container",
                     el(".input-wrap",
-                        el("label", "sKRNO 수량"),
+                        el("label", "총 sKRNO 수량"),
                         this.amountInput = el("input", "")
                     ),
                     el(".input-wrap",
-                        el("label", "구입 당시 sKRNO 가격 ($)"),
+                        el("label", "민팅 당시 KRNO 가격 ($)"),
                         this.priceInput = el("input", "")
                     ),
                     el(".input-wrap",
