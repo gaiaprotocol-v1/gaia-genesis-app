@@ -34,8 +34,22 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/images/icon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/icon/favicon-16x16.png">
     <link rel="manifest" href="/images/icon/manifest.json">
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script type="text/javascript" nonce="fbb77aa6ebae49bd87c17749bd0"
+        src="//local.adguard.org?ts=1644290645659&amp;type=content-script&amp;dmn=swiperjs.com&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
+    <script type="text/javascript" nonce="fbb77aa6ebae49bd87c17749bd0"
+        src="//local.adguard.org?ts=1644290645659&amp;name=AdGuard%20Extra&amp;type=user-script"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".swiperContainer", {
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
 
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="msapplication-TileImage" content="/images/icon/ms-icon-144x144.png">
     <meta name="theme-color" content="#000000">

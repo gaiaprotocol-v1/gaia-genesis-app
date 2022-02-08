@@ -23,57 +23,6 @@
         }
     }
 
-    >.team-nft-container {
-        display        : flex;
-        align-items    : center;
-        justify-content: center;
-        margin-top     : 32px;
-
-        >.content {
-            border-radius   : 1rem;
-            padding         : 32px;
-            background-color: rgba(0, 0, 0, 0.2);
-
-            >h2 {
-                font-size    : 1.5rem;
-                font-weight  : 500;
-                margin-bottom: 32px;
-            }
-
-            >.team-item {
-                display       : flex;
-                flex-direction: column;
-                justify-items : center;
-                text-align    : center;
-
-                >img {
-                    border-radius: 4px;
-                    max-width    : 300px;
-                    width        : 100%;
-                    margin       : auto;
-                }
-
-                >h3 {
-                    margin     : 8px;
-                    font-size  : 1.25rem;
-                    font-weight: 500;
-                }
-
-                >.amount {
-                    margin-bottom: 4px;
-                    font-weight  : 300;
-                }
-
-                >.caption {
-                    margin-bottom: 4px;
-                    font-weight  : 300;
-                    font-size    : 0.725rem;
-                    color        : #e0d8c8;
-                }
-            }
-        }
-    }
-
     >.my-nft-container {
         margin-top      : 32px;
         background-color: rgba(0, 0, 0, 0.2);
@@ -104,51 +53,26 @@
                 font-weight  : 700;
                 border-radius: 4px;
                 margin-bottom: 32px;
+
+                &:hover {
+                    background-color: rgba(224, 216, 200, 0.9);
+                    color           : white;
+                }
+
+                &:active {
+                    background-color: #e0d8c8;
+                    color           : white;
+                }
             }
         }
 
         >.nft-container {
             display              : grid;
             grid-template-columns: 25% 25% 25% 25%;
+            gap                  : 16px;
 
             @media @phone {
                 grid-template-columns: 100%;
-            }
-
-            >.nft-item {
-                display       : flex;
-                flex-direction: column;
-                justify-items : center;
-                text-align    : center;
-
-                >img {
-                    border-radius: 4px;
-                }
-
-                >h3 {
-                    margin     : 8px;
-                    font-size  : 1.25rem;
-                    font-weight: 500;
-                }
-
-                >.content-wrap {
-                    display        : flex;
-                    justify-content: space-between;
-                    align-items    : center;
-
-                    >.amount {
-                        margin-bottom: 4px;
-                        font-weight  : 300;
-                        color        : #e0d8c8;
-                    }
-
-                    >button {
-                        cursor       : pointer;
-                        padding      : 8px 12px 9px;
-                        font-weight  : 700;
-                        border-radius: 4px;
-                    }
-                }
             }
         }
     }

@@ -1,5 +1,6 @@
 import { BodyNode, DomNode, el } from "@hanul/skynode";
 import { View, ViewParams } from "skyrouter";
+import TeamNFT from "../component/TeamNFT";
 import Layout from "./Layout";
 
 export default class Buyback implements View {
@@ -8,18 +9,20 @@ export default class Buyback implements View {
     private interval: any;
 
     constructor() {
+        Layout.current.title = "바이백"
         Layout.current.content.append(
             this.container = el(".buyback-view", { "data-aos": "zoom-in" },
                 el(".title",
-                    el("h1", "Buyback"),
-                    el("p", "Buyback Your NFT")
+                    el("h1", "바이백"),
+                    el("p", "가이아 바이백 펀드")
                 ),
+                new TeamNFT(),
                 el(".nft-container",
                     el(".nft-item",
                         el("img", { src: "/images/nft/sneakpeek1.jpeg" }),
                         el("h3", "가이아#3212"),
-                        el("p", "1,000 klay"),
-                        el("button", "BUYBACK")
+                        el("p", "1,000 KLAY"),
+                        el("button", "바이백")
                     )
                 )
             ).appendTo(BodyNode)

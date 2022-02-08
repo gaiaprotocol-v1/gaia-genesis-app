@@ -24,9 +24,10 @@ export default class Layout implements View {
                             el("span.navicon")
                         ),
                         el("ul.menu",
-                            el("li.item", el("a", "Mining", { click: () => { SkyRouter.go("/mining") } })),
-                            el("li.item", el("a", "Buyback", { click: () => { SkyRouter.go("/buyback") } })),
-                            el("li.item", el("a", "Hourglass", { click: () => { SkyRouter.go("/hourglass") } })),
+                            el("li.item", el("a", "대시보드", { click: () => { SkyRouter.go("/") } })),
+                            el("li.item", el("a", "채굴", { click: () => { SkyRouter.go("/mining") } })),
+                            el("li.item", el("a", "바이백", { click: () => { SkyRouter.go("/buyback") } })),
+                            el("li.item", el("a", "아워글라스", { click: () => { SkyRouter.go("/hourglass") } })),
                             el("li.item", new UserInfo())
                         )
                     ),
@@ -35,6 +36,9 @@ export default class Layout implements View {
                 el("footer",
                     el(".footer-container",
                         el(".sns",
+                            el("a.opensea", { href: "https://opensea.io", target: "_blank" },
+                                el("img", { src: "/images/community/opensea.svg" })
+                            ),
                             el("a.discord", { href: "https://discord.com/invite/SjM4meh3hd", target: "_blank" },
                                 el("img", { src: "/images/community/discord.svg" })
                             ),

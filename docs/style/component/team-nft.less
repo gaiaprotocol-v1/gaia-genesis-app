@@ -1,0 +1,61 @@
+.team-nft-container {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    margin-top     : 32px;
+
+    >.content {
+        border-radius   : 1rem;
+        padding         : 32px;
+        background-color: rgba(0, 0, 0, 0.2);
+        display         : flex;
+        flex-direction  : row;
+
+        @media @phone {
+            flex-direction: column;
+        }
+
+
+        >.team-item {
+            justify-items: center;
+            text-align   : center;
+
+            >img {
+                border-radius: 4px;
+                max-width    : 300px;
+                width        : 100%;
+                margin       : auto;
+            }
+
+            >h3 {
+                font-size     : 1.25rem;
+                font-weight   : 500;
+                color         : white;
+                padding-bottom: 16px;
+            }
+        }
+
+        >.team-info {
+            display       : flex;
+            flex-direction: column;
+            align-items   : center;
+            padding-left  : 16px;
+
+            .content-wrap {
+                margin-top: 64px;
+
+                >h2 {
+                    font-size  : 1rem;
+                    color      : #e0d8c8;
+                    font-weight: 300;
+                }
+
+                >p {
+                    font-size  : 1.25rem;
+                    font-weight: 700;
+                    margin-top : 8px;
+                }
+            }
+        }
+    }
+}
