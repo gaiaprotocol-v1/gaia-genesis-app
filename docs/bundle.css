@@ -922,27 +922,27 @@ body {
     grid-template-columns: 100%;
   }
 }
-.buyback-view > .nft-container > .nft-item {
+.buyback-view > .nft-container > .buyback-item {
   display: flex;
   flex-direction: column;
   justify-items: center;
   text-align: center;
 }
-.buyback-view > .nft-container > .nft-item > img {
+.buyback-view > .nft-container > .buyback-item > img {
   border-radius: 4px;
 }
-.buyback-view > .nft-container > .nft-item > h3 {
+.buyback-view > .nft-container > .buyback-item > h3 {
   margin: 8px;
   font-size: 1.25rem;
   font-weight: 500;
 }
-.buyback-view > .nft-container > .nft-item > p {
+.buyback-view > .nft-container > .buyback-item > p {
   margin-bottom: 8px;
   font-size: 0.825rem;
   font-weight: 300;
   color: #e0d8c8;
 }
-.buyback-view > .nft-container > .nft-item > button {
+.buyback-view > .nft-container > .buyback-item > button {
   cursor: pointer;
   padding: 8px 12px 9px;
   font-weight: 700;

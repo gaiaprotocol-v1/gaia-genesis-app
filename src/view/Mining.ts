@@ -1,11 +1,16 @@
+import Debouncer from "@hanul/debouncer";
 import { DomNode, el } from "@hanul/skynode";
 import { View, ViewParams } from "skyrouter";
+import SkyUtil from "skyutil";
 import MiningItem from "../component/MiningItem";
+import GaiaNFTContract from "../contracts/GaiaNFTContract";
+import Wallet from "../klaytn/Wallet";
 import Layout from "./Layout";
 
 export default class Mining implements View {
 
     private container: DomNode;
+    private nftList: DomNode;
     private interval: any;
 
     constructor() {
@@ -25,13 +30,31 @@ export default class Mining implements View {
                         el("button.all-mining-button", "모두 KRNO로 받기"),
                         el("button.all-mining-button", "모두 KLAY로 받기"),
                     ),
-                    el(".nft-container", { "data-aos": "zoom-in" },
-                        new MiningItem(132),
-                        new MiningItem(3333),
-                    ),
+                    this.nftList = el(".nft-container", { "data-aos": "zoom-in" }),
                 ),
             ),
         );
+
+        this.resizeDebouncer.run();
+        Wallet.on("connect", () => this.resizeDebouncer.run());
+    }
+
+    private resizeDebouncer: Debouncer = new Debouncer(200, () => this.loadNFTs());
+
+    private async loadNFTs() {
+        const address = await Wallet.loadAddress();
+        if (address !== undefined) {
+            const balance = (await GaiaNFTContract.balanceOf(address)).toNumber();
+            const promises: Promise<void>[] = [];
+            SkyUtil.repeat(balance, (i: number) => {
+                const promise = async (index: number) => {
+                    const tokenId = await GaiaNFTContract.tokenOfOwnerByIndex(address, index);
+                    new MiningItem(tokenId.toNumber()).appendTo(this.nftList);
+                };
+                promises.push(promise(i));
+            });
+            await Promise.all(promises);
+        }
     }
 
     public changeParams(params: ViewParams, uri: string): void { }

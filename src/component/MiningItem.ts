@@ -1,6 +1,7 @@
 import { DomNode, el } from "@hanul/skynode";
 
 export default class MiningItem extends DomNode {
+
     constructor(private id: number) {
         super(".mining-item");
         this.append(

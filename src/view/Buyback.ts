@@ -1,11 +1,17 @@
-import { BodyNode, DomNode, el } from "@hanul/skynode";
+import Debouncer from "@hanul/debouncer";
+import { DomNode, el } from "@hanul/skynode";
 import { View, ViewParams } from "skyrouter";
+import SkyUtil from "skyutil";
+import BuybackItem from "../component/BuybackItem";
 import TeamNFT from "../component/TeamNFT";
+import GaiaNFTContract from "../contracts/GaiaNFTContract";
+import Wallet from "../klaytn/Wallet";
 import Layout from "./Layout";
 
 export default class Buyback implements View {
 
     private container: DomNode;
+    private nftList: DomNode;
     private interval: any;
 
     constructor() {
@@ -17,16 +23,30 @@ export default class Buyback implements View {
                     el("p", "가이아 바이백 펀드")
                 ),
                 new TeamNFT(),
-                el(".nft-container",
-                    el(".nft-item",
-                        el("img", { src: "/images/nft/sneakpeek1.jpeg" }),
-                        el("h3", "가이아#3212"),
-                        el("p", "1,000 KLAY"),
-                        el("button", "바이백")
-                    ),
-                ),
+                this.nftList = el(".nft-container"),
             ),
         );
+
+        this.resizeDebouncer.run();
+        Wallet.on("connect", () => this.resizeDebouncer.run());
+    }
+
+    private resizeDebouncer: Debouncer = new Debouncer(200, () => this.loadNFTs());
+
+    private async loadNFTs() {
+        const address = await Wallet.loadAddress();
+        if (address !== undefined) {
+            const balance = (await GaiaNFTContract.balanceOf(address)).toNumber();
+            const promises: Promise<void>[] = [];
+            SkyUtil.repeat(balance, (i: number) => {
+                const promise = async (index: number) => {
+                    const tokenId = await GaiaNFTContract.tokenOfOwnerByIndex(address, index);
+                    new BuybackItem(tokenId.toNumber()).appendTo(this.nftList);
+                };
+                promises.push(promise(i));
+            });
+            await Promise.all(promises);
+        }
     }
 
     public changeParams(params: ViewParams, uri: string): void { }
