@@ -1,10 +1,20 @@
 import { DomNode, el } from "@hanul/skynode";
+import { utils } from "ethers";
 import { View, ViewParams } from "skyrouter";
+import CommonUtil from "../CommonUtil";
+import GaiaBuyBackFundContract from "../contracts/GaiaBuyBackFundContract";
+import lpContract from "../contracts/lpContract";
+import sKRNOContract from "../contracts/sKRNOContract";
+import StakingContract from "../contracts/StakingContract";
+import Klaytn from "../klaytn/Klaytn";
 import Layout from "./Layout";
 
 export default class Mining implements View {
 
     private container: DomNode;
+    private krnoPriceDisplay: DomNode;
+    private apyDisplay: DomNode;
+    private buybackBalanceDisplay: DomNode;
     private interval: any;
 
     constructor() {
@@ -18,15 +28,15 @@ export default class Mining implements View {
                 el(".content",
                     el(".content-wrap",
                         el("h2", "KRNO Price"),
-                        el("p", "$316"),
+                        this.krnoPriceDisplay = el("p", "$..."),
                     ),
                     el(".content-wrap",
                         el("h2", "APY"),
-                        el("p", "150,760.4%"),
+                        this.apyDisplay = el("p", "...%"),
                     ),
                     el(".content-wrap",
                         el("h2", "Buyback Fund"),
-                        el("p", "231,321 KLAY"),
+                        this.buybackBalanceDisplay = el("p", "... KLAY"),
                     ),
                     /*el(".content-wrap",
                         el("h2", "Holders"),
@@ -35,6 +45,32 @@ export default class Mining implements View {
                 ),
             ),
         );
+
+        this.loadKRNOPrice();
+        this.loadAPY();
+        this.loadBuybackBalance();
+    }
+
+    private async loadKRNOPrice() {
+        const pool = await lpContract.getCurrentPool();
+        if (this.container.deleted !== true) {
+            this.krnoPriceDisplay.empty().appendText(`$${CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8))}`);
+        }
+    }
+
+    private async loadAPY() {
+        const stakingRebaseValue = (await StakingContract.epoch()).distribute / await sKRNOContract.circulatingSupply();
+        const apy = (Math.pow(1 + stakingRebaseValue, 365 * 3) - 1) * 100;
+        if (this.container.deleted !== true) {
+            this.apyDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(apy))}%`);
+        }
+    }
+
+    private async loadBuybackBalance() {
+        const balance = await Klaytn.balanceOf(GaiaBuyBackFundContract.address);
+        if (this.container.deleted !== true) {
+            this.buybackBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(balance))} KRNO`);
+        }
     }
 
     public changeParams(params: ViewParams, uri: string): void { }

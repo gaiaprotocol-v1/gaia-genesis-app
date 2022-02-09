@@ -1,10 +1,18 @@
 import { DomNode, el } from "@hanul/skynode";
 import { View, ViewParams } from "skyrouter";
+import CommonUtil from "../CommonUtil";
+import lpContract from "../contracts/lpContract";
+import sKRNOContract from "../contracts/sKRNOContract";
+import StakingContract from "../contracts/StakingContract";
 import Layout from "./Layout";
 
 export default class Hourglass implements View {
 
     private container: DomNode;
+    private krnoPriceDisplay: DomNode;
+    private rewardDisplay: DomNode;
+    private totalSKRNODisplay: DomNode;
+
     private amountInput: DomNode<HTMLInputElement>;
     private priceInput: DomNode<HTMLInputElement>;
     private rewardInput: DomNode<HTMLInputElement>;
@@ -23,15 +31,15 @@ export default class Hourglass implements View {
                 el(".content",
                     el(".content-wrap",
                         el("h2", "현재 KRNO 가격"),
-                        el("p", "$316"),
+                        this.krnoPriceDisplay = el("p", "$..."),
                     ),
                     el(".content-wrap",
                         el("h2", "현재 보상 수익률"),
-                        el("p", "0.664%"),
+                        this.rewardDisplay = el("p", "...%"),
                     ),
                     el(".content-wrap",
                         el("h2", "보유한 NFT의 총 sKRNO"),
-                        el("p", "0"),
+                        this.totalSKRNODisplay = el("p", "0"),
                     ),
                 ),
                 el("hr"),
@@ -114,9 +122,22 @@ export default class Hourglass implements View {
                 ),
             ),
         );
+
+        this.loadKRNOPrice();
+        this.loadReward();
     }
 
-    getInitialInvestment(): number {
+    private async loadKRNOPrice() {
+        const pool = await lpContract.getCurrentPool();
+        this.krnoPriceDisplay.empty().appendText(`$${CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8))}`);
+    }
+
+    private async loadReward() {
+        const stakingRebaseValue = (await StakingContract.epoch()).distribute / await sKRNOContract.circulatingSupply();
+        this.rewardDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(stakingRebaseValue * 100))}%`);
+    }
+
+    private getInitialInvestment(): number {
         return Number(this.priceInput.domElement.value) * Number(this.amountInput.domElement.value);
     }
 
