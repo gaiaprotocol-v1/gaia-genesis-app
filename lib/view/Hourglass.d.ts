@@ -11,9 +11,12 @@ export default class Hourglass implements View {
     private slider;
     private interval;
     constructor();
+    private init;
     private loadKRNOPrice;
     private loadReward;
+    private setSwiper;
     private getInitialInvestment;
+    private calReward;
     changeParams(params: ViewParams, uri: string): void;
     close(): void;
 }

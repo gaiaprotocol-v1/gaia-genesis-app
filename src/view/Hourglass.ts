@@ -5,7 +5,7 @@ import lpContract from "../contracts/lpContract";
 import sKRNOContract from "../contracts/sKRNOContract";
 import StakingContract from "../contracts/StakingContract";
 import Layout from "./Layout";
-import Swiper from 'swiper';
+import Swiper from "swiper";
 
 export default class Hourglass implements View {
 
