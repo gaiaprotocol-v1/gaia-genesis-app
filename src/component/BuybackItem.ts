@@ -11,7 +11,7 @@ export default class BuybackItem extends DomNode {
     constructor() {
         super(".buyback-item");
         this.append(
-            el("img", { src: "/images/nft/sneakpeek1.jpeg" }),
+            el("img", { src: "/images/shared/img/sneakpeek1.jpeg" }),
             this.nameDisplay = el("h3"),
             el("p", "1,000 KLAY"),
             el("button", "바이백", {

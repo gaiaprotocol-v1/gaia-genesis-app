@@ -19,10 +19,10 @@ export default class MiningItem extends DomNode {
     constructor() {
         super(".mining-item");
         this.append(
-            el("img", { src: "/images/nft/sneakpeek1.jpeg" }),
+            el("img", { src: "/images/shared/img/sneakpeek1.jpeg" }),
             this.nameDisplay = el("h3"),
             el("a",
-                el("img.send", { src: "/images/icon/send.svg", alt: "send icon" }),
+                el("img.send", { src: "/images/shared/icn/send.svg", alt: "send icon" }),
                 {
                     click: () => new Prompt("전송하기", "전송받을 지갑 주소를 입력해주시기 바랍니다. 전송이 완료되면 절대 되찾을 수 없으니, 지갑 주소를 여러번 확인하시기 바랍니다.", "전송", async (to) => {
                         ViewUtil.waitTransactionAndRefresh();
