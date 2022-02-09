@@ -1057,11 +1057,6 @@ body {
   flex-direction: column;
   align-items: center;
 }
-.hourglass-view > section > .input-wrap > label {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: white;
-}
 .hourglass-view > section > .input-wrap > .slider {
   margin-bottom: 16px;
   width: 70%;
@@ -1090,6 +1085,15 @@ body {
   background-color: #e0d8c8;
   cursor: pointer;
   border: 1px solid #f4f4f4;
+}
+.hourglass-view > section > .input-wrap > .text-wrap {
+  display: flex;
+}
+.hourglass-view > section > .input-wrap > .text-wrap > label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  margin-right: 4px;
 }
 .hourglass-view > section > button {
   width: 50%;

@@ -19,6 +19,18 @@ export default class Hourglass implements View {
     private rewardDisplay: DomNode;
     private totalSKRNODisplay: DomNode;
 
+    private initWealthDisplay: DomNode;
+    private kronRewardDisplay: DomNode;
+    private currentWealthDisplay: DomNode;
+    private futureWealthDisplay: DomNode;
+
+    private macbookRewardDisplay: DomNode;
+    private teslaRewardDisplay: DomNode;
+    private birkinBagRewardDisplay: DomNode;
+    private eternoRewardDisplay: DomNode;
+
+    private daysDisplay: DomNode;
+
     private amountInput: DomNode<HTMLInputElement>;
     private priceInput: DomNode<HTMLInputElement>;
     private rewardInput: DomNode<HTMLInputElement>;
@@ -46,49 +58,72 @@ export default class Hourglass implements View {
                         ),
                         el("article",
                             el("header", "보유한 NFT의 총 sKRNO"),
-                            this.totalSKRNODisplay = el("p", "..."),
+                            this.totalSKRNODisplay = el("p", "0"),
                         ),
                     ),
                     el("hr"),
                     el(".input-container",
                         el(".input-wrap",
-                            el("label", "총 sKRNO 수량"),
-                            this.amountInput = el("input",),
+                            el("label", "sKRNO 수량"),
+                            this.amountInput = el("input", {
+                                change: () => {
+                                    this.setWealth();
+                                }
+                            }),
                         ),
                         el(".input-wrap",
                             el("label", "민팅 당시 KRNO 가격 ($)"),
-                            this.priceInput = el("input",),
+                            this.priceInput = el("input", {
+                                change: () => {
+                                    this.setWealth();
+                                }
+                            }),
                         ),
                         el(".input-wrap",
                             el("label", "수익률 (%)"),
-                            this.rewardInput = el("input",),
+                            this.rewardInput = el("input", {
+                                change: async () => {
+                                    this.setWealth();
+                                }
+                            }),
                         ),
                         el(".input-wrap",
-                            el("label", "예측 KRNO 가격 ($)"),
-                            this.futureInput = el("input",),
+                            el("label", "예상 KRNO 가격 ($)"),
+                            this.futureInput = el("input", {
+                                change: () => {
+                                    this.setWealth();
+                                }
+                            }),
                         ),
                     ),
                     el(".input-wrap",
-                        this.slider = el("input.slider", { type: "range", value: "0", min: "0", max: "365", onChnage: () => { console.log("siba") } }),
-                        el("label", `${this.slider.domElement.value} days`)
+                        this.slider = el("input.slider", {
+                            type: "range", value: "30", min: "1", max: "365",
+                            change: () => {
+                                this.setWealth();
+                            }
+                        }),
+                        el(".text-wrap",
+                            this.daysDisplay = el("label", "30"),
+                            el("label", "days")
+                        ),
                     ),
-                    el("button", "계산"),
                     el(".reward-container",
                         el(".content-wrap",
-                            el("header", "최초 투자"),
-                            el("p", `${this.getInitialInvestment()} $`),
+                            el("header", "최초 재산"),
+                            this.initWealthDisplay = el("p", "0 $"),
                         ),
                         el(".content-wrap",
                             el("header", "현재 재산"),
-                            el("p", `${this.getInitialInvestment()} $`),
+                            this.currentWealthDisplay = el("p", "0 $"),
                         ),
                         el(".content-wrap",
                             el("header", "KRNO 보상"),
-                            el("p", "0 KRNO"),
+                            this.kronRewardDisplay = el("p", "0 KRNO"),
                         ),
                         el(".content-wrap",
                             el("header", "예상 재산"),
-                            el("p", "0 $"),
+                            this.futureWealthDisplay = el("p", "0 $"),
                         ),
                     ),
                     el("hr"),
@@ -99,28 +134,28 @@ export default class Hourglass implements View {
                             el(".swiper-slide",
                                 el("img", { src: "/images/view/hourglass/macbook-pro.png", alt: "" }),
                                 el(".text-warp",
-                                    el("header", "0 Macbook"),
+                                    this.macbookRewardDisplay = el("header", "0 Macbook"),
                                     el("p", "Macbook M1 Pro 16inch"),
-                                ),
-                            ),
-                            el(".swiper-slide",
-                                el("img", { src: "/images/view/hourglass/modelS.png", alt: "" }),
-                                el(".text-warp",
-                                    el("header", "0 Tesla"),
-                                    el("p", "Tesla Model S Plaid"),
                                 ),
                             ),
                             el(".swiper-slide",
                                 el("img", { src: "/images/view/hourglass/birkin-bag.png", alt: "" }),
                                 el(".text-warp",
-                                    el("header", "0 Birkin Bag"),
+                                    this.birkinBagRewardDisplay = el("header", "0 Birkin Bag"),
                                     el("p", "Hermes Birkin Bag"),
+                                ),
+                            ),
+                            el(".swiper-slide",
+                                el("img", { src: "/images/view/hourglass/modelS.png", alt: "" }),
+                                el(".text-warp",
+                                    this.teslaRewardDisplay = el("header", "0 Tesla"),
+                                    el("p", "Tesla Model S Plaid"),
                                 ),
                             ),
                             el(".swiper-slide",
                                 el("img", { src: "/images/view/hourglass/ETERNO-CHUNGDAM.png", alt: "" }),
                                 el(".text-warp",
-                                    el("header", "0 Eterno Chungdam"),
+                                    this.eternoRewardDisplay = el("header", "0 Eterno Chungdam"),
                                     el("p", "Eterno Chungdam 243.17㎡"),
                                 ),
                             ),
@@ -177,7 +212,6 @@ export default class Hourglass implements View {
     }
 
     private setSwiper(): void {
-        console.log(this.slider.domElement.value);
         new Swiper('.swiper', {
             navigation: {
                 nextEl: '.swiper-button-next',
@@ -186,15 +220,33 @@ export default class Hourglass implements View {
         });
     }
 
-    private getInitialInvestment(): number {
-        return Number(this.priceInput.domElement.value) * Number(this.amountInput.domElement.value);
-    }
+    private async setWealth(): Promise<void> {
+        this.daysDisplay.empty().appendText(this.slider.domElement.value);
 
-    private calReward() {
-        // 맥북 $ 2,499.00
-        // 테슬라 모델s $ 123,740
-        // 버킨백 $ 30,000
-        // 청담에테르노 $ 8,357,011.53
+        // initWealth
+        const initWealth = Number(this.amountInput.domElement.value) * Number(this.priceInput.domElement.value);
+        this.initWealthDisplay.empty().appendText(`${initWealth.toLocaleString()} $`);
+
+        // currentWealth
+        const pool = await lpContract.getCurrentPool();
+        const currentWealth = Number(this.amountInput.domElement.value) * Number(CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8)));
+        this.currentWealthDisplay.empty().appendText(`${currentWealth.toLocaleString()} $`);
+
+        // rewardKrno
+        const rewardKrno = Math.pow(1 + parseFloat(this.rewardInput.domElement.value) / 100, (Number(this.slider.domElement.value) * 3));
+        const rewardAPY = Number(this.amountInput.domElement.value) * rewardKrno;
+        this.kronRewardDisplay.empty().appendText(`${rewardAPY.toLocaleString()} KRNO`);
+
+        // futureWealthDisplay
+        const rewardWealth = rewardAPY * Number(this.futureInput.domElement.value);
+        const futureWealth = currentWealth + rewardWealth;
+        this.futureWealthDisplay.empty().appendText(`${futureWealth.toLocaleString()} $`);
+
+        // reward
+        this.macbookRewardDisplay.empty().appendText(`${Math.round(futureWealth / 2499).toLocaleString()} Macbook`);
+        this.birkinBagRewardDisplay.empty().appendText(`${Math.round(futureWealth / 30000).toLocaleString()} Birkin Bag`);
+        this.teslaRewardDisplay.empty().appendText(`${Math.round(futureWealth / 123740).toLocaleString()} Tesla`);
+        this.eternoRewardDisplay.empty().appendText(`${Math.round(futureWealth / 8357011).toLocaleString()} Eterno Chungdam`);
     }
 
     public changeParams(params: ViewParams, uri: string): void { }
