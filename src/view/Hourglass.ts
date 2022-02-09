@@ -1,11 +1,16 @@
 import { DomNode, el } from "@hanul/skynode";
+import { BigNumber, utils } from "ethers";
 import { View, ViewParams } from "skyrouter";
+import SkyUtil from "skyutil";
+import Swiper from "swiper";
 import CommonUtil from "../CommonUtil";
+import GaiaNFTContract from "../contracts/GaiaNFTContract";
+import GaiaOperationContract from "../contracts/GaiaOperationContract";
 import lpContract from "../contracts/lpContract";
 import sKRNOContract from "../contracts/sKRNOContract";
 import StakingContract from "../contracts/StakingContract";
+import Wallet from "../klaytn/Wallet";
 import Layout from "./Layout";
-import Swiper from "swiper";
 
 export default class Hourglass implements View {
 
@@ -41,7 +46,7 @@ export default class Hourglass implements View {
                         ),
                         el("article",
                             el("header", "보유한 NFT의 총 sKRNO"),
-                            this.totalSKRNODisplay = el("p", "0"),
+                            this.totalSKRNODisplay = el("p", "..."),
                         ),
                     ),
                     el("hr"),
@@ -134,6 +139,7 @@ export default class Hourglass implements View {
         this.setSwiper();
         this.loadKRNOPrice();
         this.loadReward();
+        this.loadTotalSKRNO();
     }
 
     private async loadKRNOPrice(): Promise<void> {
@@ -144,6 +150,30 @@ export default class Hourglass implements View {
     private async loadReward(): Promise<void> {
         const stakingRebaseValue = (await StakingContract.epoch()).distribute / await sKRNOContract.circulatingSupply();
         this.rewardDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(stakingRebaseValue * 100))}%`);
+    }
+
+    private async loadTotalSKRNO(): Promise<void> {
+
+        const address = await Wallet.loadAddress();
+        if (address !== undefined) {
+
+            const balance = (await GaiaNFTContract.balanceOf(address)).toNumber();
+            const promises: Promise<void>[] = [];
+
+            let totalKRNO = BigNumber.from(0);
+            SkyUtil.repeat(balance, (i: number) => {
+                const promise = async (index: number) => {
+                    const tokenId = (await GaiaNFTContract.tokenOfOwnerByIndex(address, index)).toNumber();
+                    if (tokenId !== 0) {
+                        totalKRNO = totalKRNO.add(await GaiaOperationContract.getKRNOBalance(tokenId));
+                    }
+                };
+                promises.push(promise(i));
+            });
+            await Promise.all(promises);
+
+            this.totalSKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(totalKRNO))}`);
+        }
     }
 
     private setSwiper(): void {

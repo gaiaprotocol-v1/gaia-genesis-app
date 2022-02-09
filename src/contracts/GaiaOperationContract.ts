@@ -24,6 +24,10 @@ class GaiaOperationContract extends Contract {
     public async claimKlayViaZap(ids: BigNumberish[], amounts: BigNumber[], minAmount: BigNumber, swapRouteArray: string[]) {
         await this.runWalletMethod("claimKlayViaZap", ids, amounts, minAmount, swapRouteArray);
     }
+
+    public async getKRNOBalance(id: BigNumberish) {
+        return BigNumber.from(await this.runMethod("getKRNOBalance", id));
+    }
 }
 
 export default new GaiaOperationContract();

@@ -14,6 +14,7 @@ export default class Hourglass implements View {
     private init;
     private loadKRNOPrice;
     private loadReward;
+    private loadTotalSKRNO;
     private setSwiper;
     private getInitialInvestment;
     private calReward;

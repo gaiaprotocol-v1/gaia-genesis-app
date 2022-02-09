@@ -6,6 +6,7 @@ declare class GaiaOperationContract extends Contract {
     claimableKlay(ids: BigNumberish[]): Promise<BigNumber>;
     claim(ids: BigNumberish[], amounts: BigNumber[]): Promise<void>;
     claimKlayViaZap(ids: BigNumberish[], amounts: BigNumber[], minAmount: BigNumber, swapRouteArray: string[]): Promise<void>;
+    getKRNOBalance(id: BigNumberish): Promise<BigNumber>;
 }
 declare const _default: GaiaOperationContract;
 export default _default;
