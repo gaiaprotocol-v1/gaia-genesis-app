@@ -1,4 +1,4 @@
-import { BigNumberish } from "ethers";
+import { BigNumber, BigNumberish } from "ethers";
 import Config from "../Config";
 import Wallet from "../klaytn/Wallet";
 import GaiaBuyBackFundArtifact from "./abi/artifacts/contracts/GaiaBuyBackFund.sol/GaiaBuyBackFund.json";
@@ -19,6 +19,10 @@ class GaiaBuyBackFundContract extends Contract {
             }
             await this.runWalletMethod("sellGaiaNFT", ids);
         }
+    }
+
+    public async refundableKlay(): Promise<BigNumber> {
+        return BigNumber.from(await this.runMethod("refundableKlay"));
     }
 }
 

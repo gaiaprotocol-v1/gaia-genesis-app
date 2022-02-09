@@ -52,12 +52,7 @@ export default class Mining implements View {
                             }),
                         ),
                     ),
-                    this.nftList = el(".nft-container", { "data-aos": "zoom-in" },
-                        new MiningItem(),
-                        new MiningItem(),
-                        new MiningItem(),
-                        new MiningItem(), new MiningItem(), new MiningItem(), new MiningItem(), new MiningItem(),
-                    ),
+                    this.nftList = el(".nft-container", { "data-aos": "zoom-in" }),
                 ),
             ),
         );

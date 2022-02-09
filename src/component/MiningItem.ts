@@ -1,8 +1,8 @@
 import { DomNode, el } from "@hanul/skynode";
 import { BigNumber, utils } from "ethers";
 import CommonUtil from "../CommonUtil";
+import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
-import Wallet from "../klaytn/Wallet";
 import ViewUtil from "../view/ViewUtil";
 import Prompt from "./dialogue/Prompt";
 
@@ -25,6 +25,7 @@ export default class MiningItem extends DomNode {
                 el("img.send", { src: "/images/shared/icn/send.svg", alt: "send icon" }),
                 {
                     click: () => new Prompt("전송하기", "전송받을 지갑 주소를 입력해주시기 바랍니다. 전송이 완료되면 절대 되찾을 수 없으니, 지갑 주소를 여러번 확인하시기 바랍니다.", "전송", async (to) => {
+                        await GaiaNFTContract.transfer(to, this.id);
                         ViewUtil.waitTransactionAndRefresh();
                     }),
                 }),

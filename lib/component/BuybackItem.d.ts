@@ -1,8 +1,9 @@
 import { DomNode } from "@hanul/skynode";
+import { BigNumber } from "ethers";
 export default class BuybackItem extends DomNode {
     private nameDisplay;
     private id;
-    constructor();
+    constructor(refundableKlay: BigNumber);
     init(id: number): void;
     delete(): void;
 }

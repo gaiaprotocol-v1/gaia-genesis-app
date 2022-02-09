@@ -1,6 +1,14 @@
 import { DomNode, el } from "@hanul/skynode";
+import { utils } from "ethers";
+import CommonUtil from "../CommonUtil";
+import GaiaBuyBackFundContract from "../contracts/GaiaBuyBackFundContract";
+import GaiaOperationContract from "../contracts/GaiaOperationContract";
 
 export default class TeamNFT extends DomNode {
+
+    private klayDisplay: DomNode;
+    private refundableKlayDisplay: DomNode;
+
     constructor() {
         super(".team-nft-container");
         this.append(
@@ -16,15 +24,25 @@ export default class TeamNFT extends DomNode {
                     ),
                     el(".content-wrap",
                         el("h2", "쌓인 복리 이자"),
-                        el("p", "9,999 KLAY"),
+                        this.klayDisplay = el("p", "... KLAY"),
                     ),
                     el(".content-wrap",
                         el("h2", "받을 수 있는 KLAY수량"),
-                        el("p", "8,999 KLAY"),
+                        this.refundableKlayDisplay = el("p", "... KLAY"),
                     ),
                 ),
             ),
-        )
+        );
+        this.load();
+    }
+
+    private async load() {
+
+        const klay = await GaiaOperationContract.claimableKlay([0]);
+        this.klayDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay))} KLAY`);
+
+        const refundableKlay = await GaiaBuyBackFundContract.refundableKlay();
+        this.refundableKlayDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(refundableKlay))} KLAY`);
     }
 
     public delete() {
