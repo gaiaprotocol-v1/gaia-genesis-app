@@ -69,7 +69,7 @@ export default class Mining implements View {
     private async loadBuybackBalance() {
         const balance = await Klaytn.balanceOf(GaiaBuyBackFundContract.address);
         if (this.container.deleted !== true) {
-            this.buybackBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(balance))} KRNO`);
+            this.buybackBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(balance))} KLAY`);
         }
     }
 
