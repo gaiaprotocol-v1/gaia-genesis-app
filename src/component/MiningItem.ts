@@ -2,7 +2,9 @@ import { DomNode, el } from "@hanul/skynode";
 import { BigNumber, utils } from "ethers";
 import CommonUtil from "../CommonUtil";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
+import Wallet from "../klaytn/Wallet";
 import ViewUtil from "../view/ViewUtil";
+import Prompt from "./dialogue/Prompt";
 
 export default class MiningItem extends DomNode {
 
@@ -19,24 +21,32 @@ export default class MiningItem extends DomNode {
         this.append(
             el("img", { src: "/images/nft/sneakpeek1.jpeg" }),
             this.nameDisplay = el("h3"),
-            el("img.send", { src: "/images/icon/send.svg", alt: "send icon" }),
+            el("a",
+                el("img.send", { src: "/images/icon/send.svg", alt: "send icon" }),
+                {
+                    click: () => new Prompt("전송하기", "전송받을 지갑 주소를 입력해주시기 바랍니다. 전송이 완료되면 절대 되찾을 수 없으니, 지갑 주소를 여러번 확인하시기 바랍니다.", "전송", async (to) => {
+                        ViewUtil.waitTransactionAndRefresh();
+                    }),
+                }),
             el(".content-wrap",
                 el(".amount-wrap",
                     this.krnoDisplay = el(".krno", "... KRNO"),
                     this.klayDisplay = el(".klay", "... KLAY"),
                 ),
-                el("button.krno-button", "KRON 받기", {
-                    click: async () => {
-                        await GaiaOperationContract.claim([this.id], [this.krno]);
-                        ViewUtil.waitTransactionAndRefresh();
-                    },
-                }),
-                el("button.klay-button", "KLAY로 받기", {
-                    click: async () => {
-                        await GaiaOperationContract.claimKlayViaZap([this.id], [this.krno], this.klay, []);
-                        ViewUtil.waitTransactionAndRefresh();
-                    },
-                }),
+                el(".button-wrap",
+                    el("button.krno-button", "KRON 받기", {
+                        click: async () => {
+                            await GaiaOperationContract.claim([this.id], [this.krno]);
+                            ViewUtil.waitTransactionAndRefresh();
+                        },
+                    }),
+                    el("button.klay-button", "KLAY로 받기", {
+                        click: async () => {
+                            await GaiaOperationContract.claimKlayViaZap([this.id], [this.krno], this.klay, []);
+                            ViewUtil.waitTransactionAndRefresh();
+                        },
+                    }),
+                ),
             ),
         );
     }

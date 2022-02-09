@@ -257,7 +257,7 @@ body {
   width: 90%;
   margin: auto;
   border-radius: 4px;
-  background-color: white;
+  background-color: black;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .dialogue.prompt > h2 {
@@ -282,6 +282,8 @@ body {
   padding: 8px;
   height: 36px;
   border: 1px solid #e4e8eb;
+  background-color: transparent;
+  color: white;
 }
 .dialogue.prompt > .input-container > input:hover {
   border: 1px solid "#B19C76";
@@ -296,13 +298,13 @@ body {
 }
 .dialogue.prompt > .button-container > button {
   background-color: transparent;
-  color: black;
+  color: white;
   padding: 8px 16px;
   font-size: 0.75rem;
   border-radius: 4px;
 }
 .dialogue.prompt > .button-container > button:hover {
-  background-color: rgba(247, 222, 165, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .dialogue.prompt > .button-container > button:active {
   background-color: "#B19C76";
@@ -364,6 +366,7 @@ body {
   display: flex;
   position: relative;
   flex-direction: column;
+  overflow: hidden;
 }
 .mining-item > img {
   border-radius: 4px;
@@ -377,7 +380,7 @@ body {
   color: white;
   text-shadow: 1px 1px 1px #656565;
 }
-.mining-item > .send {
+.mining-item > a > .send {
   font-size: 1.25rem;
   font-weight: 500;
   height: 24px;
@@ -389,7 +392,7 @@ body {
   padding: 4px;
   cursor: pointer;
 }
-.mining-item > .send:hover {
+.mining-item > a > .send:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
 .mining-item > .content-wrap {
@@ -409,22 +412,23 @@ body {
   font-weight: 300;
   color: #e0d8c8;
 }
-.mining-item > .content-wrap > .krno-button {
+.mining-item > .content-wrap > .button-wrap > .krno-button {
   cursor: pointer;
   padding: 8px 12px 9px;
   font-weight: 700;
   font-size: 0.75rem;
   border-radius: 4px;
+  margin-right: 8px;
 }
-.mining-item > .content-wrap > .krno-button:hover {
+.mining-item > .content-wrap > .button-wrap > .krno-button:hover {
   background-color: rgba(224, 216, 200, 0.9);
   color: white;
 }
-.mining-item > .content-wrap > .krno-button:active {
+.mining-item > .content-wrap > .button-wrap > .krno-button:active {
   background-color: #e0d8c8;
   color: white;
 }
-.mining-item > .content-wrap > .klay-button {
+.mining-item > .content-wrap > .button-wrap > .klay-button {
   cursor: pointer;
   padding: 8px 12px 9px;
   font-weight: 700;
@@ -435,12 +439,12 @@ body {
   color: #e0d8c8;
   background-color: transparent;
 }
-.mining-item > .content-wrap > .klay-button:hover {
+.mining-item > .content-wrap > .button-wrap > .klay-button:hover {
   background-color: rgba(224, 216, 200, 0.9);
   border-color: transparent;
   color: white;
 }
-.mining-item > .content-wrap > .klay-button:active {
+.mining-item > .content-wrap > .button-wrap > .klay-button:active {
   background-color: #e0d8c8;
   border-color: transparent;
   color: white;
@@ -852,35 +856,41 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.mining-view > .my-nft-container > .tool-box > .title-wrap {
+  text-align: left;
+}
 .mining-view > .my-nft-container > .tool-box > .title-wrap > h2 {
   font-size: 1.5rem;
   font-weight: 500;
+  padding-bottom: 4px;
 }
 .mining-view > .my-nft-container > .tool-box > .title-wrap > p {
   font-size: 0.725rem;
-  padding-top: 8px;
+  padding-top: 4px;
   color: #e0d8c8;
   font-weight: 300;
 }
-.mining-view > .my-nft-container > .tool-box > .all-mining-button {
+.mining-view > .my-nft-container > .tool-box > .button-wrap > .all-mining-button {
   cursor: pointer;
   padding: 8px 12px 9px;
   font-weight: 700;
   border-radius: 4px;
   margin-bottom: 32px;
+  margin-left: 8px;
 }
-.mining-view > .my-nft-container > .tool-box > .all-mining-button:hover {
+.mining-view > .my-nft-container > .tool-box > .button-wrap > .all-mining-button:hover {
   background-color: rgba(224, 216, 200, 0.9);
   color: white;
 }
-.mining-view > .my-nft-container > .tool-box > .all-mining-button:active {
+.mining-view > .my-nft-container > .tool-box > .button-wrap > .all-mining-button:active {
   background-color: #e0d8c8;
   color: white;
 }
 .mining-view > .my-nft-container > .nft-container {
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+  min-width: 0;
 }
 @media only screen and (max-width: 719px) {
   .mining-view > .my-nft-container > .nft-container {
@@ -915,6 +925,7 @@ body {
 .buyback-view > .nft-container {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
+  gap: 16px;
   margin-top: 32px;
 }
 @media only screen and (max-width: 719px) {

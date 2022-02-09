@@ -37,20 +37,27 @@ export default class Mining implements View {
                             this.totalKRNODisplay = el("p", "총 이자: ... KRNO"),
                             this.totalKlayDisplay = el("p", "총 이자: ... KLAY"),
                         ),
-                        el("button.all-mining-button", "모두 KRNO로 받기", {
-                            click: async () => {
-                                await GaiaOperationContract.claim(this.tokenIds, this.krnos);
-                                ViewUtil.waitTransactionAndRefresh();
-                            },
-                        }),
-                        el("button.all-mining-button", "모두 KLAY로 받기", {
-                            click: async () => {
-                                await GaiaOperationContract.claimKlayViaZap(this.tokenIds, this.krnos, this.totalKlay, []);
-                                ViewUtil.waitTransactionAndRefresh();
-                            },
-                        }),
+                        el(".button-wrap",
+                            el("button.all-mining-button", "모두 KRNO로 받기", {
+                                click: async () => {
+                                    await GaiaOperationContract.claim(this.tokenIds, this.krnos);
+                                    ViewUtil.waitTransactionAndRefresh();
+                                },
+                            }),
+                            el("button.all-mining-button", "모두 KLAY로 받기", {
+                                click: async () => {
+                                    await GaiaOperationContract.claimKlayViaZap(this.tokenIds, this.krnos, this.totalKlay, []);
+                                    ViewUtil.waitTransactionAndRefresh();
+                                },
+                            }),
+                        ),
                     ),
-                    this.nftList = el(".nft-container", { "data-aos": "zoom-in" }),
+                    this.nftList = el(".nft-container", { "data-aos": "zoom-in" },
+                        new MiningItem(),
+                        new MiningItem(),
+                        new MiningItem(),
+                        new MiningItem(), new MiningItem(), new MiningItem(), new MiningItem(), new MiningItem(),
+                    ),
                 ),
             ),
         );

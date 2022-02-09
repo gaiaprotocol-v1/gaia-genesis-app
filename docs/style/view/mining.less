@@ -34,42 +34,50 @@
             justify-content: space-between;
 
             >.title-wrap {
+                text-align: left;
+
                 >h2 {
-                    font-size  : 1.5rem;
-                    font-weight: 500;
+                    font-size     : 1.5rem;
+                    font-weight   : 500;
+                    padding-bottom: 4px;
                 }
 
                 >p {
                     font-size  : 0.725rem;
-                    padding-top: 8px;
+                    padding-top: 4px;
                     color      : #e0d8c8;
                     font-weight: 300;
                 }
             }
 
-            >.all-mining-button {
-                cursor       : pointer;
-                padding      : 8px 12px 9px;
-                font-weight  : 700;
-                border-radius: 4px;
-                margin-bottom: 32px;
+            >.button-wrap {
+                >.all-mining-button {
+                    cursor       : pointer;
+                    padding      : 8px 12px 9px;
+                    font-weight  : 700;
+                    border-radius: 4px;
+                    margin-bottom: 32px;
+                    margin-left  : 8px;
 
-                &:hover {
-                    background-color: rgba(224, 216, 200, 0.9);
-                    color           : white;
-                }
+                    &:hover {
+                        background-color: rgba(224, 216, 200, 0.9);
+                        color           : white;
+                    }
 
-                &:active {
-                    background-color: #e0d8c8;
-                    color           : white;
+                    &:active {
+                        background-color: #e0d8c8;
+                        color           : white;
+                    }
                 }
             }
         }
 
         >.nft-container {
             display              : grid;
-            grid-template-columns: 25% 25% 25% 25%;
+            grid-template-columns: repeat(4, 1fr);
             gap                  : 16px;
+            min-width            : 0;
+            min-width            : 0;
 
             @media @phone {
                 grid-template-columns: 100%;
