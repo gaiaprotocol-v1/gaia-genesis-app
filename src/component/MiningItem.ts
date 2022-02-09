@@ -8,6 +8,7 @@ import Prompt from "./shared/dialogue/Prompt";
 
 export default class MiningItem extends DomNode {
 
+    private imageDisplay: DomNode<HTMLImageElement>;
     private nameDisplay: DomNode;
     private krnoDisplay: DomNode;
     private klayDisplay: DomNode;
@@ -19,7 +20,7 @@ export default class MiningItem extends DomNode {
     constructor() {
         super(".mining-item");
         this.append(
-            el("img", { src: "/images/shared/img/sneakpeek1.jpeg" }),
+            this.imageDisplay = el("img"),
             this.nameDisplay = el("h3"),
             el("a",
                 el("img.send", { src: "/images/shared/icn/send.svg", alt: "send icon" }),
@@ -54,6 +55,7 @@ export default class MiningItem extends DomNode {
 
     public init(id: number) {
         this.id = id;
+        this.imageDisplay.domElement.src = `https://storage.googleapis.com/gaia-protocol/kronos/${id}.png`;
         this.nameDisplay.appendText(`#${this.id}`);
         this.loadKRNO();
         this.loadKlay();

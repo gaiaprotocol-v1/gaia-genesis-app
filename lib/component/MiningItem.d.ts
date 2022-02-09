@@ -1,5 +1,6 @@
 import { DomNode } from "@hanul/skynode";
 export default class MiningItem extends DomNode {
+    private imageDisplay;
     private nameDisplay;
     private krnoDisplay;
     private klayDisplay;
