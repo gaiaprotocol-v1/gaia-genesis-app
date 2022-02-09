@@ -3,6 +3,7 @@ import { BigNumber, utils } from "ethers";
 import CommonUtil from "../CommonUtil";
 import GaiaBuyBackFundContract from "../contracts/GaiaBuyBackFundContract";
 import ViewUtil from "../view/ViewUtil";
+import Confirm from "./shared/dialogue/Confirm";
 
 export default class BuybackItem extends DomNode {
 
@@ -18,9 +19,11 @@ export default class BuybackItem extends DomNode {
             this.nameDisplay = el("h3"),
             el("p", `${CommonUtil.numberWithCommas(utils.formatEther(refundableKlay))} KLAY`),
             el("button", "바이백", {
-                click: async () => {
-                    await GaiaBuyBackFundContract.sellGaiaNFT([this.id]);
-                    ViewUtil.waitTransactionAndRefresh();
+                click: () => {
+                    new Confirm("바이백 확인", "정말 바이백 하시겠습니까? 바이백 이후에는 다시는 NFT를 되찾을 수 없습니다.", "바이백 진행", async () => {
+                        await GaiaBuyBackFundContract.sellGaiaNFT([this.id]);
+                        ViewUtil.waitTransactionAndRefresh();
+                    });
                 },
             }),
         )

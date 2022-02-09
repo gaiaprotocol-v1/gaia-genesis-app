@@ -4,6 +4,7 @@ import CommonUtil from "../CommonUtil";
 import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
 import ViewUtil from "../view/ViewUtil";
+import Confirm from "./shared/dialogue/Confirm";
 import Prompt from "./shared/dialogue/Prompt";
 
 export default class MiningItem extends DomNode {
@@ -37,15 +38,19 @@ export default class MiningItem extends DomNode {
                 ),
                 el(".button-wrap",
                     el("button.krno-button", "KRON 받기", {
-                        click: async () => {
-                            await GaiaOperationContract.claim([this.id], [this.krno]);
-                            ViewUtil.waitTransactionAndRefresh();
+                        click: () => {
+                            new Confirm("KRON 받기", "이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다.", "계속 진행", async () => {
+                                await GaiaOperationContract.claim([this.id], [this.krno]);
+                                ViewUtil.waitTransactionAndRefresh();
+                            });
                         },
                     }),
                     el("button.klay-button", "KLAY로 받기", {
-                        click: async () => {
-                            await GaiaOperationContract.claimKlayViaZap([this.id], [this.krno], this.klay, []);
-                            ViewUtil.waitTransactionAndRefresh();
+                        click: () => {
+                            new Confirm("KLAY로 받기", "이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다.", "계속 진행", async () => {
+                                await GaiaOperationContract.claimKlayViaZap([this.id], [this.krno], this.klay, []);
+                                ViewUtil.waitTransactionAndRefresh();
+                            });
                         },
                     }),
                 ),

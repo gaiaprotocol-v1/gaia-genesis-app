@@ -238,7 +238,7 @@ body {
 }
 .dialogue.confirm > .button-container > button {
   background-color: transparent;
-  color: black;
+  color: white;
   padding: 8px 16px;
   font-size: 0.75rem;
   border-radius: 4px;

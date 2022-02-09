@@ -4,6 +4,7 @@ import { BigNumber, utils } from "ethers";
 import { View, ViewParams } from "skyrouter";
 import SkyUtil from "skyutil";
 import MiningItem from "../component/MiningItem";
+import Confirm from "../component/shared/dialogue/Confirm";
 import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
 import Wallet from "../klaytn/Wallet";
@@ -39,15 +40,19 @@ export default class Mining implements View {
                         ),
                         el(".button-container",
                             el("button.all-mining-button", "모두 KRNO로 받기", {
-                                click: async () => {
-                                    await GaiaOperationContract.claim(this.tokenIds, this.krnos);
-                                    ViewUtil.waitTransactionAndRefresh();
+                                click: () => {
+                                    new Confirm("KRON 받기", "이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다.", "계속 진행", async () => {
+                                        await GaiaOperationContract.claim(this.tokenIds, this.krnos);
+                                        ViewUtil.waitTransactionAndRefresh();
+                                    });
                                 },
                             }),
                             el("button.all-mining-button", "모두 KLAY로 받기", {
-                                click: async () => {
-                                    await GaiaOperationContract.claimKlayViaZap(this.tokenIds, this.krnos, this.totalKlay, []);
-                                    ViewUtil.waitTransactionAndRefresh();
+                                click: () => {
+                                    new Confirm("KLAY로 받기", "이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다.", "계속 진행", async () => {
+                                        await GaiaOperationContract.claimKlayViaZap(this.tokenIds, this.krnos, this.totalKlay, []);
+                                        ViewUtil.waitTransactionAndRefresh();
+                                    });
                                 },
                             }),
                         ),
