@@ -15,7 +15,7 @@ export default class TeamNFT extends DomNode {
             el(".content", { "data-aos": "zoom-in" },
                 el(".team-item",
                     el("h3", "최초의 가이아"),
-                    el("img", { src: "https://storage.googleapis.com/gaia-protocol/kronos/0.png" }),
+                    el("img", { src: "https://storage.googleapis.com/gaia-protocol/kronos/genesis.png" }),
                 ),
                 el(".team-info",
                     el(".content-wrap",
