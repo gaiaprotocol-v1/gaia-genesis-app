@@ -25,19 +25,19 @@ export default class Mining implements View {
     constructor() {
         Layout.current.title = "Mining";
         Layout.current.content.append(
-            this.container = el(".mining-view",
-                el(".title", { "data-aos": "zoom-in" },
+            this.container = el("section.mining-view",
+                el("header", { "data-aos": "zoom-in" },
                     el("h1", "Mining"),
-                    el("p", "소유한 NFT로부터 채굴"),
+                    el("h2", "소유한 NFT로부터 채굴"),
                 ),
-                el(".my-nft-container", { "data-aos": "zoom-in" },
+                el("article", { "data-aos": "zoom-in" },
                     el(".tool-box",
-                        el(".title-wrap",
-                            el("h2", "나의 NFT"),
+                        el(".title-container",
+                            el("header", "나의 NFT"),
                             this.totalKRNODisplay = el("p", "총 이자: ... KRNO"),
                             this.totalKlayDisplay = el("p", "총 이자: ... KLAY"),
                         ),
-                        el(".button-wrap",
+                        el(".button-container",
                             el("button.all-mining-button", "모두 KRNO로 받기", {
                                 click: async () => {
                                     await GaiaOperationContract.claim(this.tokenIds, this.krnos);
@@ -52,7 +52,7 @@ export default class Mining implements View {
                             }),
                         ),
                     ),
-                    this.nftList = el(".nft-container", { "data-aos": "zoom-in" }),
+                    this.nftList = el("article.nft-container", { "data-aos": "zoom-in" },),
                 ),
             ),
         );

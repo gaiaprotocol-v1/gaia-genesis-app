@@ -181,7 +181,7 @@ body {
   width: 90%;
   margin: auto;
   border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: black;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .dialogue.alert > h2 {
@@ -190,8 +190,7 @@ body {
   padding: 16px;
 }
 .dialogue.alert > p {
-  padding-left: 16px;
-  padding-top: 8px;
+  padding: 0px 16px 8px 16px;
   font-size: 0.875rem;
   line-height: 1.2em;
 }
@@ -208,10 +207,10 @@ body {
   border-radius: 4px;
 }
 .dialogue.alert > .button-container > button:hover {
-  background-color: rgba(247, 222, 165, 0.5);
+  background-color: rgba(177, 156, 118, 0.8);
 }
 .dialogue.alert > .button-container > button:active {
-  background-color: "#B19C76";
+  background-color: #b19c76;
 }
 .dialogue.confirm {
   position: relative;
@@ -219,7 +218,7 @@ body {
   width: 90%;
   margin: auto;
   border-radius: 4px;
-  background-color: white;
+  background-color: black;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .dialogue.confirm > h2 {
@@ -228,8 +227,7 @@ body {
   padding: 16px;
 }
 .dialogue.confirm > p {
-  padding-left: 16px;
-  padding-top: 8px;
+  padding: 0px 16px 8px 16px;
   font-size: 0.875rem;
   line-height: 1.2em;
 }
@@ -246,10 +244,10 @@ body {
   border-radius: 4px;
 }
 .dialogue.confirm > .button-container > button:hover {
-  background-color: rgba(247, 222, 165, 0.8);
+  background-color: rgba(177, 156, 118, 0.8);
 }
 .dialogue.confirm > .button-container > button:active {
-  background-color: "#B19C76";
+  background-color: #b19c76;
 }
 .dialogue.prompt {
   position: relative;
@@ -266,13 +264,12 @@ body {
   padding: 16px;
 }
 .dialogue.prompt > p {
-  padding-left: 16px;
-  padding-top: 8px;
+  padding: 0px 16px 8px 16px;
   font-size: 0.875rem;
   line-height: 1.2em;
 }
 .dialogue.prompt > .input-container {
-  margin-top: 16px;
+  margin-top: 8px;
   padding: 0 16px;
 }
 .dialogue.prompt > .input-container > input {
@@ -286,10 +283,10 @@ body {
   color: white;
 }
 .dialogue.prompt > .input-container > input:hover {
-  border: 1px solid "#B19C76";
+  border: 1px solid #b19c76;
 }
 .dialogue.prompt > .input-container > input:focus {
-  border: 1px solid "#B19C76";
+  border: 1px solid #b19c76;
 }
 .dialogue.prompt > .button-container {
   display: flex;
@@ -304,10 +301,101 @@ body {
   border-radius: 4px;
 }
 .dialogue.prompt > .button-container > button:hover {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(177, 156, 118, 0.8);
 }
 .dialogue.prompt > .button-container > button:active {
-  background-color: "#B19C76";
+  background-color: #b19c76;
+}
+.connect-wallet-popup {
+  position: relative;
+  max-width: 420px;
+  width: 90%;
+  margin: auto;
+  border-radius: 4px;
+  background-color: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.connect-wallet-popup > h2 {
+  font-size: 24px;
+  padding: 16px;
+}
+.connect-wallet-popup > p {
+  padding: 16px;
+  border-top: 1px solid #CCC;
+  color: #CCC;
+}
+.connect-wallet-popup > .button-container {
+  padding: 16px;
+}
+.connect-wallet-popup > .button-container > a {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.connect-wallet-popup > .button-container > a:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  color: white;
+}
+.connect-wallet-popup > .button-container > a > img {
+  margin-right: 10px;
+}
+.connect-wallet-popup > .button-container > .connect-kaikas-button {
+  background-color: #6f6558;
+  color: #ffffff;
+}
+.connect-wallet-popup > .button-container > .connect-klip-button {
+  background-color: #fee500;
+  color: #000000;
+}
+.connect-wallet-popup > .button-container > .cancel-button {
+  border: 1px solid #ffffff;
+}
+.klip-qr-popup {
+  position: relative;
+  max-width: 600px;
+  width: 90%;
+  margin: auto;
+  border-radius: 4px;
+  background-color: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.klip-qr-popup > h2 {
+  font-size: 24px;
+  padding: 16px;
+}
+.klip-qr-popup > .qr {
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  padding: 16px 0;
+  text-align: center;
+}
+.klip-qr-popup > p {
+  margin-top: 16px;
+  padding: 0 16px;
+  color: white;
+}
+.klip-qr-popup > .button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+}
+.klip-qr-popup > .button-container > button {
+  background-color: transparent;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+.klip-qr-popup > .button-container > button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 .popup-background {
   position: fixed;
@@ -335,22 +423,20 @@ body {
     padding: 20px;
   }
   .user-info:hover {
-    background-color: rgba(177, 156, 118, 0.5);
-    border-radius: 4px;
+    background-color: rgba(177, 156, 118, 0.9);
   }
   .user-info:active {
-    background-color: rgba(177, 156, 118, 0.7);
-    border-radius: 4px;
+    background-color: #b19c76;
   }
 }
 .user-info > .connect-wallet,
 .user-info > .wallet-address {
-  color: "#B19C76";
+  color: #b19c76;
   padding: 8px 12px 8px 12px;
   font-size: 0.875rem;
   text-decoration: none;
   color: white;
-  background-color: rgba(177, 156, 118, 0.7);
+  background-color: rgba(177, 156, 118, 0.8);
   border-radius: 4px;
 }
 @media only screen and (max-width: 719px) {
@@ -362,11 +448,20 @@ body {
     background-color: transparent;
   }
 }
+.user-info > .connect-wallet:hover,
+.user-info > .wallet-address:hover {
+  background-color: rgba(177, 156, 118, 0.9);
+}
+.user-info > .connect-wallet:active,
+.user-info > .wallet-address:active {
+  background-color: #b19c76;
+}
 .mining-item {
   display: flex;
   position: relative;
   flex-direction: column;
   overflow: hidden;
+  margin-bottom: 16px;
 }
 .mining-item > img {
   border-radius: 4px;
@@ -390,10 +485,14 @@ body {
   color: white;
   text-shadow: 1px 1px 1px #656565;
   padding: 4px;
+  border-radius: 4px;
   cursor: pointer;
 }
 .mining-item > a > .send:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(177, 156, 118, 0.8);
+}
+.mining-item > a > .send:active {
+  background-color: #b19c76;
 }
 .mining-item > .content-wrap {
   display: flex;
@@ -501,97 +600,6 @@ body {
   font-size: 1.25rem;
   font-weight: 700;
   margin-top: 8px;
-}
-.connect-wallet-popup {
-  position: relative;
-  max-width: 420px;
-  width: 90%;
-  margin: auto;
-  border-radius: 4px;
-  background-color: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.connect-wallet-popup > h2 {
-  font-size: 24px;
-  padding: 16px;
-}
-.connect-wallet-popup > p {
-  padding: 16px;
-  border-top: 1px solid #CCC;
-  color: #CCC;
-}
-.connect-wallet-popup > .button-container {
-  padding: 16px;
-}
-.connect-wallet-popup > .button-container > a {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background-color: transparent;
-  color: white;
-  padding: 8px 16px;
-  font-size: 14px;
-  border-radius: 4px;
-  text-decoration: none;
-}
-.connect-wallet-popup > .button-container > a:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  color: white;
-}
-.connect-wallet-popup > .button-container > a > img {
-  margin-right: 10px;
-}
-.connect-wallet-popup > .button-container > .connect-kaikas-button {
-  background-color: #6f6558;
-  color: #ffffff;
-}
-.connect-wallet-popup > .button-container > .connect-klip-button {
-  background-color: #fee500;
-  color: #000000;
-}
-.connect-wallet-popup > .button-container > .cancel-button {
-  border: 1px solid #ffffff;
-}
-.klip-qr-popup {
-  position: relative;
-  max-width: 600px;
-  width: 90%;
-  margin: auto;
-  border-radius: 4px;
-  background-color: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.klip-qr-popup > h2 {
-  font-size: 24px;
-  padding: 16px;
-}
-.klip-qr-popup > .qr {
-  border-top: 1px solid #CCC;
-  border-bottom: 1px solid #CCC;
-  padding: 16px 0;
-  text-align: center;
-}
-.klip-qr-popup > p {
-  margin-top: 16px;
-  padding: 0 16px;
-  color: white;
-}
-.klip-qr-popup > .button-container {
-  display: flex;
-  justify-content: flex-end;
-  padding: 16px;
-}
-.klip-qr-popup > .button-container > button {
-  background-color: transparent;
-  color: white;
-  padding: 8px 16px;
-  font-size: 14px;
-  border-radius: 4px;
-}
-.klip-qr-popup > .button-container > button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 .layout {
   width: 100%;
@@ -792,34 +800,34 @@ body {
     margin: 64px 8px;
   }
 }
-.dashboard-view > .title > h1 {
+.dashboard-view > header > h1 {
   font-size: 2rem;
   font-weight: 700;
 }
-.dashboard-view > .title > p {
+.dashboard-view > header > h2 {
   font-size: 0.725rem;
   padding-top: 8px;
   color: #e0d8c8;
   font-weight: 300;
 }
-.dashboard-view > .content {
+.dashboard-view > article {
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
 }
 @media only screen and (max-width: 719px) {
-  .dashboard-view > .content {
+  .dashboard-view > article {
     grid-template-columns: 100%;
   }
 }
-.dashboard-view > .content .content-wrap {
+.dashboard-view > article .content-wrap {
   margin-top: 64px;
 }
-.dashboard-view > .content .content-wrap > h2 {
+.dashboard-view > article .content-wrap > header {
   font-size: 1rem;
   color: #e0d8c8;
   font-weight: 300;
 }
-.dashboard-view > .content .content-wrap > p {
+.dashboard-view > article .content-wrap > p {
   font-size: 1.5rem;
   font-weight: 700;
   margin-top: 8px;
@@ -836,41 +844,42 @@ body {
     margin: 64px 8px;
   }
 }
-.mining-view > .title > h1 {
+.mining-view > header > h1 {
   font-size: 2rem;
   font-weight: 700;
 }
-.mining-view > .title > p {
+.mining-view > header > h2 {
   font-size: 0.725rem;
   padding-top: 8px;
   color: #e0d8c8;
   font-weight: 300;
 }
-.mining-view > .my-nft-container {
+.mining-view > article {
   margin-top: 32px;
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
   padding: 32px;
 }
-.mining-view > .my-nft-container > .tool-box {
+.mining-view > article > .tool-box {
   display: flex;
   justify-content: space-between;
 }
-.mining-view > .my-nft-container > .tool-box > .title-wrap {
+.mining-view > article > .tool-box > .title-container {
   text-align: left;
+  margin-bottom: 16px;
 }
-.mining-view > .my-nft-container > .tool-box > .title-wrap > h2 {
+.mining-view > article > .tool-box > .title-container > header {
   font-size: 1.5rem;
   font-weight: 500;
   padding-bottom: 4px;
 }
-.mining-view > .my-nft-container > .tool-box > .title-wrap > p {
+.mining-view > article > .tool-box > .title-container > p {
   font-size: 0.725rem;
   padding-top: 4px;
   color: #e0d8c8;
   font-weight: 300;
 }
-.mining-view > .my-nft-container > .tool-box > .button-wrap > .all-mining-button {
+.mining-view > article > .tool-box > .button-container > .all-mining-button {
   cursor: pointer;
   padding: 8px 12px 9px;
   font-weight: 700;
@@ -878,22 +887,22 @@ body {
   margin-bottom: 32px;
   margin-left: 8px;
 }
-.mining-view > .my-nft-container > .tool-box > .button-wrap > .all-mining-button:hover {
+.mining-view > article > .tool-box > .button-container > .all-mining-button:hover {
   background-color: rgba(224, 216, 200, 0.9);
   color: white;
 }
-.mining-view > .my-nft-container > .tool-box > .button-wrap > .all-mining-button:active {
+.mining-view > article > .tool-box > .button-container > .all-mining-button:active {
   background-color: #e0d8c8;
   color: white;
 }
-.mining-view > .my-nft-container > .nft-container {
+.mining-view > article > .nft-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   min-width: 0;
 }
 @media only screen and (max-width: 719px) {
-  .mining-view > .my-nft-container > .nft-container {
+  .mining-view > article > .nft-container {
     grid-template-columns: 100%;
   }
 }
@@ -912,11 +921,11 @@ body {
     margin: 64px 8px;
   }
 }
-.buyback-view > .title > h1 {
+.buyback-view > header > h1 {
   font-size: 2rem;
   font-weight: 700;
 }
-.buyback-view > .title > p {
+.buyback-view > header > h2 {
   font-size: 0.725rem;
   padding-top: 8px;
   color: #e0d8c8;
@@ -974,67 +983,67 @@ body {
     margin: 64px 8px;
   }
 }
-.hourglass-view > .title > h1 {
+.hourglass-view > header > h1 {
   font-size: 2rem;
   font-weight: 700;
 }
-.hourglass-view > .title > p {
+.hourglass-view > header > h2 {
   font-size: 0.725rem;
   padding-top: 8px;
   color: #e0d8c8;
   font-weight: 300;
 }
-.hourglass-view > .content {
+.hourglass-view > section > .content {
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
 }
 @media only screen and (max-width: 719px) {
-  .hourglass-view > .content {
+  .hourglass-view > section > .content {
     grid-template-columns: 100%;
   }
 }
-.hourglass-view > .content .content-wrap {
+.hourglass-view > section > .content > article {
   margin-top: 64px;
 }
-.hourglass-view > .content .content-wrap > h2 {
+.hourglass-view > section > .content > article > header {
   font-size: 1rem;
   color: #e0d8c8;
   font-weight: 300;
 }
-.hourglass-view > .content .content-wrap > p {
+.hourglass-view > section > .content > article > p {
   font-size: 1.75rem;
   font-weight: 700;
   margin-top: 8px;
 }
-.hourglass-view > hr {
+.hourglass-view > section > hr {
   border: none;
   height: 1px;
   color: #2C2C2C;
   background-color: #2C2C2C;
   margin: 30px 0px;
 }
-.hourglass-view > .input-container {
+.hourglass-view > section > .input-container {
   display: grid;
   grid-template-columns: 50% 50%;
 }
 @media only screen and (max-width: 719px) {
-  .hourglass-view > .input-container {
+  .hourglass-view > section > .input-container {
     grid-template-columns: 100%;
   }
 }
-.hourglass-view > .input-container > .input-wrap {
+.hourglass-view > section > .input-container > .input-wrap {
   margin-top: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.hourglass-view > .input-container > .input-wrap > label {
+.hourglass-view > section > .input-container > .input-wrap > label {
   font-size: 0.825rem;
   font-weight: 300;
   color: #e0d8c8;
   margin-bottom: 8px;
 }
-.hourglass-view > .input-container > .input-wrap > input {
+.hourglass-view > section > .input-container > .input-wrap > input {
   padding: 8px;
   border-radius: 4px;
   width: 50%;
@@ -1042,18 +1051,18 @@ body {
   background-color: transparent;
   color: white;
 }
-.hourglass-view > .input-wrap {
+.hourglass-view > section > .input-wrap {
   margin-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.hourglass-view > .input-wrap > label {
+.hourglass-view > section > .input-wrap > label {
   font-size: 1.25rem;
   font-weight: 700;
   color: white;
 }
-.hourglass-view > .input-wrap > .slider {
+.hourglass-view > section > .input-wrap > .slider {
   margin-bottom: 16px;
   width: 70%;
   -webkit-appearance: none;
@@ -1064,7 +1073,7 @@ body {
   outline: none;
   margin-bottom: 14px;
 }
-.hourglass-view > .input-wrap > .slider::-webkit-slider-thumb {
+.hourglass-view > section > .input-wrap > .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 15px;
@@ -1074,7 +1083,7 @@ body {
   cursor: pointer;
   border: 1px solid #f4f4f4;
 }
-.hourglass-view > .input-wrap > .slider::-moz-range-thumb {
+.hourglass-view > section > .input-wrap > .slider::-moz-range-thumb {
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -1082,14 +1091,32 @@ body {
   cursor: pointer;
   border: 1px solid #f4f4f4;
 }
-.hourglass-view > .reward-container {
+.hourglass-view > section > button {
+  width: 50%;
+  margin-top: 30px;
+  cursor: pointer;
+  padding: 8px 12px 9px;
+  font-weight: 700;
+  border-radius: 4px;
+  margin-bottom: 32px;
+  margin-left: 8px;
+  color: white;
+  background-color: rgba(177, 156, 118, 0.8);
+}
+.hourglass-view > section > button:hover {
+  background-color: rgba(177, 156, 118, 0.9);
+}
+.hourglass-view > section > button:active {
+  background-color: #b19c76;
+}
+.hourglass-view > section > .reward-container {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   margin-top: 30px;
 }
-.hourglass-view > .reward-container > .content-wrap {
+.hourglass-view > section > .reward-container > .content-wrap {
   display: flex;
   justify-content: space-between;
   text-align: center;
@@ -1097,12 +1124,12 @@ body {
   width: 50%;
   margin-top: 8px;
 }
-.hourglass-view > .reward-container > .content-wrap > .title {
+.hourglass-view > section > .reward-container > .content-wrap > .title {
   font-size: 1rem;
   color: #e0d8c8;
   font-weight: 300;
 }
-.hourglass-view > .reward-container > .content-wrap > p {
+.hourglass-view > section > .reward-container > .content-wrap > p {
   font-weight: 700;
   margin-top: 8px;
 }
@@ -1123,12 +1150,12 @@ body {
   text-align: left;
   padding-left: 16px;
 }
-.hourglass-view > .goods-container > .swiper > .swiper-wrapper > .swiper-slide > .text-warp > .title {
+.hourglass-view > .goods-container > .swiper > .swiper-wrapper > .swiper-slide > .text-warp > header {
   margin-top: 4px;
   font-size: 1rem;
   font-weight: 700;
 }
-.hourglass-view > .goods-container > .swiper > .swiper-wrapper > .swiper-slide > .text-warp > .caption {
+.hourglass-view > .goods-container > .swiper > .swiper-wrapper > .swiper-slide > .text-warp > p {
   margin-top: 4px;
   color: #e0d8c8;
   font-size: 0.75rem;

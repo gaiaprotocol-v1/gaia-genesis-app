@@ -8,21 +8,22 @@
 
 body {
     font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-    background : @background;
+    background : linear-gradient(#111112, #2a292a) fixed;
     margin     : auto;
     color      : white;
 }
 
 // components
-@import "component/dialogue/alert.less";
-@import "component/dialogue/confirm.less";
-@import "component/dialogue/prompt.less";
-@import "component/popup.less";
+@import "component/shared/dialogue/alert.less";
+@import "component/shared/dialogue/confirm.less";
+@import "component/shared/dialogue/prompt.less";
+@import "component/shared/connectwalletpopup.less";
+@import "component/shared/klipqrpopup.less";
+@import "component/shared/popup.less";
 @import "component/user-info.less";
 @import "component/mining-nft.less";
+@import "component/buyback-nft.less";
 @import "component/team-nft.less";
-@import "component/connectwalletpopup.less";
-@import "component/klipqrpopup.less";
 
 
 // views

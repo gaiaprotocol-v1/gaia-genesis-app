@@ -20,26 +20,26 @@ export default class Mining implements View {
     constructor() {
         Layout.current.title = "Dashboard";
         Layout.current.content.append(
-            this.container = el(".dashboard-view", { "data-aos": "zoom-in" },
-                el(".title",
+            this.container = el("section.dashboard-view", { "data-aos": "zoom-in" },
+                el("header",
                     el("h1", "Gaia Protocol"),
-                    el("p", "Dashboard")
+                    el("h2", "Dashboard")
                 ),
-                el(".content",
+                el("article",
                     el(".content-wrap",
-                        el("h2", "KRNO Price"),
+                        el("header", "KRNO Price"),
                         this.krnoPriceDisplay = el("p", "$..."),
                     ),
                     el(".content-wrap",
-                        el("h2", "APY"),
+                        el("header", "APY"),
                         this.apyDisplay = el("p", "...%"),
                     ),
                     el(".content-wrap",
-                        el("h2", "Buyback Fund"),
+                        el("header", "Buyback Fund"),
                         this.buybackBalanceDisplay = el("p", "... KLAY"),
                     ),
                     /*el(".content-wrap",
-                        el("h2", "Holders"),
+                        el("header", "Holders"),
                         el("p", "1,000"),
                     ),*/
                 ),

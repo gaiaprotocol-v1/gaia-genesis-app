@@ -4,7 +4,7 @@ import CommonUtil from "../CommonUtil";
 import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
 import ViewUtil from "../view/ViewUtil";
-import Prompt from "./dialogue/Prompt";
+import Prompt from "./shared/dialogue/Prompt";
 
 export default class MiningItem extends DomNode {
 

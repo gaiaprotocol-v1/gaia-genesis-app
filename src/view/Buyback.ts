@@ -18,10 +18,10 @@ export default class Buyback implements View {
     constructor() {
         Layout.current.title = "Buyback";
         Layout.current.content.append(
-            this.container = el(".buyback-view", { "data-aos": "zoom-in" },
-                el(".title",
+            this.container = el("section.buyback-view", { "data-aos": "zoom-in" },
+                el("header",
                     el("h1", "Buyback"),
-                    el("p", "가이아 바이백 펀드")
+                    el("h2", "가이아 바이백 펀드")
                 ),
                 new TeamNFT(),
                 this.nftList = el(".nft-container"),

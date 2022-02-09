@@ -9,13 +9,13 @@
         margin: 64px 8px;
     }
 
-    >.title {
+    >header {
         >h1 {
             font-size  : 2rem;
             font-weight: 700;
         }
 
-        >p {
+        >h2 {
             font-size  : 0.725rem;
             padding-top: 8px;
             color      : #e0d8c8;
@@ -23,7 +23,7 @@
         }
     }
 
-    >.my-nft-container {
+    >article {
         margin-top      : 32px;
         background-color: rgba(0, 0, 0, 0.2);
         border-radius   : 1rem;
@@ -33,10 +33,11 @@
             display        : flex;
             justify-content: space-between;
 
-            >.title-wrap {
-                text-align: left;
+            >.title-container {
+                text-align   : left;
+                margin-bottom: 16px;
 
-                >h2 {
+                >header {
                     font-size     : 1.5rem;
                     font-weight   : 500;
                     padding-bottom: 4px;
@@ -50,7 +51,7 @@
                 }
             }
 
-            >.button-wrap {
+            >.button-container {
                 >.all-mining-button {
                     cursor       : pointer;
                     padding      : 8px 12px 9px;
