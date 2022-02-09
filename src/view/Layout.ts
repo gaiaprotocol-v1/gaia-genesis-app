@@ -37,7 +37,7 @@ export default class Layout implements View {
                 el("footer",
                     el(".footer-container",
                         el(".sns",
-                            el("a.opensea", { href: "https://opensea.io", target: "_blank" },
+                            el("a.opensea", { href: "https://opensea.io/collection/gaia-kronos", target: "_blank" },
                                 el("img", { src: "/images/shared/icn/opensea.svg" }),
                             ),
                             el("a.discord", { href: "https://discord.com/invite/SjM4meh3hd", target: "_blank" },
