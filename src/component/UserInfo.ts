@@ -11,7 +11,7 @@ export default class UserInfo extends DomNode {
     constructor() {
         super(".user-info");
         this.append(
-            this.connectWalletButton = el("a.connect-wallet", msg("Connect Wallet"), {
+            this.connectWalletButton = el("a.connect-wallet", "Connect Wallet", {
                 click: () => Wallet.connect(),
             }),
             this.addressDisplay = el("a.wallet-address"),

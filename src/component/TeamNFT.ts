@@ -1,5 +1,6 @@
 import { DomNode, el } from "@hanul/skynode";
 import { utils } from "ethers";
+import msg from "msg.js";
 import CommonUtil from "../CommonUtil";
 import GaiaBuyBackFundContract from "../contracts/GaiaBuyBackFundContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
@@ -14,20 +15,20 @@ export default class TeamNFT extends DomNode {
         this.append(
             el(".content", { "data-aos": "zoom-in" },
                 el(".team-item",
-                    el("h3", "최초의 가이아"),
+                    el("h3", msg("GENESIS_GAIA_TITLE")),
                     el("img", { src: "https://storage.googleapis.com/gaia-protocol/kronos/genesis.png" }),
                 ),
                 el(".team-info",
                     el(".content-wrap",
-                        el("h2", "민팅가"),
+                        el("h2", msg("MINT_PRICE_TITLE")),
                         el("p", "1,000 KLAY"),
                     ),
                     el(".content-wrap",
-                        el("h2", "쌓인 복리 이자"),
+                        el("h2", msg("COMPOUND_INTEREST_TITLE")),
                         this.klayDisplay = el("p", "... KLAY"),
                     ),
                     el(".content-wrap",
-                        el("h2", "받을 수 있는 KLAY수량"),
+                        el("h2", msg("RECEIVE_KLAY_TITLE")),
                         this.refundableKlayDisplay = el("p", "... KLAY"),
                     ),
                 ),

@@ -295,10 +295,10 @@ export default class Hourglass implements View {
         this.futureWealthDisplay.empty().appendText(`${futureWealth.toLocaleString()} $`);
 
         // reward
-        this.macbookRewardDisplay.empty().appendText(`${Math.round(futureWealth / 2499).toLocaleString()} Macbook`);
-        this.birkinBagRewardDisplay.empty().appendText(`${Math.round(futureWealth / 30000).toLocaleString()} Birkin Bag`);
-        this.teslaRewardDisplay.empty().appendText(`${Math.round(futureWealth / 123740).toLocaleString()} Tesla`);
-        this.eternoRewardDisplay.empty().appendText(`${Math.round(futureWealth / 8357011).toLocaleString()} Eterno Chungdam`);
+        this.macbookRewardDisplay.empty().appendText(`${msg("MACBOOK_TITLE").replace(/{each}/, String(Math.round(futureWealth / 2499).toLocaleString()))}`);
+        this.birkinBagRewardDisplay.empty().appendText(`${msg("MACBOOK_TITLE").replace(/{each}/, String(Math.round(futureWealth / 30000).toLocaleString()))}`);
+        this.teslaRewardDisplay.empty().appendText(`${msg("MACBOOK_TITLE").replace(/{each}/, String(Math.round(futureWealth / 123740).toLocaleString()))}`);
+        this.eternoRewardDisplay.empty().appendText(`${msg("MACBOOK_TITLE").replace(/{each}/, String(Math.round(futureWealth / 8357011).toLocaleString()))}`);
     }
 
     public changeParams(params: ViewParams, uri: string): void { }

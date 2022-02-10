@@ -1,5 +1,6 @@
 import { DomNode, el } from "@hanul/skynode";
 import { BigNumber, utils } from "ethers";
+import msg from "msg.js";
 import CommonUtil from "../CommonUtil";
 import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
@@ -26,7 +27,7 @@ export default class MiningItem extends DomNode {
             el("a",
                 el("img.send", { src: "/images/shared/icn/send.svg", alt: "send icon" }),
                 {
-                    click: () => new Prompt("전송하기", "전송받을 지갑 주소를 입력해주시기 바랍니다. 전송이 완료되면 절대 되찾을 수 없으니, 지갑 주소를 여러번 확인하시기 바랍니다.", "전송", async (to) => {
+                    click: () => new Prompt(msg("SEND_PROMPT_TITLE"), msg("SEND_PROMPT_DESC"), msg("SEND_PROMPT_BUTTON"), async (to) => {
                         await GaiaNFTContract.transfer(to, this.id);
                         ViewUtil.waitTransactionAndRefresh();
                     }),
@@ -37,17 +38,17 @@ export default class MiningItem extends DomNode {
                     this.klayDisplay = el(".klay", "... KLAY"),
                 ),
                 el(".button-wrap",
-                    el("button.krno-button", "KRNO 받기", {
+                    el("button.krno-button", msg("CLAIM_KRNO_BUTTON"), {
                         click: () => {
-                            new Confirm("KRNO 받기", "이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다.", "계속 진행", async () => {
+                            new Confirm(msg("CLAIM_KRNO_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
                                 await GaiaOperationContract.claim([this.id], [this.krno]);
                                 ViewUtil.waitTransactionAndRefresh();
                             });
                         },
                     }),
-                    el("button.klay-button", "KLAY로 받기", {
+                    el("button.klay-button", msg("CLAIM_KLAY_BUTTON"), {
                         click: () => {
-                            new Confirm("KLAY로 받기", "이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다.", "계속 진행", async () => {
+                            new Confirm(msg("CLAIM_KLAY_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
                                 await GaiaOperationContract.claimKlayViaZap([this.id], [this.krno], this.klay, []);
                                 ViewUtil.waitTransactionAndRefresh();
                             });
