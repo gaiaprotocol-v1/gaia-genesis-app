@@ -25,6 +25,7 @@ export default class Mining implements View {
                     el("h1", "Gaia Protocol"),
                     el("h2", "Dashboard")
                 ),
+                el("img", { src: "/images/view/banner.png" }),
                 el("article",
                     el(".content-wrap",
                         el("header", "KRNO Price"),
