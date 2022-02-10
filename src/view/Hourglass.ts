@@ -75,7 +75,7 @@ export default class Hourglass implements View {
                         el(".input-wrap",
                             el("label", msg("KRNO_PRICE_AT_PURCHASE_TITLE")),
                             this.priceInput = el("input", {
-                                value: "0",
+                                value: "271.93",
                                 change: () => {
                                     this.setWealth();
                                 }
@@ -199,7 +199,6 @@ export default class Hourglass implements View {
         const krnoPrice = CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8));
         this.krnoPriceDisplay.empty().appendText(`$ ${krnoPrice}`);
 
-        this.priceInput.domElement.value = krnoPrice;
         this.futureInput.domElement.value = krnoPrice;
     }
 
@@ -240,14 +239,17 @@ export default class Hourglass implements View {
                 const promise = async (index: number) => {
                     const tokenId = (await GaiaNFTContract.tokenOfOwnerByIndex(address, index)).toNumber();
                     if (tokenId !== 0) {
-                        totalKRNO = totalKRNO.add(await GaiaOperationContract.getKRNOBalance(tokenId));
+                        const b = await GaiaOperationContract.getKRNOBalance(tokenId);
+                        totalKRNO = totalKRNO.add(b);
                     }
                 };
                 promises.push(promise(i));
             });
             await Promise.all(promises);
 
-            this.totalSKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(totalKRNO))}`);
+            this.totalSKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(totalKRNO, 9))}`);
+            this.amountInput.domElement.value = CommonUtil.numberWithCommas(utils.formatUnits(totalKRNO, 9));
+            this.amountInput.fireDomEvent("change");
         }
     }
 

@@ -69,7 +69,7 @@ export default class MiningItem extends DomNode {
 
     private async loadKRNO() {
         this.krno = await GaiaOperationContract.claimableKRNO([this.id]);
-        this.krnoDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(this.krno))} KRNO`);
+        this.krnoDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(this.krno, 9))} KRNO`);
     }
 
     private async loadKlay() {

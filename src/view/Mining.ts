@@ -46,7 +46,7 @@ export default class Mining implements View {
                                 new Alert(msg("CHECK_INTEREST_TITLE"),
                                     msg("CHECK_INTEREST_DESC")
                                         .replace(/{id}/, String(id))
-                                        .replace(/{krnoAmount}/, String(CommonUtil.numberWithCommas(utils.formatEther(krno))))
+                                        .replace(/{krnoAmount}/, String(CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))))
                                         .replace(/{klayAmount}/, String(CommonUtil.numberWithCommas(utils.formatEther(klay))))
                                 );
                             }
@@ -117,7 +117,7 @@ export default class Mining implements View {
             await Promise.all(promises);
 
             const totalKRNO = await GaiaOperationContract.claimableKRNO(this.tokenIds);
-            this.totalKRNODisplay.empty().appendText(`${msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String(utils.formatEther(totalKRNO)))}`);
+            this.totalKRNODisplay.empty().appendText(`${msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String(utils.formatUnits(totalKRNO, 9)))}`);
             this.totalKlay = await GaiaOperationContract.claimableKlay(this.tokenIds);
             this.totalKlayDisplay.empty().appendText(`${msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String(utils.formatEther(this.totalKlay)))}`);
         }
