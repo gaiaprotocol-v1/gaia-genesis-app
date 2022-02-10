@@ -3,6 +3,7 @@ import { DomNode, el } from "@hanul/skynode";
 import { BigNumber, utils } from "ethers";
 import { View, ViewParams } from "skyrouter";
 import SkyUtil from "skyutil";
+import CommonUtil from "../CommonUtil";
 import MiningItem from "../component/MiningItem";
 import Alert from "../component/shared/dialogue/Alert";
 import Confirm from "../component/shared/dialogue/Confirm";
@@ -15,6 +16,7 @@ import ViewUtil from "./ViewUtil";
 export default class Mining implements View {
 
     private container: DomNode;
+    private idInput: DomNode<HTMLInputElement>;
     private totalKRNODisplay: DomNode;
     private totalKlayDisplay: DomNode;
     private nftList: DomNode;
@@ -34,10 +36,13 @@ export default class Mining implements View {
                         el("h2", "소유한 NFT로부터 채굴"),
                     ),
                     el(".input-container",
-                        el("input", { placeholder: "NFT ID" }),
+                        this.idInput = el("input", { placeholder: "NFT ID" }),
                         el("button", "이자 확인", {
-                            click: () => {
-                                new Alert("#1 쌓인 이자", "10 KRNO")
+                            click: async () => {
+                                const id = this.idInput.domElement.value;
+                                const krno = await GaiaOperationContract.claimableKRNO([id]);
+                                const klay = await GaiaOperationContract.claimableKlay([id]);
+                                new Alert("이자 확인", `GAIA #${id} 에는 ${CommonUtil.numberWithCommas(utils.formatEther(krno))} KRNO (${CommonUtil.numberWithCommas(utils.formatEther(klay))} KLAY)가 쌓여 있습니다.`);
                             }
                         }),
                     ),

@@ -1,6 +1,7 @@
 import { View, ViewParams } from "skyrouter";
 export default class Mining implements View {
     private container;
+    private idInput;
     private totalKRNODisplay;
     private totalKlayDisplay;
     private nftList;
