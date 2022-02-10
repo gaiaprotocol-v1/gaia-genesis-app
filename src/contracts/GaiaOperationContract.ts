@@ -1,6 +1,6 @@
 import { BigNumber, BigNumberish } from "ethers";
 import Config from "../Config";
-import GaiaOperationArtifact from "./abi/artifacts/contracts/GaiaOperation.sol/GaiaOperation.json";
+import GaiaOperationArtifact from "./abi/gaia-kronos/artifacts/contracts/GaiaOperation.sol/GaiaOperation.json";
 import Contract from "./Contract";
 
 class GaiaOperationContract extends Contract {

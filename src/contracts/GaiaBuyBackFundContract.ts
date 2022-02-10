@@ -1,7 +1,7 @@
 import { BigNumber, BigNumberish } from "ethers";
 import Config from "../Config";
 import Wallet from "../klaytn/Wallet";
-import GaiaBuyBackFundArtifact from "./abi/artifacts/contracts/GaiaBuyBackFund.sol/GaiaBuyBackFund.json";
+import GaiaBuyBackFundArtifact from "./abi/gaia-kronos/artifacts/contracts/GaiaBuyBackFund.sol/GaiaBuyBackFund.json";
 import Contract from "./Contract";
 import GaiaNFTContract from "./GaiaNFTContract";
 

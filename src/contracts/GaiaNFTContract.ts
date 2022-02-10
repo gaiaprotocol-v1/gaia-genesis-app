@@ -1,6 +1,6 @@
 import { BigNumber } from "ethers";
 import Config from "../Config";
-import GaiaNFTArtifact from "./abi/artifacts/contracts/GaiaNFT.sol/GaiaNFT.json";
+import GaiaNFTArtifact from "./abi/gaia-kronos/artifacts/contracts/GaiaNFT.sol/GaiaNFT.json";
 import KIP17Contract from "./standard/KIP17Contract";
 
 class GaiaNFTContract extends KIP17Contract {
