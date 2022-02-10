@@ -569,10 +569,7 @@ body {
   text-shadow: 1px 1px 1px #656565;
 }
 .buyback-item > p {
-  margin-left: 4px;
-  font-size: 0.75rem;
-  font-weight: 300;
-  color: #e0d8c8;
+  padding: 8px;
 }
 .buyback-item > button {
   cursor: pointer;
