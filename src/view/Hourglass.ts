@@ -118,6 +118,12 @@ export default class Hourglass implements View {
                             type: "range", value: "30", min: "1", max: "365",
                             change: () => {
                                 this.setWealth();
+                            },
+                            mousemove: () => {
+                                this.setWealth();
+                            },
+                            mouseleave: () => {
+                                this.setWealth();
                             }
                         }),
                         el(".text-wrap",
