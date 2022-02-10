@@ -507,17 +507,23 @@ body {
   justify-content: space-between;
   margin-top: 8px;
 }
-.mining-item > .content-wrap > .amount-wrap {
+.mining-item > .content-wrap > section > header {
+  text-align: left;
+  margin-left: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #e0d8c8;
+}
+.mining-item > .content-wrap > section > .amount-wrap {
   text-align: left;
 }
-.mining-item > .content-wrap > .amount-wrap > .krno {
+.mining-item > .content-wrap > section > .amount-wrap > .krno {
   margin: 4px;
 }
-.mining-item > .content-wrap > .amount-wrap > .klay {
+.mining-item > .content-wrap > section > .amount-wrap > .klay {
   margin-left: 4px;
   font-size: 0.75rem;
   font-weight: 300;
-  color: #e0d8c8;
 }
 .mining-item > .content-wrap > .button-wrap {
   display: flex;
