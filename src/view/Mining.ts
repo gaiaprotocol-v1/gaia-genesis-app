@@ -1,6 +1,7 @@
 import Debouncer from "@hanul/debouncer";
 import { DomNode, el } from "@hanul/skynode";
 import { BigNumber, utils } from "ethers";
+import msg from "msg.js";
 import { View, ViewParams } from "skyrouter";
 import SkyUtil from "skyutil";
 import CommonUtil from "../CommonUtil";
@@ -27,22 +28,27 @@ export default class Mining implements View {
     private totalKlay = BigNumber.from(0);
 
     constructor() {
-        Layout.current.title = "Mining";
+        Layout.current.title = msg("MINING_TITLE");
         Layout.current.content.append(
             this.container = el("section.mining-view",
                 el("header", { "data-aos": "zoom-in" },
                     el(".title-container",
-                        el("h1", "Mining"),
-                        el("h2", "소유한 NFT로부터 채굴"),
+                        el("h1", msg("MINING_TITLE")),
+                        el("h2", msg("MINING_DESC")),
                     ),
                     el(".input-container",
                         this.idInput = el("input", { placeholder: "NFT ID" }),
-                        el("button", "이자 확인", {
+                        el("button", msg("CHECK_INTEREST_TITLE"), {
                             click: async () => {
                                 const id = this.idInput.domElement.value;
                                 const krno = await GaiaOperationContract.claimableKRNO([id]);
                                 const klay = await GaiaOperationContract.claimableKlay([id]);
-                                new Alert("이자 확인", `GAIA #${id} 에는 ${CommonUtil.numberWithCommas(utils.formatEther(krno))} KRNO (${CommonUtil.numberWithCommas(utils.formatEther(klay))} KLAY)가 쌓여 있습니다.`);
+                                new Alert(msg("CHECK_INTEREST_TITLE"),
+                                    msg("CHECK_INTEREST_DESC")
+                                        .replace(/{id}/, String(id))
+                                        .replace(/{krnoAmount}/, String(CommonUtil.numberWithCommas(utils.formatEther(krno))))
+                                        .replace(/{klayAmount}/, String(CommonUtil.numberWithCommas(utils.formatEther(klay))))
+                                );
                             }
                         }),
                     ),
@@ -50,22 +56,23 @@ export default class Mining implements View {
                 el("article", { "data-aos": "zoom-in" },
                     el(".tool-box",
                         el(".title-container",
-                            el("header", "나의 NFT"),
-                            this.totalKRNODisplay = el("p", "총 이자: ... KRNO"),
-                            this.totalKlayDisplay = el("p", "총 이자: ... KLAY"),
+                            el("header", msg("MY_NFT_TITLE")),
+                            //.replace(/{supply}/, String(4001 - totalSupply)));
+                            this.totalKRNODisplay = el("p", msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String("..."))),
+                            this.totalKlayDisplay = el("p", msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String("..."))),
                         ),
                         el(".button-container",
-                            el("button.all-mining-button", "모두 KRNO로 받기", {
+                            el("button.all-mining-button", msg("CLAIM_KRNO_BUTTON"), {
                                 click: () => {
-                                    new Confirm("KRON 받기", "이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다.", "계속 진행", async () => {
+                                    new Confirm(msg("CLAIM_KRNO_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
                                         await GaiaOperationContract.claim(this.tokenIds, this.krnos);
                                         ViewUtil.waitTransactionAndRefresh();
                                     });
                                 },
                             }),
-                            el("button.all-mining-button", "모두 KLAY로 받기", {
+                            el("button.all-mining-button", msg("ALL_CLAIM_KLAY_TITLE"), {
                                 click: () => {
-                                    new Confirm("KLAY로 받기", "이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다.", "계속 진행", async () => {
+                                    new Confirm(msg("CLAIM_KLAY_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
                                         await GaiaOperationContract.claimKlayViaZap(this.tokenIds, this.krnos, this.totalKlay, []);
                                         ViewUtil.waitTransactionAndRefresh();
                                     });
@@ -110,9 +117,9 @@ export default class Mining implements View {
             await Promise.all(promises);
 
             const totalKRNO = await GaiaOperationContract.claimableKRNO(this.tokenIds);
-            this.totalKRNODisplay.empty().appendText(`총 이자: ${utils.formatEther(totalKRNO)} KRNO`);
+            this.totalKRNODisplay.empty().appendText(`${msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String(utils.formatEther(totalKRNO)))}`);
             this.totalKlay = await GaiaOperationContract.claimableKlay(this.tokenIds);
-            this.totalKlayDisplay.empty().appendText(`총 이자: ${utils.formatEther(this.totalKlay)} KLAY`);
+            this.totalKlayDisplay.empty().appendText(`${msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String(utils.formatEther(this.totalKlay)))}`);
         }
     }
 

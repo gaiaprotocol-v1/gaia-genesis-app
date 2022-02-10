@@ -1,5 +1,6 @@
 import { DomNode, el } from "@hanul/skynode";
 import { BigNumber, utils } from "ethers";
+import msg from "msg.js";
 import { View, ViewParams } from "skyrouter";
 import SkyUtil from "skyutil";
 import Swiper from "swiper";
@@ -38,32 +39,32 @@ export default class Hourglass implements View {
     private interval: any;
 
     constructor() {
-        Layout.current.title = "Hourglass";
+        Layout.current.title = msg("HOURGLASS_TITLE");
         Layout.current.content.append(
             this.container = el("section.hourglass-view", { "data-aos": "zoom-in" },
                 el("header",
-                    el("h1", "Hourglass"),
-                    el("h2", "수익률 산정")
+                    el("h1", msg("HOURGLASS_TITLE")),
+                    el("h2", msg("HOURGLASS_DESC"))
                 ),
                 el("section",
                     el("section.content",
                         el("article",
-                            el("header", "현재 KRNO 가격"),
+                            el("header", msg("CURRENT_KRNO_PRICE_INPUT")),
                             this.krnoPriceDisplay = el("p", "$..."),
                         ),
                         el("article",
-                            el("header", "현재 보상이자"),
+                            el("header", msg("CURRENT_REWARD_YIELD_TITLE")),
                             this.rewardDisplay = el("p", "...%"),
                         ),
                         el("article",
-                            el("header", "보유한 NFT의 총 sKRNO"),
+                            el("header", msg("CURRENT_NFT_TOTAL_SKRNO_TITLE")),
                             this.totalSKRNODisplay = el("p", "0"),
                         ),
                     ),
                     el("hr"),
                     el(".input-container",
                         el(".input-wrap",
-                            el("label", "sKRNO 수량"),
+                            el("label", msg("SKRNO_AMOUNT_TITLE")),
                             this.amountInput = el("input", {
                                 value: "0",
                                 change: () => {
@@ -72,40 +73,40 @@ export default class Hourglass implements View {
                             }),
                         ),
                         el(".input-wrap",
-                            el("label", "민팅 당시 KRNO 가격 ($)"),
+                            el("label", msg("KRNO_PRICE_AT_PURCHASE_TITLE")),
                             this.priceInput = el("input", {
                                 value: "0",
                                 change: () => {
                                     this.setWealth();
                                 }
                             }),
-                            el("button", "Current", {
+                            el("button", msg("CURRENT_BUTTON"), {
                                 click: () => {
                                     this.setCurrentKRNOPrice();
                                 }
                             }),
                         ),
                         el(".input-wrap",
-                            el("label", "보상이자 (%)"),
+                            el("label", msg("REWARD YIELD_TITLE")),
                             this.rewardInput = el("input", {
                                 change: async () => {
                                     this.setWealth();
                                 }
                             }),
-                            el("button", "Current", {
+                            el("button", msg("CURRENT_BUTTON"), {
                                 click: () => {
                                     this.loadReward();
                                 }
                             }),
                         ),
                         el(".input-wrap",
-                            el("label", "예상 KRNO 가격 ($)"),
+                            el("label", msg("FUTURE_KRNO_MARKET_PRICE_TITLE")),
                             this.futureInput = el("input", {
                                 change: () => {
                                     this.setWealth();
                                 }
                             }),
-                            el("button", "Current", {
+                            el("button", msg("CURRENT_BUTTON"), {
                                 click: () => {
                                     this.setCurrentKRNOPriceOnFuture();
                                 }
@@ -121,24 +122,24 @@ export default class Hourglass implements View {
                         }),
                         el(".text-wrap",
                             this.daysDisplay = el("label", "30"),
-                            el("label", "days")
+                            el("label", msg("DAYS_TITLE"))
                         ),
                     ),
                     el(".reward-container",
                         el(".content-wrap",
-                            el("header", "최초 재산"),
+                            el("header", msg("INITIAL_INVESTMENT_TITLE")),
                             this.initWealthDisplay = el("p", "0 $"),
                         ),
                         el(".content-wrap",
-                            el("header", "현재 재산"),
+                            el("header", msg("CURRENT_WEALTH_TITLE")),
                             this.currentWealthDisplay = el("p", "0 $"),
                         ),
                         el(".content-wrap",
-                            el("header", "KRNO 보상"),
+                            el("header", msg("KRNO_REWARDS_ESTIMATION_TITLE")),
                             this.kronRewardDisplay = el("p", "0 KRNO"),
                         ),
                         el(".content-wrap",
-                            el("header", "예상 재산"),
+                            el("header", msg("POTENTIAL_RETURN_TITLE")),
                             this.futureWealthDisplay = el("p", "0 $"),
                         ),
                     ),
@@ -148,31 +149,31 @@ export default class Hourglass implements View {
                     el(".swiper",
                         el(".swiper-wrapper",
                             el(".swiper-slide",
-                                el("img", { src: "/images/view/hourglass/macbook-pro.png", alt: "" }),
+                                el("img", { src: "/images/view/hourglass/macbook-pro.png", alt: msg("MACBOOK_TITLE") }),
                                 el(".text-warp",
-                                    this.macbookRewardDisplay = el("header", "0 Macbook"),
-                                    el("p", "Macbook M1 Pro 16inch"),
+                                    this.macbookRewardDisplay = el("header", msg("MACBOOK_TITLE").replace(/{each}/, String(0))),
+                                    el("p", msg("MACBOOK_DESC")),
                                 ),
                             ),
                             el(".swiper-slide",
-                                el("img", { src: "/images/view/hourglass/birkin-bag.png", alt: "" }),
+                                el("img", { src: "/images/view/hourglass/birkin-bag.png", alt: msg("BIRKINGBAG_TITLE") }),
                                 el(".text-warp",
-                                    this.birkinBagRewardDisplay = el("header", "0 Birkin Bag"),
-                                    el("p", "Hermes Birkin Bag"),
+                                    this.birkinBagRewardDisplay = el("header", msg("BIRKINGBAG_TITLE").replace(/{each}/, String(0))),
+                                    el("p", msg("BIRKINGBAG_DESC")),
                                 ),
                             ),
                             el(".swiper-slide",
-                                el("img", { src: "/images/view/hourglass/modelS.png", alt: "" }),
+                                el("img", { src: "/images/view/hourglass/modelS.png", alt: msg("TESLA_TITLE") }),
                                 el(".text-warp",
-                                    this.teslaRewardDisplay = el("header", "0 Tesla"),
-                                    el("p", "Tesla Model S Plaid"),
+                                    this.teslaRewardDisplay = el("header", msg("TESLA_TITLE").replace(/{each}/, String(0))),
+                                    el("p", msg("TESLA_DESC")),
                                 ),
                             ),
                             el(".swiper-slide",
-                                el("img", { src: "/images/view/hourglass/ETERNO-CHUNGDAM.png", alt: "" }),
+                                el("img", { src: "/images/view/hourglass/ETERNO-CHUNGDAM.png", alt: msg("ETERNO_CHEONGDAM_TITLE") }),
                                 el(".text-warp",
-                                    this.eternoRewardDisplay = el("header", "0 Eterno Chungdam"),
-                                    el("p", "Eterno Chungdam 243.17㎡"),
+                                    this.eternoRewardDisplay = el("header", msg("ETERNO_CHEONGDAM_TITLE").replace(/{each}/, String(0))),
+                                    el("p", msg("ETERNO_CHEONGDAM_DESC")),
                                 ),
                             ),
                         ),

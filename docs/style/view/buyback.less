@@ -28,43 +28,13 @@
 
     >.nft-container {
         display              : grid;
-        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-columns: repeat(4, 1fr);
         gap                  : 16px;
-        margin-top           : 32px;
+        min-width            : 0;
+        min-width            : 0;
 
         @media @phone {
             grid-template-columns: 100%;
-        }
-
-        >.buyback-item {
-            display       : flex;
-            flex-direction: column;
-            justify-items : center;
-            text-align    : center;
-
-            >img {
-                border-radius: 4px;
-            }
-
-            >h3 {
-                margin     : 8px;
-                font-size  : 1.25rem;
-                font-weight: 500;
-            }
-
-            >p {
-                margin-bottom: 8px;
-                font-size    : 0.825rem;
-                font-weight  : 300;
-                color        : #e0d8c8;
-            }
-
-            >button {
-                cursor       : pointer;
-                padding      : 8px 12px 9px;
-                font-weight  : 700;
-                border-radius: 4px;
-            }
         }
     }
 }

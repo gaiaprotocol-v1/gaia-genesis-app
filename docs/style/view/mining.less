@@ -4,7 +4,6 @@
     justify-content : center;
     text-align      : center;
     margin-top      : 64px;
-    margin-top      : 32px;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius   : 1rem;
     padding         : 32px;
@@ -16,8 +15,14 @@
     >header {
         display        : flex;
         justify-content: space-between;
+        text-align     : left;
         align-items    : center;
         margin-bottom  : 32px;
+
+        @media @phone {
+            text-align    : center;
+            flex-direction: column;
+        }
 
         >.title-container {
             >h1 {

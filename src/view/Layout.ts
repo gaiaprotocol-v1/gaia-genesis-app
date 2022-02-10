@@ -1,6 +1,8 @@
 import { BodyNode, DomNode, el } from "@hanul/skynode";
 import AOS from "aos";
+import msg from "msg.js";
 import { View, ViewParams } from "skyrouter";
+import BrowserInfo from "../BrowserInfo";
 import UserInfo from "../component/UserInfo";
 import ViewUtil from "./ViewUtil";
 
@@ -12,6 +14,7 @@ export default class Layout implements View {
 
     constructor() {
         Layout.current = this;
+        let select: DomNode<HTMLSelectElement>;
 
         BodyNode.append(
             (this.container = el(".layout",
@@ -25,10 +28,21 @@ export default class Layout implements View {
                             el("span.navicon"),
                         ),
                         el("ul.menu",
-                            el("li.item", el("a", "Dashboard", { click: () => { ViewUtil.go("/") } })),
-                            el("li.item", el("a", "Mining", { click: () => { ViewUtil.go("/mining") } })),
-                            el("li.item", el("a", "Buyback", { click: () => { ViewUtil.go("/buyback") } })),
-                            el("li.item", el("a", "Hourglass", { click: () => { ViewUtil.go("/hourglass") } })),
+                            el("li.item", el("a", msg("DASHBOARD_MENU"), { click: () => { ViewUtil.go("/") } })),
+                            el("li.item", el("a", msg("MINING_MENU"), { click: () => { ViewUtil.go("/mining") } })),
+                            el("li.item", el("a", msg("BUYBACK_MENU"), { click: () => { ViewUtil.go("/buyback") } })),
+                            el("li.item", el("a", msg("HOURGLASS_MENU"), { click: () => { ViewUtil.go("/hourglass") } })),
+                            el("li.item",
+                                select = el("select.language-select",
+                                    el("option", "한국어 🇰🇷 ", { value: "ko" }),
+                                    el("option", "English 🇺🇸 ", { value: "en" }),
+                                    {
+                                        change: () => {
+                                            BrowserInfo.changeLanguage(select.domElement.value);
+                                        },
+                                    },
+                                ),
+                            ),
                             el("li.item.user-info", new UserInfo()),
                         ),
                     ),
@@ -53,8 +67,10 @@ export default class Layout implements View {
                         el(".copyright", "COPYRIGHT ⓒ Gaia Protocol. ALL RIGHTS RESERVED"),
                     ),
                 ),
-            )),
+            )
+            ),
         );
+        select.domElement.value = BrowserInfo.language;
         this.init();
     }
 

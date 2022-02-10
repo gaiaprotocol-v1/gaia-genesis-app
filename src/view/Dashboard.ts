@@ -1,5 +1,6 @@
 import { DomNode, el } from "@hanul/skynode";
 import { utils } from "ethers";
+import msg from "msg.js";
 import { View, ViewParams } from "skyrouter";
 import CommonUtil from "../CommonUtil";
 import GaiaBuyBackFundContract from "../contracts/GaiaBuyBackFundContract";
@@ -18,25 +19,25 @@ export default class Mining implements View {
     private interval: any;
 
     constructor() {
-        Layout.current.title = "Dashboard";
+        Layout.current.title = msg("DASHBOARD_TITLE");
         Layout.current.content.append(
             this.container = el("section.dashboard-view", { "data-aos": "zoom-in" },
                 el("header",
-                    el("h1", "Gaia Protocol"),
-                    el("h2", "Dashboard")
+                    el("h1", msg("DASHBOARD_TITLE")),
+                    el("h2", msg("DASHBOARD_DESC")),
                 ),
                 el("img", { src: "/images/view/banner.png" }),
                 el("article",
                     el(".content-wrap",
-                        el("header", "KRNO Price"),
+                        el("header", msg("KRNO_PRICE_TITLE")),
                         this.krnoPriceDisplay = el("p", "$..."),
                     ),
                     el(".content-wrap",
-                        el("header", "APY"),
+                        el("header", msg("ARY_TITLE")),
                         this.apyDisplay = el("p", "...%"),
                     ),
                     el(".content-wrap",
-                        el("header", "Buyback Fund"),
+                        el("header", msg("BUYBACK_TITLE")),
                         this.buybackBalanceDisplay = el("p", "... KLAY"),
                     ),
                     /*el(".content-wrap",
@@ -55,7 +56,7 @@ export default class Mining implements View {
     private async loadKRNOPrice() {
         const pool = await lpContract.getCurrentPool();
         if (this.container.deleted !== true) {
-            this.krnoPriceDisplay.empty().appendText(`$${CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8))}`);
+            this.krnoPriceDisplay.empty().appendText(`$ ${CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8))}`);
         }
     }
 

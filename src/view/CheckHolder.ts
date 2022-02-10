@@ -1,4 +1,5 @@
-import { BodyNode, DomNode, el } from "@hanul/skynode";
+import { DomNode, el } from "@hanul/skynode";
+import msg from "msg.js";
 import { View, ViewParams } from "skyrouter";
 import superagent from "superagent";
 import DiscordUserInfo from "../DiscordUserInfo";
@@ -14,15 +15,15 @@ export default class CheckHolder implements View {
     private codeStore = new Store("codeStore");
 
     constructor() {
-        Layout.current.title = "Check Holder";
+        Layout.current.title = msg("HOLDER_CHECK_TITLE");
         Layout.current.content.append(this.container = el("section.check-holder",
             el("header",
-                el("h1", "가이아 홀더 인증"),
-                el("h2", "투자자를 위한 커뮤니티")
+                el("h1", msg("HOLDER_CHECK_TITLE")),
+                el("h2", msg("HOLDER_CHECK_DESC"))
             ),
             el("article",
                 el("img", { src: "/images/shared/img/earth.png", alt: "earth" }),
-                el("a.discord-login-button", "Login with Discord", {
+                el("a.discord-login-button", msg("HOLDER_CHECK_BUTTON"), {
                     href: "https://discord.com/api/oauth2/authorize?client_id=939800869740871693&redirect_uri=https%3A%2F%2Fapp.gaiaprotocol.com%2Fcheckholder&response_type=code&scope=identify",
                 }),
             ),
@@ -86,9 +87,9 @@ export default class CheckHolder implements View {
                     }),
                 });
                 if ((await result.json()).isHolder === true) {
-                    alert("홀더 인증 완료");
+                    alert(msg("HOLDER_CHECK_SUCCESS_DESC"));
                 } else {
-                    alert("홀더 인증 실패");
+                    alert(msg("HOLDER_CHECK_FAIL_DESC"));
                 }
             } catch (error) {
                 console.error(error);

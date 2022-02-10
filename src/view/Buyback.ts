@@ -1,5 +1,6 @@
 import Debouncer from "@hanul/debouncer";
 import { DomNode, el } from "@hanul/skynode";
+import msg from "msg.js";
 import { View, ViewParams } from "skyrouter";
 import SkyUtil from "skyutil";
 import BuybackItem from "../component/BuybackItem";
@@ -16,12 +17,12 @@ export default class Buyback implements View {
     private interval: any;
 
     constructor() {
-        Layout.current.title = "Buyback";
+        Layout.current.title = msg("BUYBACK_TITLE");
         Layout.current.content.append(
             this.container = el("section.buyback-view", { "data-aos": "zoom-in" },
                 el("header",
-                    el("h1", "Buyback"),
-                    el("h2", "가이아 바이백 펀드")
+                    el("h1", msg("BUYBACK_TITLE")),
+                    el("h2", msg("BUYBACK_DESC"))
                 ),
                 new TeamNFT(),
                 this.nftList = el(".nft-container"),

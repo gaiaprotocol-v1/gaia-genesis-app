@@ -1,4 +1,7 @@
+import msg from "msg.js";
 import { SkyRouter } from "skyrouter";
+import superagent from "superagent";
+import BrowserInfo from "./BrowserInfo";
 import Buyback from "./view/Buyback";
 import CheckHolder from "./view/CheckHolder";
 import Dashboard from "./view/Dashboard";
@@ -7,6 +10,9 @@ import Layout from "./view/Layout";
 import Mining from "./view/Mining";
 
 (async () => {
+    msg.language = BrowserInfo.language;
+    msg.parseCSV((await superagent.get("/msg.csv")).text);
+
     SkyRouter.route("**", Layout);
 
     SkyRouter.route("", Dashboard);
