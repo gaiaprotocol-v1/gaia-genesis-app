@@ -511,6 +511,9 @@ body {
   font-weight: 300;
   color: #e0d8c8;
 }
+.mining-item > .content-wrap > .button-wrap {
+  display: flex;
+}
 .mining-item > .content-wrap > .button-wrap > .krno-button {
   cursor: pointer;
   padding: 8px 12px 9px;
