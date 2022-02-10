@@ -1084,6 +1084,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  margin-bottom: 10px;
 }
 .hourglass-view > section > .input-container > .input-wrap > label {
   font-size: 0.825rem;
@@ -1099,6 +1101,23 @@ body {
   background-color: transparent;
   color: white;
   font-size: 1rem;
+}
+.hourglass-view > section > .input-container > .input-wrap > button {
+  background-color: transparent;
+  color: rgba(177, 156, 118, 0.8);
+  border-radius: 4px;
+  padding: 8px;
+  position: absolute;
+  top: 24px;
+  right: 25.5%;
+}
+.hourglass-view > section > .input-container > .input-wrap > button:hover {
+  background-color: rgba(177, 156, 118, 0.9);
+  color: white;
+}
+.hourglass-view > section > .input-container > .input-wrap > button:active {
+  background-color: #b19c76;
+  color: white;
 }
 .hourglass-view > section > .input-wrap {
   margin-top: 60px;

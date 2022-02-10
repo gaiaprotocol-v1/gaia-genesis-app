@@ -79,6 +79,11 @@ export default class Hourglass implements View {
                                     this.setWealth();
                                 }
                             }),
+                            el("button", "Current", {
+                                click: () => {
+                                    this.setCurrentKRNOPrice();
+                                }
+                            }),
                         ),
                         el(".input-wrap",
                             el("label", "보상이자 (%)"),
@@ -87,12 +92,22 @@ export default class Hourglass implements View {
                                     this.setWealth();
                                 }
                             }),
+                            el("button", "Current", {
+                                click: () => {
+                                    this.loadReward();
+                                }
+                            }),
                         ),
                         el(".input-wrap",
                             el("label", "예상 KRNO 가격 ($)"),
                             this.futureInput = el("input", {
                                 change: () => {
                                     this.setWealth();
+                                }
+                            }),
+                            el("button", "Current", {
+                                click: () => {
+                                    this.setCurrentKRNOPriceOnFuture();
                                 }
                             }),
                         ),
@@ -192,6 +207,23 @@ export default class Hourglass implements View {
         const reward = CommonUtil.numberWithCommas(String(stakingRebaseValue * 100));
         this.rewardDisplay.empty().appendText(`${reward}%`);
         this.rewardInput.domElement.value = reward;
+    }
+
+    private async setCurrentKRNOPrice(): Promise<void> {
+        const pool = await lpContract.getCurrentPool();
+        const krnoPrice = CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8));
+        this.krnoPriceDisplay.empty().appendText(`$ ${krnoPrice}`);
+
+        this.priceInput.domElement.value = krnoPrice;
+    }
+
+    private async setCurrentKRNOPriceOnFuture(): Promise<void> {
+        const pool = await lpContract.getCurrentPool();
+        const krnoPrice = CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8));
+        this.krnoPriceDisplay.empty().appendText(`$ ${krnoPrice}`);
+
+        this.priceInput.domElement.value = krnoPrice;
+        this.futureInput.domElement.value = krnoPrice;
     }
 
     private async loadTotalSKRNO(): Promise<void> {
