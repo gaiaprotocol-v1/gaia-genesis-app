@@ -4,6 +4,7 @@ import superagent from "superagent";
 import DiscordUserInfo from "../DiscordUserInfo";
 import Wallet from "../klaytn/Wallet";
 import Store from "../Store";
+import Layout from "./Layout";
 
 export default class CheckHolder implements View {
 
@@ -13,11 +14,18 @@ export default class CheckHolder implements View {
     private codeStore = new Store("codeStore");
 
     constructor() {
-        BodyNode.append(this.container = el(".check-holder",
-            el("h1", "Gaia 홀더 인증 페이지"),
-            el("a.discord-login-button", "Login with Discord", {
-                href: "https://discord.com/api/oauth2/authorize?client_id=939800869740871693&redirect_uri=https%3A%2F%2Fapp.gaiaprotocol.com%2Fcheckholder&response_type=code&scope=identify",
-            }),
+        Layout.current.title = "Check Holder";
+        Layout.current.content.append(this.container = el("section.check-holder",
+            el("header",
+                el("h1", "가이아 홀더 인증"),
+                el("h2", "투자자를 위한 커뮤니티")
+            ),
+            el("article",
+                el("img", { src: "/images/shared/img/earth.png", alt: "earth" }),
+                el("a.discord-login-button", "Login with Discord", {
+                    href: "https://discord.com/api/oauth2/authorize?client_id=939800869740871693&redirect_uri=https%3A%2F%2Fapp.gaiaprotocol.com%2Fcheckholder&response_type=code&scope=identify",
+                }),
+            ),
         ));
         this.checkDiscordLogin();
     }

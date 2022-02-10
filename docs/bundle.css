@@ -626,13 +626,13 @@ body {
   width: 100%;
   max-width: 1240px;
   margin: auto;
+  padding: 8px;
 }
 .layout > header > .nav > .logo {
   flex-grow: 1;
 }
 .layout > header > .nav > .logo > a > img {
   height: 36px;
-  padding-left: 8px;
 }
 .layout > header > .nav > .menu-btn,
 .layout > header > .nav .menu-icon {
@@ -1098,6 +1098,7 @@ body {
   border: 0.1px solid white;
   background-color: transparent;
   color: white;
+  font-size: 1rem;
 }
 .hourglass-view > section > .input-wrap {
   margin-top: 60px;
@@ -1220,18 +1221,83 @@ body {
 }
 .hourglass-view > .goods-container > .swiper > .swiper-button-next {
   color: white;
+  background-image: url(/images/shared/icn/icn_arrow_forward.svg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
 }
-@media only screen and (max-width: 719px) {
-  .hourglass-view > .goods-container > .swiper > .swiper-button-next {
-    display: none;
-  }
+.hourglass-view > .goods-container > .swiper > .swiper-button-next::after {
+  display: none;
 }
 .hourglass-view > .goods-container > .swiper > .swiper-button-prev {
   color: white;
+  background-image: url(/images/shared/icn/icn_arrow_back.svg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+}
+.hourglass-view > .goods-container > .swiper > .swiper-button-prev::after {
+  display: none;
+}
+.check-holder {
+  margin-top: 64px;
+}
+.check-holder > header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.check-holder > header > h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.check-holder > header > h2 {
+  font-size: 0.725rem;
+  padding-top: 8px;
+  color: #e0d8c8;
+  font-weight: 300;
+}
+.check-holder > article {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin-top: 16px;
+}
+.check-holder > article > img {
+  max-width: 30%;
+  animation: rotate_image 60s linear infinite;
+  transform-origin: 50% 50%;
+  margin: 2rem;
 }
 @media only screen and (max-width: 719px) {
-  .hourglass-view > .goods-container > .swiper > .swiper-button-prev {
-    display: none;
+  .check-holder > article > img {
+    max-width: 50%;
   }
+}
+@keyframes rotate_image {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.check-holder > article > a {
+  width: 50%;
+  cursor: pointer;
+  padding: 8px 12px 9px;
+  font-weight: 700;
+  border-radius: 4px;
+  margin-bottom: 32px;
+  margin-right: 8px;
+  text-decoration: none;
+  color: white;
+  background-color: rgba(224, 216, 200, 0.8);
+}
+.check-holder > article > a:hover {
+  background-color: rgba(224, 216, 200, 0.9);
+  color: white;
+}
+.check-holder > article > a:active {
+  background-color: #e0d8c8;
+  color: white;
 }
 

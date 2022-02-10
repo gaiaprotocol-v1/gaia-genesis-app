@@ -13,7 +13,6 @@ import Wallet from "../klaytn/Wallet";
 import Layout from "./Layout";
 
 export default class Hourglass implements View {
-
     private container: DomNode;
     private krnoPriceDisplay: DomNode;
     private rewardDisplay: DomNode;
@@ -53,7 +52,7 @@ export default class Hourglass implements View {
                             this.krnoPriceDisplay = el("p", "$..."),
                         ),
                         el("article",
-                            el("header", "현재 보상 수익률"),
+                            el("header", "현재 보상이자"),
                             this.rewardDisplay = el("p", "...%"),
                         ),
                         el("article",
@@ -66,6 +65,7 @@ export default class Hourglass implements View {
                         el(".input-wrap",
                             el("label", "sKRNO 수량"),
                             this.amountInput = el("input", {
+                                value: "0",
                                 change: () => {
                                     this.setWealth();
                                 }
@@ -74,13 +74,14 @@ export default class Hourglass implements View {
                         el(".input-wrap",
                             el("label", "민팅 당시 KRNO 가격 ($)"),
                             this.priceInput = el("input", {
+                                value: "0",
                                 change: () => {
                                     this.setWealth();
                                 }
                             }),
                         ),
                         el(".input-wrap",
-                            el("label", "수익률 (%)"),
+                            el("label", "보상이자 (%)"),
                             this.rewardInput = el("input", {
                                 change: async () => {
                                     this.setWealth();
@@ -179,12 +180,18 @@ export default class Hourglass implements View {
 
     private async loadKRNOPrice(): Promise<void> {
         const pool = await lpContract.getCurrentPool();
-        this.krnoPriceDisplay.empty().appendText(`$${CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8))}`);
+        const krnoPrice = CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8));
+        this.krnoPriceDisplay.empty().appendText(`$ ${krnoPrice}`);
+
+        this.priceInput.domElement.value = krnoPrice;
+        this.futureInput.domElement.value = krnoPrice;
     }
 
     private async loadReward(): Promise<void> {
         const stakingRebaseValue = (await StakingContract.epoch()).distribute / await sKRNOContract.circulatingSupply();
-        this.rewardDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(stakingRebaseValue * 100))}%`);
+        const reward = CommonUtil.numberWithCommas(String(stakingRebaseValue * 100));
+        this.rewardDisplay.empty().appendText(`${reward}%`);
+        this.rewardInput.domElement.value = reward;
     }
 
     private async loadTotalSKRNO(): Promise<void> {
