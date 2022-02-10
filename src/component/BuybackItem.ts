@@ -21,7 +21,7 @@ export default class BuybackItem extends DomNode {
             el("p", `${CommonUtil.numberWithCommas(utils.formatEther(refundableKlay))} KLAY`),
             el("button", msg("BUYBACK_BUTTON"), {
                 click: () => {
-                    new Confirm("바이백 확인", "정말 바이백 하시겠습니까? 바이백 이후에는 다시는 NFT를 되찾을 수 없습니다.", "바이백 진행", async () => {
+                    new Confirm(msg("BUYBACK_CONFIRM_TITLE"), msg("BUYBACK_CONFIRM_DESC"), msg("BUYBACK_CONFIRM_BUTTON"), async () => {
                         await GaiaBuyBackFundContract.sellGaiaNFT([this.id]);
                         ViewUtil.waitTransactionAndRefresh();
                     });

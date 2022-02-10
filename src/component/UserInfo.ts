@@ -11,12 +11,12 @@ export default class UserInfo extends DomNode {
     constructor() {
         super(".user-info");
         this.append(
-            this.connectWalletButton = el("a.connect-wallet", "Connect Wallet", {
+            this.connectWalletButton = el("a.connect-wallet", msg("CONNECT_WALLET_BUTTON"), {
                 click: () => Wallet.connect(),
             }),
             this.addressDisplay = el("a.wallet-address"),
         );
-        this.addressDisplay.style({ display: "CONNECT_WALLET" });
+        this.addressDisplay.style({ display: "none" });
         Wallet.on("connect", this.connectHandler);
         this.loadAddress();
     }
