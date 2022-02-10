@@ -1,34 +1,79 @@
 .mining-view {
-    display        : flex;
-    flex-direction : column;
-    justify-content: center;
-    text-align     : center;
-    margin-top     : 64px;
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+    text-align      : center;
+    margin-top      : 64px;
+    margin-top      : 32px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius   : 1rem;
+    padding         : 32px;
 
     @media @phone {
         margin: 64px 8px;
     }
 
     >header {
-        >h1 {
-            font-size  : 2rem;
-            font-weight: 700;
+        display        : flex;
+        justify-content: space-between;
+        align-items    : center;
+        margin-bottom  : 32px;
+
+        >.title-container {
+            >h1 {
+                font-size  : 2rem;
+                font-weight: 700;
+            }
+
+            >h2 {
+                font-size  : 0.725rem;
+                padding-top: 8px;
+                color      : #e0d8c8;
+                font-weight: 300;
+            }
         }
 
-        >h2 {
-            font-size  : 0.725rem;
-            padding-top: 8px;
-            color      : #e0d8c8;
-            font-weight: 300;
+        >.input-container {
+            display        : flex;
+            justify-content: flex-end;
+            max-height     : 32px;
+            margin         : 8px 0px;
+
+            >input {
+                padding         : 8px;
+                border-radius   : 4px;
+                width           : 60%;
+                height          : 100%;
+                border          : 0.1px solid white;
+                background-color: transparent;
+                color           : white;
+            }
+
+            >button {
+                cursor       : pointer;
+                display      : flex;
+                align-items  : center;
+                padding      : 8px 12px 9px;
+                margin-left  : 4px;
+                font-weight  : 700;
+                font-size    : 0.725rem;
+                border-radius: 4px;
+                margin-right : 8px;
+
+                &:hover {
+                    background-color: rgba(224, 216, 200, 0.9);
+                    color           : white;
+                }
+
+                &:active {
+                    background-color: #e0d8c8;
+                    color           : white;
+                }
+            }
         }
     }
 
     >article {
-        margin-top      : 32px;
-        background-color: rgba(0, 0, 0, 0.2);
-        border-radius   : 1rem;
-        padding         : 32px;
-
         >.tool-box {
             display        : flex;
             justify-content: space-between;
@@ -40,43 +85,6 @@
             >.title-container {
                 text-align   : left;
                 margin-bottom: 16px;
-
-                >.input-container {
-                    display   : flex;
-                    max-height: 32px;
-                    margin    : 8px 0px;
-
-                    >input {
-                        padding         : 8px;
-                        border-radius   : 4px;
-                        width           : 60%;
-                        height          : 100%;
-                        border          : 0.1px solid white;
-                        background-color: transparent;
-                        color           : white;
-                    }
-
-                    >button {
-                        cursor       : pointer;
-                        display      : flex;
-                        align-items  : center;
-                        padding      : 8px 12px 9px;
-                        margin-left  : 4px;
-                        font-weight  : 700;
-                        font-size    : 0.725rem;
-                        border-radius: 4px;
-
-                        &:hover {
-                            background-color: rgba(224, 216, 200, 0.9);
-                            color           : white;
-                        }
-
-                        &:active {
-                            background-color: #e0d8c8;
-                            color           : white;
-                        }
-                    }
-                }
 
                 >header {
                     font-size     : 1.5rem;

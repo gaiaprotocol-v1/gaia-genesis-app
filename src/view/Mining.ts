@@ -29,21 +29,23 @@ export default class Mining implements View {
         Layout.current.content.append(
             this.container = el("section.mining-view",
                 el("header", { "data-aos": "zoom-in" },
-                    el("h1", "Mining"),
-                    el("h2", "소유한 NFT로부터 채굴"),
+                    el(".title-container",
+                        el("h1", "Mining"),
+                        el("h2", "소유한 NFT로부터 채굴"),
+                    ),
+                    el(".input-container",
+                        el("input", { placeholder: "NFT ID" }),
+                        el("button", "이자 확인", {
+                            click: () => {
+                                new Alert("#1 쌓인 이자", "10 KRNO")
+                            }
+                        }),
+                    ),
                 ),
                 el("article", { "data-aos": "zoom-in" },
                     el(".tool-box",
                         el(".title-container",
                             el("header", "나의 NFT"),
-                            el(".input-container",
-                                el("input", { placeholder: "NFT ID" }),
-                                el("button", "이자 확인", {
-                                    click: () => {
-                                        new Alert("#1 쌓인 이자", "10 KRON")
-                                    }
-                                }),
-                            ),
                             this.totalKRNODisplay = el("p", "총 이자: ... KRNO"),
                             this.totalKlayDisplay = el("p", "총 이자: ... KLAY"),
                         ),

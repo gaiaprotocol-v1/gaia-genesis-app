@@ -838,27 +838,65 @@ body {
   justify-content: center;
   text-align: center;
   margin-top: 64px;
+  margin-top: 32px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  padding: 32px;
 }
 @media only screen and (max-width: 719px) {
   .mining-view {
     margin: 64px 8px;
   }
 }
-.mining-view > header > h1 {
+.mining-view > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.mining-view > header > .title-container > h1 {
   font-size: 2rem;
   font-weight: 700;
 }
-.mining-view > header > h2 {
+.mining-view > header > .title-container > h2 {
   font-size: 0.725rem;
   padding-top: 8px;
   color: #e0d8c8;
   font-weight: 300;
 }
-.mining-view > article {
-  margin-top: 32px;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 1rem;
-  padding: 32px;
+.mining-view > header > .input-container {
+  display: flex;
+  justify-content: flex-end;
+  max-height: 32px;
+  margin: 8px 0px;
+}
+.mining-view > header > .input-container > input {
+  padding: 8px;
+  border-radius: 4px;
+  width: 60%;
+  height: 100%;
+  border: 0.1px solid white;
+  background-color: transparent;
+  color: white;
+}
+.mining-view > header > .input-container > button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px 9px;
+  margin-left: 4px;
+  font-weight: 700;
+  font-size: 0.725rem;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+.mining-view > header > .input-container > button:hover {
+  background-color: rgba(224, 216, 200, 0.9);
+  color: white;
+}
+.mining-view > header > .input-container > button:active {
+  background-color: #e0d8c8;
+  color: white;
 }
 .mining-view > article > .tool-box {
   display: flex;
@@ -872,38 +910,6 @@ body {
 .mining-view > article > .tool-box > .title-container {
   text-align: left;
   margin-bottom: 16px;
-}
-.mining-view > article > .tool-box > .title-container > .input-container {
-  display: flex;
-  max-height: 32px;
-  margin: 8px 0px;
-}
-.mining-view > article > .tool-box > .title-container > .input-container > input {
-  padding: 8px;
-  border-radius: 4px;
-  width: 60%;
-  height: 100%;
-  border: 0.1px solid white;
-  background-color: transparent;
-  color: white;
-}
-.mining-view > article > .tool-box > .title-container > .input-container > button {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 8px 12px 9px;
-  margin-left: 4px;
-  font-weight: 700;
-  font-size: 0.725rem;
-  border-radius: 4px;
-}
-.mining-view > article > .tool-box > .title-container > .input-container > button:hover {
-  background-color: rgba(224, 216, 200, 0.9);
-  color: white;
-}
-.mining-view > article > .tool-box > .title-container > .input-container > button:active {
-  background-color: #e0d8c8;
-  color: white;
 }
 .mining-view > article > .tool-box > .title-container > header {
   font-size: 1.5rem;
