@@ -16,7 +16,7 @@ export default class CheckHolder implements View {
         BodyNode.append(this.container = el(".check-holder",
             el("h1", "Gaia 홀더 인증 페이지"),
             el("a.discord-login-button", "Login with Discord", {
-                href: "https://discord.com/api/oauth2/authorize?client_id=939800869740871693&redirect_uri=https%3A%2F%2Fgaiaprotocol.com%2Fcheckholder&response_type=code&scope=identify",
+                href: "https://discord.com/api/oauth2/authorize?client_id=939800869740871693&redirect_uri=https%3A%2F%2Fapp.gaiaprotocol.com%2Fcheckholder&response_type=code&scope=identify",
             }),
         ));
         this.checkDiscordLogin();
