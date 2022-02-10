@@ -3,7 +3,7 @@ import { BigNumber, utils } from "ethers";
 import msg from "msg.js";
 import { View, ViewParams } from "skyrouter";
 import SkyUtil from "skyutil";
-import Swiper from "swiper";
+import Swiper, { Navigation } from "swiper";
 import CommonUtil from "../CommonUtil";
 import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
@@ -252,6 +252,7 @@ export default class Hourglass implements View {
     }
 
     private setSwiper(): void {
+        Swiper.use([Navigation]);
         new Swiper('.swiper', {
             navigation: {
                 nextEl: '.swiper-button-next',
