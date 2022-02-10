@@ -197,6 +197,10 @@
         >.swiper {
             width: 50%;
 
+            @media @phone {
+                width: 100%;
+            }
+
             >.swiper-wrapper {
                 >.swiper-slide {
                     display        : flex;
@@ -231,10 +235,18 @@
 
             >.swiper-button-next {
                 color: white;
+
+                @media @phone {
+                    display: none;
+                }
             }
 
             >.swiper-button-prev {
                 color: white;
+
+                @media @phone {
+                    display: none;
+                }
             }
         }
     }

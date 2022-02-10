@@ -33,9 +33,50 @@
             display        : flex;
             justify-content: space-between;
 
+            @media @phone {
+                flex-direction: column;
+            }
+
             >.title-container {
                 text-align   : left;
                 margin-bottom: 16px;
+
+                >.input-container {
+                    display   : flex;
+                    max-height: 32px;
+                    margin    : 8px 0px;
+
+                    >input {
+                        padding         : 8px;
+                        border-radius   : 4px;
+                        width           : 60%;
+                        height          : 100%;
+                        border          : 0.1px solid white;
+                        background-color: transparent;
+                        color           : white;
+                    }
+
+                    >button {
+                        cursor       : pointer;
+                        display      : flex;
+                        align-items  : center;
+                        padding      : 8px 12px 9px;
+                        margin-left  : 4px;
+                        font-weight  : 700;
+                        font-size    : 0.725rem;
+                        border-radius: 4px;
+
+                        &:hover {
+                            background-color: rgba(224, 216, 200, 0.9);
+                            color           : white;
+                        }
+
+                        &:active {
+                            background-color: #e0d8c8;
+                            color           : white;
+                        }
+                    }
+                }
 
                 >header {
                     font-size     : 1.5rem;
@@ -52,13 +93,17 @@
             }
 
             >.button-container {
+                @media @phone {
+                    display: flex;
+                }
+
                 >.all-mining-button {
                     cursor       : pointer;
                     padding      : 8px 12px 9px;
                     font-weight  : 700;
                     border-radius: 4px;
                     margin-bottom: 32px;
-                    margin-left  : 8px;
+                    margin-right : 8px;
 
                     &:hover {
                         background-color: rgba(224, 216, 200, 0.9);
