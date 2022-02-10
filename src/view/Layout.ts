@@ -43,7 +43,7 @@ export default class Layout implements View {
                                     },
                                 ),
                             ),
-                            el("li.item.user-info", new UserInfo()),
+                            el("li.item", new UserInfo()),
                         ),
                     ),
                 ),

@@ -5,7 +5,7 @@ import CommonUtil from "../CommonUtil";
 import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
 import ViewUtil from "../view/ViewUtil";
-import Confirm from "./shared/dialogue/Confirm";
+import Alert from "./shared/dialogue/Alert";
 import Prompt from "./shared/dialogue/Prompt";
 
 export default class MiningItem extends DomNode {
@@ -33,24 +33,38 @@ export default class MiningItem extends DomNode {
                     }),
                 }),
             el(".content-wrap",
-                el(".amount-wrap",
-                    this.krnoDisplay = el(".krno", "... KRNO"),
-                    this.klayDisplay = el(".klay", "... KLAY"),
+                el("section",
+                    el("header", msg("MY_INTEREST_DESC")),
+                    el(".amount-wrap",
+                        this.krnoDisplay = el(".krno", "... KRNO"),
+                        this.klayDisplay = el(".klay", "... KLAY"),
+                    ),
                 ),
                 el(".button-wrap",
                     el("button.krno-button", msg("CLAIM_KRNO_BUTTON"), {
                         click: () => {
-                            new Confirm(msg("CLAIM_KRNO_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
-                                await GaiaOperationContract.claim([this.id], [this.krno]);
-                                ViewUtil.waitTransactionAndRefresh();
+                            new Prompt(msg("CLAIM_KRNO_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async (amount) => {
+                                const krno = utils.parseEther(amount);
+
+                                if (krno > this.krno) {
+                                    new Alert(msg("CLAIM_ERROR_ALERT_TITLE"), msg("CLAIM_ERROR_ALERT_DESC"))
+                                } else {
+                                    await GaiaOperationContract.claim([this.id], [krno]);
+                                    ViewUtil.waitTransactionAndRefresh();
+                                }
                             });
                         },
                     }),
                     el("button.klay-button", msg("CLAIM_KLAY_BUTTON"), {
                         click: () => {
-                            new Confirm(msg("CLAIM_KLAY_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
-                                await GaiaOperationContract.claimKlayViaZap([this.id], [this.krno], this.klay, []);
-                                ViewUtil.waitTransactionAndRefresh();
+                            new Prompt(msg("CLAIM_KLAY_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async (amount) => {
+                                const klay = utils.parseEther(amount);
+                                if (klay > this.klay) {
+                                    new Alert(msg("CLAIM_ERROR_ALERT_TITLE"), msg("CLAIM_ERROR_ALERT_DESC"))
+                                } else {
+                                    await GaiaOperationContract.claimKlayViaZap([this.id], [this.krno], klay, []);
+                                    ViewUtil.waitTransactionAndRefresh();
+                                }
                             });
                         },
                     }),

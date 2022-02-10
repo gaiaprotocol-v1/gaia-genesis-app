@@ -57,14 +57,13 @@ export default class Mining implements View {
                     el(".tool-box",
                         el(".title-container",
                             el("header", msg("MY_NFT_TITLE")),
-                            //.replace(/{supply}/, String(4001 - totalSupply)));
                             this.totalKRNODisplay = el("p", msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String("..."))),
                             this.totalKlayDisplay = el("p", msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String("..."))),
                         ),
                         el(".button-container",
-                            el("button.all-mining-button", msg("CLAIM_KRNO_BUTTON"), {
+                            el("button.all-mining-button", msg("ALL_CLAIM_KRNO_TITLE"), {
                                 click: () => {
-                                    new Confirm(msg("CLAIM_KRNO_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
+                                    new Confirm(msg("ALL_CLAIM_KRNO_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
                                         await GaiaOperationContract.claim(this.tokenIds, this.krnos);
                                         ViewUtil.waitTransactionAndRefresh();
                                     });
@@ -72,7 +71,7 @@ export default class Mining implements View {
                             }),
                             el("button.all-mining-button", msg("ALL_CLAIM_KLAY_TITLE"), {
                                 click: () => {
-                                    new Confirm(msg("CLAIM_KLAY_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
+                                    new Confirm(msg("ALL_CLAIM_KLAY_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
                                         await GaiaOperationContract.claimKlayViaZap(this.tokenIds, this.krnos, this.totalKlay, []);
                                         ViewUtil.waitTransactionAndRefresh();
                                     });

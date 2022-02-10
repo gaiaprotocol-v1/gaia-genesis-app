@@ -3,7 +3,7 @@ import { BigNumber, utils } from "ethers";
 import msg from "msg.js";
 import { View, ViewParams } from "skyrouter";
 import SkyUtil from "skyutil";
-import Swiper from "swiper";
+import Swiper, { Navigation } from "swiper";
 import CommonUtil from "../CommonUtil";
 import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
@@ -117,6 +117,12 @@ export default class Hourglass implements View {
                         this.slider = el("input.slider", {
                             type: "range", value: "30", min: "1", max: "365",
                             change: () => {
+                                this.setWealth();
+                            },
+                            mousemove: () => {
+                                this.setWealth();
+                            },
+                            mouseleave: () => {
                                 this.setWealth();
                             }
                         }),
@@ -254,6 +260,7 @@ export default class Hourglass implements View {
     }
 
     private setSwiper(): void {
+        Swiper.use([Navigation]);
         new Swiper('.swiper', {
             navigation: {
                 nextEl: '.swiper-button-next',
@@ -298,9 +305,9 @@ export default class Hourglass implements View {
 
         // reward
         this.macbookRewardDisplay.empty().appendText(`${msg("MACBOOK_TITLE").replace(/{each}/, String(Math.round(futureWealth / 2499).toLocaleString()))}`);
-        this.birkinBagRewardDisplay.empty().appendText(`${msg("MACBOOK_TITLE").replace(/{each}/, String(Math.round(futureWealth / 30000).toLocaleString()))}`);
-        this.teslaRewardDisplay.empty().appendText(`${msg("MACBOOK_TITLE").replace(/{each}/, String(Math.round(futureWealth / 123740).toLocaleString()))}`);
-        this.eternoRewardDisplay.empty().appendText(`${msg("MACBOOK_TITLE").replace(/{each}/, String(Math.round(futureWealth / 8357011).toLocaleString()))}`);
+        this.birkinBagRewardDisplay.empty().appendText(`${msg("BIRKINGBAG_TITLE").replace(/{each}/, String(Math.round(futureWealth / 30000).toLocaleString()))}`);
+        this.teslaRewardDisplay.empty().appendText(`${msg("TESLA_TITLE").replace(/{each}/, String(Math.round(futureWealth / 123740).toLocaleString()))}`);
+        this.eternoRewardDisplay.empty().appendText(`${msg("ETERNO_CHEONGDAM_TITLE").replace(/{each}/, String(Math.round(futureWealth / 8357011).toLocaleString()))}`);
     }
 
     public changeParams(params: ViewParams, uri: string): void { }
