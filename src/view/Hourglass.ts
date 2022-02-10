@@ -221,25 +221,37 @@ export default class Hourglass implements View {
     }
 
     private async setWealth(): Promise<void> {
+        const price = parseFloat(this.priceInput.domElement.value);
+        const rewardYield = parseFloat(this.rewardInput.domElement.value)
+        const days = Number(this.slider.domElement.value);
+        const futureMarketPrice = Number(this.futureInput.domElement.value);
+        const sKRNOAmount = parseFloat(this.amountInput.domElement.value);
+
         this.daysDisplay.empty().appendText(this.slider.domElement.value);
 
         // initWealth
-        const initWealth = Number(this.amountInput.domElement.value) * Number(this.priceInput.domElement.value);
+        const initWealth = sKRNOAmount * price;
         this.initWealthDisplay.empty().appendText(`${initWealth.toLocaleString()} $`);
 
         // currentWealth
         const pool = await lpContract.getCurrentPool();
-        const currentWealth = Number(this.amountInput.domElement.value) * Number(CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8)));
+        const currentWealth = sKRNOAmount * Number(CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8)));
         this.currentWealthDisplay.empty().appendText(`${currentWealth.toLocaleString()} $`);
 
         // rewardKrno
-        const rewardKrno = Math.pow(1 + parseFloat(this.rewardInput.domElement.value) / 100, (Number(this.slider.domElement.value) * 3));
-        const rewardAPY = Number(this.amountInput.domElement.value) * rewardKrno;
-        this.kronRewardDisplay.empty().appendText(`${rewardAPY.toLocaleString()} KRNO`);
+        let amount = sKRNOAmount;
+        let estimatedReward = 0;
+        for (let i = 0; i < days * 3; i++) {
+            const nextAmount = (rewardYield / 100) * amount;
+            amount += nextAmount;
+
+            estimatedReward = amount - sKRNOAmount;
+        }
+        this.kronRewardDisplay.empty().appendText(`${estimatedReward.toLocaleString()} KRNO`);
+
 
         // futureWealthDisplay
-        const rewardWealth = rewardAPY * Number(this.futureInput.domElement.value);
-        const futureWealth = currentWealth + rewardWealth;
+        const futureWealth = (sKRNOAmount + estimatedReward) * futureMarketPrice
         this.futureWealthDisplay.empty().appendText(`${futureWealth.toLocaleString()} $`);
 
         // reward
