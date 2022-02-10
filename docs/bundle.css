@@ -553,19 +553,24 @@ body {
   position: relative;
   flex-direction: column;
   overflow: hidden;
+  margin-top: 16px;
   margin-bottom: 16px;
 }
 .buyback-item > img {
   border-radius: 4px;
 }
 .buyback-item > h3 {
-  margin: 8px;
   font-size: 1.25rem;
   font-weight: 500;
+  position: absolute;
+  left: 2%;
+  top: 2%;
+  color: white;
+  text-shadow: 1px 1px 1px #656565;
 }
 .buyback-item > p {
-  margin-bottom: 8px;
-  font-size: 0.825rem;
+  margin-left: 4px;
+  font-size: 0.75rem;
   font-weight: 300;
   color: #e0d8c8;
 }

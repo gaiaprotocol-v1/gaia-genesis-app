@@ -49,7 +49,7 @@ export default class Hourglass implements View {
                 el("section",
                     el("section.content",
                         el("article",
-                            el("header", msg("CURRENT_KRNO_PRICE_INPUT")),
+                            el("header", msg("CURRENT_KRNO_PRICE_TITLE")),
                             this.krnoPriceDisplay = el("p", "$..."),
                         ),
                         el("article",
