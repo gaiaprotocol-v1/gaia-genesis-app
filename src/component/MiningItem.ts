@@ -44,7 +44,7 @@ export default class MiningItem extends DomNode {
                     el("button.krno-button", msg("CLAIM_KRNO_BUTTON"), {
                         click: () => {
                             new Prompt(msg("CLAIM_KRNO_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async (amount) => {
-                                const krno = utils.parseEther(amount);
+                                const krno = utils.parseUnits(amount, 9);
 
                                 if (krno > this.krno) {
                                     new Alert(msg("CLAIM_ERROR_ALERT_TITLE"), msg("CLAIM_ERROR_ALERT_DESC"))
@@ -62,7 +62,7 @@ export default class MiningItem extends DomNode {
                                 if (klay > this.klay) {
                                     new Alert(msg("CLAIM_ERROR_ALERT_TITLE"), msg("CLAIM_ERROR_ALERT_DESC"))
                                 } else {
-                                    await GaiaOperationContract.claimKlayViaZap([this.id], [this.krno], klay, []);
+                                    await GaiaOperationContract.claimKlayViaZap([this.id], [this.krno.mul(klay).div(this.klay)], klay, []);
                                     ViewUtil.waitTransactionAndRefresh();
                                 }
                             }, msg("CLAIM_PLACEHOLDER_INPUT"));
