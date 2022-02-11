@@ -897,6 +897,8 @@ body {
 }
 .dashboard-view > img {
   border-radius: 4px;
+  width: 100%;
+  height: auto;
 }
 .dashboard-view > article {
   display: grid;

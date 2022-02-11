@@ -26,7 +26,7 @@ export default class Mining implements View {
                     el("h1", msg("DASHBOARD_TITLE")),
                     el("h2", msg("DASHBOARD_DESC")),
                 ),
-                el("img", { src: "/images/view/banner.png" }),
+                el("img", { src: "/images/view/dashboard/banner.png" }),
                 el("article",
                     el(".content-wrap",
                         el("header", msg("KRNO_PRICE_TITLE")),
