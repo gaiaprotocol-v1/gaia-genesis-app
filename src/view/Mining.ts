@@ -10,6 +10,8 @@ import Alert from "../component/shared/dialogue/Alert";
 import Confirm from "../component/shared/dialogue/Confirm";
 import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
+import StakingContract from "../contracts/StakingContract";
+import ExtWallet from "../klaytn/ExtWallet";
 import Wallet from "../klaytn/Wallet";
 import Layout from "./Layout";
 import ViewUtil from "./ViewUtil";
@@ -20,6 +22,7 @@ export default class Mining implements View {
     private idInput: DomNode<HTMLInputElement>;
     private totalKRNODisplay: DomNode;
     private totalKlayDisplay: DomNode;
+    private rebaseDisplay: DomNode;
     private nftList: DomNode;
     private interval: any;
 
@@ -34,7 +37,7 @@ export default class Mining implements View {
                 el("header", { "data-aos": "zoom-in" },
                     el(".title-container",
                         el("h1", msg("MINING_TITLE")),
-                        el("h2", msg("MINING_DESC")),
+                        this.rebaseDisplay = el("h2", msg("REBASE_TIME_DESC").replace(/{time}/, String("0"))),
                     ),
                     el(".input-container",
                         this.idInput = el("input", { placeholder: "NFT ID" }),
@@ -85,6 +88,7 @@ export default class Mining implements View {
         );
 
         this.resizeDebouncer.run();
+        this.interval = setInterval(() => this.loadRebase(), 1000);
         Wallet.on("connect", () => this.resizeDebouncer.run());
     }
 
@@ -120,6 +124,18 @@ export default class Mining implements View {
             this.totalKlay = await GaiaOperationContract.claimableKlay(this.tokenIds);
             this.totalKlayDisplay.empty().appendText(`${msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String(utils.formatEther(this.totalKlay)))}`);
         }
+    }
+
+    private async loadRebase() {
+        const stakingRebaseTime = (await StakingContract.epoch()).endTime;
+        const blockNumber = await ExtWallet.loadBlockTime();
+        const diff = stakingRebaseTime - blockNumber;
+        const hour = Math.floor(diff / 3600);
+        const min = Math.floor((diff % 3600) / 60);
+
+        this.rebaseDisplay.empty().appendText(msg("REBASE_TIME_DESC")
+            .replace(/{hour}/, String(hour))
+            .replace(/{min}/, String(min)));
     }
 
     public changeParams(params: ViewParams, uri: string): void { }
