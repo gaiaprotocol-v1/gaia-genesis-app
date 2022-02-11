@@ -83,3 +83,4 @@ CONNECT_WALLET_BUTTON2,카카오톡 클립으로 연결,Connect with Kakao Talk 
 CONNECT_WALLET_BUTTON3,연결하지 않고 둘러보기,Explore without Wallet Connection,,
 CLAIM_ERROR_ALERT_TITLE,오류,ERROR,,
 CLAIM_ERROR_ALERT_DESC,출금할 이자의 양이 적습니다.,The amount of interest to be withdrawn is small.,,
+CLAIM_PLACEHOLDER_INPUT,Claim 할 수량을 넣어주세요. ,Please add the quantity for Claim.,,

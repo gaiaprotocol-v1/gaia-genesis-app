@@ -52,7 +52,7 @@ export default class MiningItem extends DomNode {
                                     await GaiaOperationContract.claim([this.id], [krno]);
                                     ViewUtil.waitTransactionAndRefresh();
                                 }
-                            });
+                            }, msg("CLAIM_PLACEHOLDER_INPUT"));
                         },
                     }),
                     el("button.klay-button", msg("CLAIM_KLAY_BUTTON"), {
@@ -65,7 +65,7 @@ export default class MiningItem extends DomNode {
                                     await GaiaOperationContract.claimKlayViaZap([this.id], [this.krno], klay, []);
                                     ViewUtil.waitTransactionAndRefresh();
                                 }
-                            });
+                            }, msg("CLAIM_PLACEHOLDER_INPUT"));
                         },
                     }),
                 ),

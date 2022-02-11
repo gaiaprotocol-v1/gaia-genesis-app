@@ -11,6 +11,7 @@ export default class Prompt extends Popup {
         message: string,
         confirmTitle: string,
         confirm: (value: string) => void,
+        placeholder?: string,
     ) {
         super(".popup-background");
         this.append(
@@ -18,7 +19,7 @@ export default class Prompt extends Popup {
                 el("h2", title),
                 el("p", message),
                 el(".input-container",
-                    this.input = el("input"),
+                    this.input = el("input", { placeholder: placeholder }),
                 ),
                 el(".button-container",
                     el("button", msg("CANCEL_BUTTON"), {

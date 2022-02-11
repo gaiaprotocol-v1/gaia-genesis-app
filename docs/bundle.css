@@ -518,6 +518,7 @@ body {
   text-align: left;
 }
 .mining-item > .content-wrap > section > .amount-wrap > .krno {
+  font-size: 0.825rem;
   margin: 4px;
 }
 .mining-item > .content-wrap > section > .amount-wrap > .klay {
