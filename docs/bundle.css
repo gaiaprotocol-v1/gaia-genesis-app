@@ -623,8 +623,8 @@ body {
 }
 .team-nft-container > .content > .team-item > img {
   border-radius: 4px;
+  max-width: 300px;
   width: 100%;
-  height: auto;
   margin: auto;
 }
 .team-nft-container > .content > .team-item > h3 {
