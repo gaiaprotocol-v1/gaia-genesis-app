@@ -473,6 +473,8 @@ body {
 }
 .mining-item > img {
   border-radius: 4px;
+  width: 100%;
+  height: auto;
 }
 .mining-item > h3 {
   font-size: 1.25rem;
@@ -576,6 +578,8 @@ body {
 }
 .buyback-item > img {
   border-radius: 4px;
+  width: 100%;
+  height: auto;
 }
 .buyback-item > h3 {
   font-size: 1.25rem;
@@ -619,8 +623,8 @@ body {
 }
 .team-nft-container > .content > .team-item > img {
   border-radius: 4px;
-  max-width: 300px;
   width: 100%;
+  height: auto;
   margin: auto;
 }
 .team-nft-container > .content > .team-item > h3 {
