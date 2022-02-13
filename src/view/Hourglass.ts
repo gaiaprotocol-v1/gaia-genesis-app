@@ -14,10 +14,12 @@ import Wallet from "../klaytn/Wallet";
 import Layout from "./Layout";
 
 export default class Hourglass implements View {
+
     private container: DomNode;
     private krnoPriceDisplay: DomNode;
     private rewardDisplay: DomNode;
     private totalSKRNODisplay: DomNode;
+    private initSKRNODisplay: DomNode;
 
     private initWealthDisplay: DomNode;
     private kronRewardDisplay: DomNode;
@@ -31,12 +33,15 @@ export default class Hourglass implements View {
 
     private daysDisplay: DomNode;
 
-    private amountInput: DomNode<HTMLInputElement>;
-    private priceInput: DomNode<HTMLInputElement>;
+    private initPriceInput: DomNode<HTMLInputElement>;
+    private currentPriceInput: DomNode<HTMLInputElement>;
     private rewardInput: DomNode<HTMLInputElement>;
     private futureInput: DomNode<HTMLInputElement>;
     private slider: DomNode<HTMLInputElement>;
     private interval: any;
+
+    private initSKRNO = BigNumber.from(0);
+    private totalSKRNO = BigNumber.from(0);
 
     constructor() {
         Layout.current.title = msg("HOURGLASS_TITLE");
@@ -60,29 +65,28 @@ export default class Hourglass implements View {
                             el("header", msg("CURRENT_NFT_TOTAL_SKRNO_TITLE")),
                             this.totalSKRNODisplay = el("p", "0"),
                         ),
+                        el("article",
+                            el("header", "보유한 NFT의 최초 sKRNO"),
+                            this.initSKRNODisplay = el("p", "0"),
+                        ),
                     ),
                     el("hr"),
                     el(".input-container",
                         el(".input-wrap",
-                            el("label", msg("SKRNO_AMOUNT_TITLE")),
-                            this.amountInput = el("input", {
-                                value: "0",
+                            el("label", msg("KRNO_PRICE_AT_PURCHASE_TITLE")),
+                            this.initPriceInput = el("input", {
+                                value: "271.93",
                                 change: () => {
                                     this.setWealth();
                                 }
                             }),
                         ),
                         el(".input-wrap",
-                            el("label", msg("KRNO_PRICE_AT_PURCHASE_TITLE")),
-                            this.priceInput = el("input", {
-                                value: "271.93",
+                            el("label", "현재 sKRNO 가격"),
+                            this.currentPriceInput = el("input", {
+                                value: "0",
                                 change: () => {
                                     this.setWealth();
-                                }
-                            }),
-                            el("button", msg("CURRENT_BUTTON"), {
-                                click: () => {
-                                    this.setCurrentKRNOPrice();
                                 }
                             }),
                         ),
@@ -206,6 +210,7 @@ export default class Hourglass implements View {
         this.krnoPriceDisplay.empty().appendText(`$ ${krnoPrice}`);
 
         this.futureInput.domElement.value = krnoPrice;
+        this.currentPriceInput.domElement.value = krnoPrice;
     }
 
     private async loadReward(): Promise<void> {
@@ -215,20 +220,11 @@ export default class Hourglass implements View {
         this.rewardInput.domElement.value = reward;
     }
 
-    private async setCurrentKRNOPrice(): Promise<void> {
-        const pool = await lpContract.getCurrentPool();
-        const krnoPrice = CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8));
-        this.krnoPriceDisplay.empty().appendText(`$ ${krnoPrice}`);
-
-        this.priceInput.domElement.value = krnoPrice;
-    }
-
     private async setCurrentKRNOPriceOnFuture(): Promise<void> {
         const pool = await lpContract.getCurrentPool();
         const krnoPrice = CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8));
         this.krnoPriceDisplay.empty().appendText(`$ ${krnoPrice}`);
 
-        this.priceInput.domElement.value = krnoPrice;
         this.futureInput.domElement.value = krnoPrice;
     }
 
@@ -240,22 +236,23 @@ export default class Hourglass implements View {
             const balance = (await GaiaNFTContract.balanceOf(address)).toNumber();
             const promises: Promise<void>[] = [];
 
-            let totalKRNO = BigNumber.from(0);
             SkyUtil.repeat(balance, (i: number) => {
                 const promise = async (index: number) => {
                     const tokenId = (await GaiaNFTContract.tokenOfOwnerByIndex(address, index)).toNumber();
                     if (tokenId !== 0) {
                         const b = await GaiaOperationContract.getKRNOBalance(tokenId);
-                        totalKRNO = totalKRNO.add(b);
+                        this.totalSKRNO = this.totalSKRNO.add(b);
                     }
                 };
                 promises.push(promise(i));
             });
             await Promise.all(promises);
 
-            this.totalSKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(totalKRNO, 9))}`);
-            this.amountInput.domElement.value = CommonUtil.numberWithCommas(utils.formatUnits(totalKRNO, 9));
-            this.amountInput.fireDomEvent("change");
+            this.initSKRNO = BigNumber.from(utils.parseUnits("2.20264309", 9)).mul(balance)
+
+            this.initSKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(this.initSKRNO, 9))}`);
+            this.totalSKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(this.totalSKRNO, 9))}`);
+            this.setWealth();
         }
     }
 
@@ -270,37 +267,41 @@ export default class Hourglass implements View {
     }
 
     private async setWealth(): Promise<void> {
-        const price = parseFloat(this.priceInput.domElement.value);
+
+        const initPrice = parseFloat(this.initPriceInput.domElement.value);
+        const currentPrice = parseFloat(this.currentPriceInput.domElement.value);
+
         const rewardYield = parseFloat(this.rewardInput.domElement.value)
         const days = Number(this.slider.domElement.value);
         const futureMarketPrice = Number(this.futureInput.domElement.value);
-        const sKRNOAmount = parseFloat(this.amountInput.domElement.value);
+
+        const initSKRNO = parseFloat(utils.formatUnits(this.initSKRNO, 9));
+        const totalSKRNO = parseFloat(utils.formatUnits(this.totalSKRNO, 9));
 
         this.daysDisplay.empty().appendText(this.slider.domElement.value);
 
         // initWealth
-        const initWealth = sKRNOAmount * price;
+        const initWealth = initSKRNO * initPrice;
         this.initWealthDisplay.empty().appendText(`${initWealth.toLocaleString()} $`);
 
         // currentWealth
-        const pool = await lpContract.getCurrentPool();
-        const currentWealth = sKRNOAmount * Number(CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8)));
+        const currentWealth = totalSKRNO * currentPrice;
         this.currentWealthDisplay.empty().appendText(`${currentWealth.toLocaleString()} $`);
 
         // rewardKrno
-        let amount = sKRNOAmount;
+        let amount = totalSKRNO;
         let estimatedReward = 0;
         for (let i = 0; i < days * 3; i++) {
             const nextAmount = (rewardYield / 100) * amount;
             amount += nextAmount;
 
-            estimatedReward = amount - sKRNOAmount;
+            estimatedReward = amount - totalSKRNO;
         }
         this.kronRewardDisplay.empty().appendText(`${estimatedReward.toLocaleString()} KRNO`);
 
 
         // futureWealthDisplay
-        const futureWealth = (sKRNOAmount + estimatedReward) * futureMarketPrice
+        const futureWealth = (totalSKRNO + estimatedReward) * futureMarketPrice
         this.futureWealthDisplay.empty().appendText(`${futureWealth.toLocaleString()} $`);
 
         // reward
