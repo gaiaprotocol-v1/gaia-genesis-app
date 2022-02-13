@@ -18,11 +18,19 @@ class GaiaOperationContract extends Contract {
     }
 
     public async claim(ids: BigNumberish[], amounts: BigNumber[]) {
-        await this.runWalletMethod("claim", ids, amounts);
+        if (ids.length > 25) {
+            await this.runWalletMethodWithLargeGas("claim", ids, amounts);
+        } else {
+            await this.runWalletMethod("claim", ids, amounts);
+        }
     }
 
     public async claimKlayViaZap(ids: BigNumberish[], amounts: BigNumber[], minAmount: BigNumber, swapRouteArray: string[]) {
-        await this.runWalletMethod("claimKlayViaZap", ids, amounts, minAmount, swapRouteArray);
+        if (ids.length > 25) {
+            await this.runWalletMethodWithLargeGas("claim", ids, amounts);
+        } else {
+            await this.runWalletMethod("claimKlayViaZap", ids, amounts, minAmount, swapRouteArray);
+        }
     }
 
     public async initialKRNOEach() {
