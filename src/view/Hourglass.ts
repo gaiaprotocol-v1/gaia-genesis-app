@@ -66,7 +66,7 @@ export default class Hourglass implements View {
                             this.totalSKRNODisplay = el("p", "0"),
                         ),
                         el("article",
-                            el("header", "보유한 NFT의 최초 sKRNO"),
+                            el("header", msg("FIRST_HOLD_SKRNO_TITLE")),
                             this.initSKRNODisplay = el("p", "0"),
                         ),
                     ),
