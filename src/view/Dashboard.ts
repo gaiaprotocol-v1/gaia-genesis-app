@@ -69,7 +69,7 @@ export default class Mining implements View {
 
     private async loadRebaseRound() {
         dayjs.extend(isSameOrAfter);
-        let result = dayjs().diff('2022-02-11', 'days');
+        let result = dayjs().diff('2022-02-11', 'days') - 1;
         const current = dayjs();
         if (current.isSameOrAfter(current.set('h', 23).set('m', 4))) {
             result = result + 3;
@@ -79,7 +79,7 @@ export default class Mining implements View {
             result = result + 1;
         }
 
-        this.roundBalanceDisplay.empty().appendText(`${result * 3} ROUND`);
+        this.roundBalanceDisplay.empty().appendText(`${result * 3 - 1} ROUND`);
     }
 
     private async loadGenesisGaiaKlay() {
