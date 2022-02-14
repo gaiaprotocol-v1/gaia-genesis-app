@@ -12,6 +12,7 @@
         "@walletconnect/web3-provider": "^1.4.1",
         "aos": "^2.3.4",
         "bowser": "^2.11.0",
+        "dayjs": "^1.10.7",
         "ethers": "^5.0.32",
         "klip-sdk": "^2.0.1",
         "less": "^4.1.1",

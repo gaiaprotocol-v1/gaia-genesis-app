@@ -4,6 +4,8 @@ import { BigNumber, utils } from "ethers";
 import msg from "msg.js";
 import { View, ViewParams } from "skyrouter";
 import SkyUtil from "skyutil";
+import dayjs from 'dayjs';
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import CommonUtil from "../CommonUtil";
 import MiningItem from "../component/MiningItem";
 import Alert from "../component/shared/dialogue/Alert";
@@ -133,9 +135,22 @@ export default class Mining implements View {
         const hour = Math.floor(diff / 3600);
         const min = Math.floor((diff % 3600) / 60);
 
+        let round = dayjs().diff('2022-02-11', 'days');
+        const current = dayjs();
+
+        dayjs.extend(isSameOrAfter);
+        if (current.isSameOrAfter(current.set('h', 23).set('m', 4))) {
+            round = round + 3;
+        } else if (current.isSameOrAfter(current.set('h', 15).set('m', 4))) {
+            round = round + 2;
+        } else if (current.isSameOrAfter(current.set('h', 7).set('m', 4))) {
+            round = round + 1;
+        }
+
         this.rebaseDisplay.empty().appendText(msg("REBASE_TIME_DESC")
             .replace(/{hour}/, String(hour))
-            .replace(/{min}/, String(min)));
+            .replace(/{min}/, String(min))
+            .replace(/{round}/, String(round + 1)))
     }
 
     public changeParams(params: ViewParams, uri: string): void { }

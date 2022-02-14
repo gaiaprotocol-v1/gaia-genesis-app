@@ -1,9 +1,12 @@
 import { DomNode, el } from "@hanul/skynode";
 import { utils } from "ethers";
 import msg from "msg.js";
+import dayjs from 'dayjs';
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import { View, ViewParams } from "skyrouter";
 import CommonUtil from "../CommonUtil";
 import GaiaBuyBackFundContract from "../contracts/GaiaBuyBackFundContract";
+import GaiaOperationContract from "../contracts/GaiaOperationContract";
 import lpContract from "../contracts/lpContract";
 import sKRNOContract from "../contracts/sKRNOContract";
 import StakingContract from "../contracts/StakingContract";
@@ -16,6 +19,8 @@ export default class Mining implements View {
     private krnoPriceDisplay: DomNode;
     private apyDisplay: DomNode;
     private buybackBalanceDisplay: DomNode;
+    private interestBalanceDisplay: DomNode;
+    private roundBalanceDisplay: DomNode;
     private interval: any;
 
     constructor() {
@@ -40,17 +45,46 @@ export default class Mining implements View {
                         el("header", msg("BUYBACK_TITLE")),
                         this.buybackBalanceDisplay = el("p", "... KLAY"),
                     ),
-                    /*el(".content-wrap",
-                        el("header", "Holders"),
-                        el("p", "1,000"),
-                    ),*/
+                    el(".content-wrap",
+                        el("header", msg("TOTAL_GAIA_INTEREST_TITLE")),
+                        this.interestBalanceDisplay = el("p", "... KLAY"),
+                    ),
+                    el(".content-wrap",
+                        el("header", msg("REBASE_ROUND_TITLE")),
+                        this.roundBalanceDisplay = el("p", "... ROUND"),
+                    ),
                 ),
             ),
         );
+        this.init();
+    }
 
+    private async init(): Promise<void> {
         this.loadKRNOPrice();
         this.loadAPY();
         this.loadBuybackBalance();
+        this.loadGenesisGaiaKlay();
+        this.loadRebaseRound();
+    }
+
+    private async loadRebaseRound() {
+        dayjs.extend(isSameOrAfter);
+        let result = dayjs().diff('2022-02-11', 'days');
+        const current = dayjs();
+        if (current.isSameOrAfter(current.set('h', 23).set('m', 4))) {
+            result = result + 3;
+        } else if (current.isSameOrAfter(current.set('h', 15).set('m', 4))) {
+            result = result + 2;
+        } else if (current.isSameOrAfter(current.set('h', 7).set('m', 4))) {
+            result = result + 1;
+        }
+
+        this.roundBalanceDisplay.empty().appendText(`${result * 3} ROUND`);
+    }
+
+    private async loadGenesisGaiaKlay() {
+        const klay = await GaiaOperationContract.claimableKlay([0]);
+        this.interestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay))} KLAY`);
     }
 
     private async loadKRNOPrice() {
