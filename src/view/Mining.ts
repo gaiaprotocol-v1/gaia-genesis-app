@@ -135,7 +135,7 @@ export default class Mining implements View {
         const hour = Math.floor(diff / 3600);
         const min = Math.floor((diff % 3600) / 60);
 
-        let round = dayjs().diff('2022-02-11', 'days') - 1;
+        let round = dayjs().diff('2022-02-11', 'days') * 3;
         const current = dayjs();
 
         dayjs.extend(isSameOrAfter);
@@ -150,7 +150,7 @@ export default class Mining implements View {
         this.rebaseDisplay.empty().appendText(msg("REBASE_TIME_DESC")
             .replace(/{hour}/, String(hour))
             .replace(/{min}/, String(min))
-            .replace(/{round}/, String(round * 3)))
+            .replace(/{round}/, String(round)))
     }
 
     public changeParams(params: ViewParams, uri: string): void { }
