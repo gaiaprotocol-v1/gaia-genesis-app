@@ -150,7 +150,7 @@ export default class Mining implements View {
         this.rebaseDisplay.empty().appendText(msg("REBASE_TIME_DESC")
             .replace(/{hour}/, String(hour))
             .replace(/{min}/, String(min))
-            .replace(/{round}/, String(round)))
+            .replace(/{round}/, String(round + 1)))
     }
 
     public changeParams(params: ViewParams, uri: string): void { }

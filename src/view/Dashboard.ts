@@ -79,7 +79,7 @@ export default class Mining implements View {
             result = result + 1;
         }
 
-        this.roundBalanceDisplay.empty().appendText(`${result - 1} ROUND`);
+        this.roundBalanceDisplay.empty().appendText(`${result} ROUND`);
     }
 
     private async loadGenesisGaiaKlay() {
