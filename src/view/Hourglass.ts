@@ -19,9 +19,7 @@ export default class Hourglass implements View {
     private krnoPriceDisplay: DomNode;
     private rewardDisplay: DomNode;
     private totalSKRNODisplay: DomNode;
-    private initSKRNODisplay: DomNode;
 
-    private initWealthDisplay: DomNode;
     private kronRewardDisplay: DomNode;
     private currentWealthDisplay: DomNode;
     private futureWealthDisplay: DomNode;
@@ -40,7 +38,6 @@ export default class Hourglass implements View {
     private slider: DomNode<HTMLInputElement>;
     private interval: any;
 
-    private initSKRNO = BigNumber.from(0);
     private totalSKRNO = BigNumber.from(0);
 
     constructor() {
@@ -65,10 +62,6 @@ export default class Hourglass implements View {
                             el("header", msg("CURRENT_NFT_TOTAL_SKRNO_TITLE")),
                             this.totalSKRNODisplay = el("p", "0"),
                         ),
-                        el("article",
-                            el("header", msg("FIRST_HOLD_SKRNO_TITLE")),
-                            this.initSKRNODisplay = el("p", "0"),
-                        ),
                     ),
                     el("hr"),
                     el(".input-container",
@@ -82,7 +75,7 @@ export default class Hourglass implements View {
                             }),
                         ),
                         el(".input-wrap",
-                            el("label", "현재 sKRNO 가격"),
+                            el("label", msg("CURRENT_KRNO_MARKET_PRICE_TITLE")),
                             this.currentPriceInput = el("input", {
                                 value: "0",
                                 change: () => {
@@ -136,10 +129,6 @@ export default class Hourglass implements View {
                         ),
                     ),
                     el(".reward-container",
-                        el(".content-wrap",
-                            el("header", msg("INITIAL_INVESTMENT_TITLE")),
-                            this.initWealthDisplay = el("p", "0 $"),
-                        ),
                         el(".content-wrap",
                             el("header", msg("CURRENT_WEALTH_TITLE")),
                             this.currentWealthDisplay = el("p", "0 $"),
@@ -248,9 +237,6 @@ export default class Hourglass implements View {
             });
             await Promise.all(promises);
 
-            this.initSKRNO = BigNumber.from(utils.parseUnits("2.20264309", 9)).mul(balance)
-
-            this.initSKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(this.initSKRNO, 9))}`);
             this.totalSKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(this.totalSKRNO, 9))}`);
             this.setWealth();
         }
@@ -268,21 +254,15 @@ export default class Hourglass implements View {
 
     private async setWealth(): Promise<void> {
 
-        const initPrice = parseFloat(this.initPriceInput.domElement.value);
         const currentPrice = parseFloat(this.currentPriceInput.domElement.value);
 
         const rewardYield = parseFloat(this.rewardInput.domElement.value)
         const days = Number(this.slider.domElement.value);
         const futureMarketPrice = Number(this.futureInput.domElement.value);
 
-        const initSKRNO = parseFloat(utils.formatUnits(this.initSKRNO, 9));
         const totalSKRNO = parseFloat(utils.formatUnits(this.totalSKRNO, 9));
 
         this.daysDisplay.empty().appendText(this.slider.domElement.value);
-
-        // initWealth
-        const initWealth = initSKRNO * initPrice;
-        this.initWealthDisplay.empty().appendText(`${initWealth.toLocaleString()} $`);
 
         // currentWealth
         const currentWealth = totalSKRNO * currentPrice;

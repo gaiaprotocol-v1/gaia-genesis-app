@@ -84,7 +84,9 @@ export default class Mining implements View {
 
     private async loadGenesisGaiaKlay() {
         const klay = await GaiaOperationContract.claimableKlay([0]);
-        this.interestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay))} KLAY`);
+        if (this.container.deleted !== true) {
+            this.interestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay))} KLAY`);
+        }
     }
 
     private async loadKRNOPrice() {

@@ -57,7 +57,7 @@ export default class MiningItem extends DomNode {
                     }),
                     el("button.klay-button", msg("CLAIM_KLAY_BUTTON"), {
                         click: () => {
-                            new Prompt(msg("CLAIM_KLAY_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async (amount) => {
+                            new Prompt(msg("CLAIM_KLAY_ALERT_TITLE"), msg("CLAIM_KLAY_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async (amount) => {
                                 const klay = utils.parseEther(amount);
                                 if (klay > this.klay) {
                                     new Alert(msg("CLAIM_ERROR_ALERT_TITLE"), msg("CLAIM_ERROR_ALERT_DESC"))
