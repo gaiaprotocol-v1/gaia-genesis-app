@@ -3,13 +3,14 @@
 
     >header {
         display         : flex;
+        position        : fixed;
         justify-items   : center;
         width           : 100%;
         background-color: black;
-        height          : 52px;
-        position        : fixed;
+        max-height      : 52px;
+        left            : 0;
         top             : 0;
-        z-index         : 3;
+        z-index         : 999;
 
         @media @phone {
             height: auto;
@@ -34,183 +35,74 @@
                 }
             }
 
-            >.menu-btn,
-            .menu-icon {
-                display: none;
+            >.pc-menu {
+                @media @phone {
+                    display: none;
+                }
             }
 
-            >.menu {
-                >.item {
-                    display    : flex;
-                    float      : left;
-                    font-weight: 600;
+            >.right {
+                display: flex;
+                .float-wrapper();
 
-                    >.user-info {
-                        margin-left: 8px;
+                >.user-menu {
+                    float: right;
 
-                        @media @phone {
-                            margin       : 0px;
-                            border-radius: 4px;
-                        }
+                    @media @phone {
+                        display: none;
                     }
+                }
 
-                    >a {
-                        cursor         : pointer;
-                        padding        : 8px 12px 8px 12px;
-                        font-size      : 0.875rem;
-                        text-decoration: none;
-                        color          : white;
+                >.language-select {
+                    cursor          : pointer;
+                    padding         : 8px 8px 8px 8px;
+                    font-size       : 0.875rem;
+                    text-decoration : none;
+                    color           : white;
+                    background-color: transparent;
+                    border          : none;
+                    margin-right    : 8px;
 
-                        &:hover {
-                            background-color: rgba(177, 156, 118, 0.5);
-                            border-radius   : 4px;
-                        }
-
-                        &:active {
-                            background-color: rgba(177, 156, 118, 0.7);
-                            border-radius   : 4px;
-                        }
-                    }
-
-                    >.language-select {
-                        cursor          : pointer;
-                        padding         : 8px 8px 8px 8px;
-                        font-size       : 0.875rem;
-                        text-decoration : none;
-                        color           : white;
-                        background-color: transparent;
-                        border          : none;
-
-                        &:hover {
-                            background-color: rgba(177, 156, 118, 0.5);
-                            border-radius   : 4px;
-                        }
-
-                        &:active {
-                            background-color: rgba(177, 156, 118, 0.7);
-                            border-radius   : 4px;
-                        }
-
-                        @media @phone {
-                            width           : 100%;
-                            height          : 100%;
-                            padding         : 20px 16px;
-                            background-color: transparent;
-
-                            &:hover {
-                                background-color: #333332;
-                            }
-                        }
-                    }
-
-                    >.connect-wallet {
+                    &:hover {
                         background-color: rgba(177, 156, 118, 0.5);
                         border-radius   : 4px;
                     }
+
+                    &:active {
+                        background-color: rgba(177, 156, 118, 0.7);
+                        border-radius   : 4px;
+                    }
+
+                    @media @phone {
+                        width              : 100%;
+                        height             : 100%;
+                        // padding         : 20px 16px;
+                        background-color   : transparent;
+
+                        &:hover {
+                            background-color: #333332;
+                        }
+                    }
                 }
-            }
 
-            @media @phone {
+                >.mix-button {
+                    float       : right;
+                    margin-top  : 2px;
+                    margin-right: 16px;
 
-                >.menu-btn {
+                    @media @phone {
+                        margin-top  : 6px;
+                        margin-right: 10px;
+                    }
+                }
+
+                >.menu-button {
+                    float  : right;
                     display: none;
-                }
+                    padding: 10px;
 
-                >.menu-btn:checked~.menu {
-                    display   : block;
-                    max-height: 52px;
-                }
-
-                >.menu-btn:checked~.menu-icon .navicon {
-                    background: transparent;
-                }
-
-                >.menu-btn:checked~.menu-icon .navicon:before {
-                    transform: rotate(-45deg);
-                }
-
-                >.menu-btn:checked~.menu-icon .navicon:after {
-                    transform: rotate(45deg);
-                }
-
-                >.menu-btn:checked~.menu-icon:not(.steps) .navicon:before,
-                >.menu-btn:checked~.menu-icon:not(.steps) .navicon:after {
-                    top: 0;
-                }
-
-                >.menu-icon {
-                    cursor     : pointer;
-                    display    : inline-block;
-                    padding    : 28px 8px;
-                    position   : relative;
-                    user-select: none;
-
-                    >.navicon {
-                        background: white;
-                        display   : block;
-                        height    : 2px;
-                        position  : relative;
-                        transition: background .2s ease-out;
-                        width     : 18px;
-                    }
-
-                    .navicon:before,
-                    .navicon:after {
-                        background: white;
-                        content   : '';
-                        display   : block;
-                        height    : 100%;
-                        position  : absolute;
-                        transition: all .2s ease-out;
-                        width     : 100%;
-                    }
-
-                    .navicon:before {
-                        top: 5px;
-                    }
-
-                    .navicon:after {
-                        top: -5px;
-                    }
-                }
-
-                >.menu {
-                    display   : none;
-                    margin    : 0;
-                    padding   : 0;
-                    list-style: none;
-                    clear     : both;
-                    max-height: 0;
-                    transition: max-height .2s ease-out;
-
-                    >.item {
-                        display         : block;
-                        width           : 100%;
-                        background-color: black;
-
-                        >a {
-                            display        : block;
-                            padding        : 20px 20px;
-                            text-decoration: none;
-
-                            &:hover {
-                                color           : white;
-                                background-color: #333332;
-                            }
-                        }
-
-                        >.connect-wallet {
-                            background-color: transparent;
-                            color           : rgba(177, 156, 118, 1);
-
-                            &:hover {
-                                color: white;
-                            }
-
-                            &:active {
-                                color: white;
-                            }
-                        }
+                    @media @phone {
+                        display: block;
                     }
                 }
             }

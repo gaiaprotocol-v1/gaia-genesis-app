@@ -410,6 +410,149 @@ body {
   overflow-y: scroll;
   padding: 20px 0;
 }
+.user-menu > .connect-wallet,
+.user-menu > .wallet-address {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: linear-gradient(#111112, #2a292a) fixed;
+  background-color: #b19c76;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+.user-menu > .connect-wallet,
+.user-menu > .wallet-address:hover {
+  background-color: #b19c76;
+  color: white;
+}
+.user-menu > .wallet-address {
+  position: relative;
+  cursor: pointer;
+}
+.user-menu > .wallet-address > ul {
+  position: absolute;
+  left: 0;
+  top: 30px;
+  width: 100px;
+  display: none;
+  background-color: #222;
+  padding: 10px 0;
+}
+.user-menu > .wallet-address > ul > li > a {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+}
+.user-menu > .wallet-address > ul > li > a:hover {
+  color: #b19c76;
+}
+.user-menu > .wallet-address > ul > li > a:active {
+  color: #b19c76;
+}
+.user-menu > .wallet-address:hover > ul {
+  display: block;
+}
+.user-menu > ul {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.user-menu > ul > li > a {
+  display: block;
+  padding: 8px 5px;
+  color: #ccc;
+}
+.user-menu > ul > li > a:hover {
+  color: #b19c76;
+}
+.user-menu > ul > li > a:active {
+  color: #b19c76;
+}
+.pc-menu > ul {
+  display: flex;
+}
+.pc-menu > ul > li {
+  display: flex;
+  float: left;
+  font-weight: 600;
+}
+.pc-menu > ul > li > a {
+  cursor: pointer;
+  padding: 8px 12px 8px 12px;
+  font-size: 0.875rem;
+  text-decoration: none;
+  color: white;
+}
+.pc-menu > ul > li > a:hover {
+  background-color: rgba(177, 156, 118, 0.5);
+  border-radius: 4px;
+}
+.pc-menu > ul > li > a:active {
+  background-color: rgba(177, 156, 118, 0.7);
+  border-radius: 4px;
+}
+.pc-menu > ul > li > ul {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 100px;
+  display: none;
+  background-color: #222;
+  padding: 10px 0;
+}
+.pc-menu > ul > li > ul > li > a {
+  display: block;
+  text-align: center;
+  padding: 10px;
+}
+.pc-menu > ul > li > ul > li > a:hover {
+  color: #b19c76;
+}
+.pc-menu > ul > li > ul > li > a:active {
+  color: #b19c76;
+}
+.pc-menu > ul > li:hover > ul {
+  display: block;
+}
+.mobile-menu {
+  position: fixed;
+  width: 100%;
+  background-color: black;
+  padding: 10px;
+}
+.mobile-menu > ul > li > a {
+  display: block;
+  padding: 12px 5px;
+  font-size: 0.825rem;
+}
+.mobile-menu > ul > li > a:hover {
+  color: #b19c76;
+}
+.mobile-menu > ul > li > a:active {
+  color: #b19c76;
+}
+.mobile-menu > ul > li > ul {
+  margin-left: 10px;
+}
+.mobile-menu > ul > li > ul > li > a {
+  display: block;
+  padding: 8px 5px;
+  color: #ccc;
+}
+.mobile-menu > ul > li > ul > li > a:hover {
+  color: #b19c76;
+}
+.mobile-menu > ul > li > ul > li > a:active {
+  color: #b19c76;
+}
+.mobile-menu > ul > li > ul > li.parent {
+  display: none;
+}
+.mobile-menu > .user-menu {
+  margin: auto;
+  margin-top: 16px;
+}
 .user-info {
   display: flex;
   justify-content: center;
@@ -417,6 +560,7 @@ body {
 }
 @media only screen and (max-width: 719px) {
   .user-info {
+    display: none;
     width: 100%;
     min-height: 34px;
     align-items: center;
@@ -657,13 +801,14 @@ body {
 }
 .layout > header {
   display: flex;
+  position: fixed;
   justify-items: center;
   width: 100%;
   background-color: black;
-  height: 52px;
-  position: fixed;
+  max-height: 52px;
+  left: 0;
   top: 0;
-  z-index: 3;
+  z-index: 999;
 }
 @media only screen and (max-width: 719px) {
   .layout > header {
@@ -685,40 +830,31 @@ body {
 .layout > header > .nav > .logo > a > img {
   height: 36px;
 }
-.layout > header > .nav > .menu-btn,
-.layout > header > .nav .menu-icon {
-  display: none;
-}
-.layout > header > .nav > .menu > .item {
-  display: flex;
-  float: left;
-  font-weight: 600;
-}
-.layout > header > .nav > .menu > .item > .user-info {
-  margin-left: 8px;
-}
 @media only screen and (max-width: 719px) {
-  .layout > header > .nav > .menu > .item > .user-info {
-    margin: 0px;
-    border-radius: 4px;
+  .layout > header > .nav > .pc-menu {
+    display: none;
   }
 }
-.layout > header > .nav > .menu > .item > a {
-  cursor: pointer;
-  padding: 8px 12px 8px 12px;
-  font-size: 0.875rem;
-  text-decoration: none;
-  color: white;
+.layout > header > .nav > .right {
+  display: flex;
 }
-.layout > header > .nav > .menu > .item > a:hover {
-  background-color: rgba(177, 156, 118, 0.5);
-  border-radius: 4px;
+.layout > header > .nav > .right:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
-.layout > header > .nav > .menu > .item > a:active {
-  background-color: rgba(177, 156, 118, 0.7);
-  border-radius: 4px;
+.layout > header > .nav > .right > .user-menu {
+  float: right;
 }
-.layout > header > .nav > .menu > .item > .language-select {
+@media only screen and (max-width: 719px) {
+  .layout > header > .nav > .right > .user-menu {
+    display: none;
+  }
+}
+.layout > header > .nav > .right > .language-select {
   cursor: pointer;
   padding: 8px 8px 8px 8px;
   font-size: 0.875rem;
@@ -726,114 +862,45 @@ body {
   color: white;
   background-color: transparent;
   border: none;
+  margin-right: 8px;
 }
-.layout > header > .nav > .menu > .item > .language-select:hover {
+.layout > header > .nav > .right > .language-select:hover {
   background-color: rgba(177, 156, 118, 0.5);
   border-radius: 4px;
 }
-.layout > header > .nav > .menu > .item > .language-select:active {
+.layout > header > .nav > .right > .language-select:active {
   background-color: rgba(177, 156, 118, 0.7);
   border-radius: 4px;
 }
 @media only screen and (max-width: 719px) {
-  .layout > header > .nav > .menu > .item > .language-select {
+  .layout > header > .nav > .right > .language-select {
     width: 100%;
     height: 100%;
-    padding: 20px 16px;
     background-color: transparent;
   }
-  .layout > header > .nav > .menu > .item > .language-select:hover {
+  .layout > header > .nav > .right > .language-select:hover {
     background-color: #333332;
   }
 }
-.layout > header > .nav > .menu > .item > .connect-wallet {
-  background-color: rgba(177, 156, 118, 0.5);
-  border-radius: 4px;
+.layout > header > .nav > .right > .mix-button {
+  float: right;
+  margin-top: 2px;
+  margin-right: 16px;
 }
 @media only screen and (max-width: 719px) {
-  .layout > header > .nav > .menu-btn {
-    display: none;
+  .layout > header > .nav > .right > .mix-button {
+    margin-top: 6px;
+    margin-right: 10px;
   }
-  .layout > header > .nav > .menu-btn:checked ~ .menu {
+}
+.layout > header > .nav > .right > .menu-button {
+  float: right;
+  display: none;
+  padding: 10px;
+}
+@media only screen and (max-width: 719px) {
+  .layout > header > .nav > .right > .menu-button {
     display: block;
-    max-height: 52px;
-  }
-  .layout > header > .nav > .menu-btn:checked ~ .menu-icon .navicon {
-    background: transparent;
-  }
-  .layout > header > .nav > .menu-btn:checked ~ .menu-icon .navicon:before {
-    transform: rotate(-45deg);
-  }
-  .layout > header > .nav > .menu-btn:checked ~ .menu-icon .navicon:after {
-    transform: rotate(45deg);
-  }
-  .layout > header > .nav > .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
-  .layout > header > .nav > .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
-    top: 0;
-  }
-  .layout > header > .nav > .menu-icon {
-    cursor: pointer;
-    display: inline-block;
-    padding: 28px 8px;
-    position: relative;
-    user-select: none;
-  }
-  .layout > header > .nav > .menu-icon > .navicon {
-    background: white;
-    display: block;
-    height: 2px;
-    position: relative;
-    transition: background 0.2s ease-out;
-    width: 18px;
-  }
-  .layout > header > .nav > .menu-icon .navicon:before,
-  .layout > header > .nav > .menu-icon .navicon:after {
-    background: white;
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    transition: all 0.2s ease-out;
-    width: 100%;
-  }
-  .layout > header > .nav > .menu-icon .navicon:before {
-    top: 5px;
-  }
-  .layout > header > .nav > .menu-icon .navicon:after {
-    top: -5px;
-  }
-  .layout > header > .nav > .menu {
-    display: none;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    clear: both;
-    max-height: 0;
-    transition: max-height 0.2s ease-out;
-  }
-  .layout > header > .nav > .menu > .item {
-    display: block;
-    width: 100%;
-    background-color: black;
-  }
-  .layout > header > .nav > .menu > .item > a {
-    display: block;
-    padding: 20px 20px;
-    text-decoration: none;
-  }
-  .layout > header > .nav > .menu > .item > a:hover {
-    color: white;
-    background-color: #333332;
-  }
-  .layout > header > .nav > .menu > .item > .connect-wallet {
-    background-color: transparent;
-    color: #b19c76;
-  }
-  .layout > header > .nav > .menu > .item > .connect-wallet:hover {
-    color: white;
-  }
-  .layout > header > .nav > .menu > .item > .connect-wallet:active {
-    color: white;
   }
 }
 .layout > main {

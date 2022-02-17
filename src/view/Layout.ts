@@ -3,6 +3,8 @@ import AOS from "aos";
 import msg from "msg.js";
 import { View, ViewParams } from "skyrouter";
 import BrowserInfo from "../BrowserInfo";
+import MobileMenu from "../component/shared/menu/MobileMenu";
+import PCMenu from "../component/shared/menu/PCMenu";
 import UserInfo from "../component/UserInfo";
 import ViewUtil from "./ViewUtil";
 
@@ -23,27 +25,24 @@ export default class Layout implements View {
                         el(".logo",
                             el("a", { href: "/" }, el("img", { src: "/images/shared/img/logo.png", alt: "gaia protocol logo" })),
                         ),
-                        el("input.menu-btn", { type: "checkbox", id: "menu-btn" }),
-                        el("label.menu-icon", { for: "menu-btn" },
-                            el("span.navicon"),
-                        ),
-                        el("ul.menu",
-                            el("li.item", el("a", msg("DASHBOARD_MENU"), { click: () => { ViewUtil.go("/") } })),
-                            el("li.item", el("a", msg("MINING_MENU"), { click: () => { ViewUtil.go("/mining") } })),
-                            el("li.item", el("a", msg("BUYBACK_MENU"), { click: () => { ViewUtil.go("/buyback") } })),
-                            el("li.item", el("a", msg("HOURGLASS_MENU"), { click: () => { ViewUtil.go("/hourglass") } })),
-                            el("li.item",
-                                select = el("select.language-select",
-                                    el("option", "한국어 🇰🇷 ", { value: "ko" }),
-                                    el("option", "English 🇺🇸 ", { value: "en" }),
-                                    {
-                                        change: () => {
-                                            BrowserInfo.changeLanguage(select.domElement.value);
-                                        },
+                        new PCMenu(),
+                        el(".right",
+                            select = el("select.language-select",
+                                el("option", "한국어 🇰🇷 ", { value: "ko" }),
+                                el("option", "English 🇺🇸 ", { value: "en" }),
+                                {
+                                    change: () => {
+                                        BrowserInfo.changeLanguage(select.domElement.value);
                                     },
-                                ),
+                                },
                             ),
-                            el("li.item", new UserInfo()),
+                            new UserInfo(),
+                            el("a.menu-button", el("i.fas.fa-bars"), {
+                                click: (event, button) => {
+                                    const rect = button.rect;
+                                    new MobileMenu({ left: rect.right - 170, top: rect.bottom }).appendTo(BodyNode);
+                                },
+                            }),
                         ),
                     ),
                 ),
