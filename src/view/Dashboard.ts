@@ -42,7 +42,7 @@ export default class Mining implements View {
                         this.apyDisplay = el("p", "...%"),
                     ),
                     el(".content-wrap",
-                        el("header", msg("BUYBACK_TITLE")),
+                        el("header", msg("DASHBOARD_BUYBACK_TITLE")),
                         this.buybackBalanceDisplay = el("p", "... KLAY"),
                     ),
                     el(".content-wrap",
