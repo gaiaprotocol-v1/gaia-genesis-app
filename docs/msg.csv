@@ -1,92 +1,92 @@
 key,ko,en,zh-TC,zh-SC
-TITLE,Gaia Protocol,Gaia Protocol
-DASHBOARD_MENU,DASHBOARD,DASHBOARD
-MINING_MENU,MINING,MINING
-BUYBACK_MENU,BUYBACK,BUYBACK
-HOURGLASS_MENU,HOURGLASS,HOURGLASS
-CONNECT_WALLET_BUTTON,지갑연결,Connect Wallet
-DASHBOARD_TITLE,가이아 프로토콜,Gaia Protocol
-DASHBOARD_DESC,소유한 NFT 요약,Your NFT Status
-KRNO_PRICE_TITLE,KRNO 가격,KRNO Price
-ARY_TITLE,APY,APY
-BUYBACK_TITLE,바이백 펀드,Buyback Fund
-SKRNO_TITLE,소유한 sKRNO 수량,Your sKRNO
-MINING_TITLE,채굴,Mining
-MINING_DESC,소유한 NFT 채굴,Check out how much did you earn from NFTs
-CHECK_INTEREST_TITLE,이자 확인,Check Interest
-CHECK_INTEREST_DESC,GAIA #{id} 에는 {krnoAmount} KRNO ({klayAmount} KLAY)가 쌓여 있습니다.,"GAIA #{id}, {krnoAmount} mined KRNO ({klayAmount} KLAY)"
-MY_NFT_TITLE,나의 NFT,My NFTs
-MY_INTEREST_KRNO_DESC,총 이자: {amount} KRNO,Total interest: {amount} KRNO
-MY_INTEREST_KLAY_DESC,총 이자: {amount} KLAY,Total interest: {amount} KLAY
-MY_INTEREST_DESC,총 이자,Total Interest
-CLAIM_ALL_BUTTON,모든 받기,Claim All
-ALL_CLAIM_KRNO_TITLE,모두 KRNO 받기,Claim All (KRNO)
-ALL_CLAIM_KLAY_TITLE,모두 KLAY로 받기,Claim All (KLAY)
-CLAIM_KRNO_BUTTON,KRNO 받기,Claim (KRNO)
-CLAIM_KLAY_BUTTON,KLAY로 받기,Claim (KLAY)
-CLAIM_KRNO_ALERT_TITLE,KRNO 받기,Claim KRNO
-CLAIM_KLAY_ALERT_TITLE,KLAY로 받기,Claim Klay
-CLAIM_ALERT_DESC,이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다.,"Do you want to claim the interest? If you receive the interest frequently, it is difficult to maximize your returns"
-CLAIM_KLAY_ALERT_DESC,"이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다. 만약 트랜잭션에 실패하면, 슬리피지로 인한 것일 수 있으니 조금 여유분을 남기고 KLAY를 수령해주시기 바랍니다.","Do you want to claim the interest? If you receive the interest frequently, it is difficult to maximize your returns"
-CLAIM_ALERT_BUTTON,계속 진행,Claim anyway
-BUYBACK_TITLE,Buyback,Buyback
-BUYBACK_DESC,Gaia Buyback Fund,Gaia Buyback Fund
-GENESIS_GAIA_TITLE,최초의 가이아,Genesis Gaia
-MINT_PRICE_TITLE,민팅가,Minted Price
-COMPOUND_INTEREST_TITLE,쌓인 복리 이자,Accumulated Compound Interest
-RECEIVE_KLAY_TITLE,받을 수 있는 KLAY 수량,Buyback Price (Klay)
-BUYBACK_BUTTON,바이백,Buyback
-BUYBACK_CONFIRM_TITLE,바이백 확인,Confirm Buyback
-BUYBACK_CONFIRM_DESC,정말 바이백 하시겠습니까? 바이백 이후에는 다시는 NFT를 되찾을 수 없습니다.,"Do you really want to porceed a buyback? After the buyback, ownership will move to the team"
-BUYBACK_CONFIRM_BUTTON,바이백 진행,Progress Buyback
-HOURGLASS_TITLE,Hour Glass,Hour Glass
-HOURGLASS_DESC,수익률 산정,Calculate Your Estimate Return
-CURRENT_KRNO_PRICE_TITLE,현재 KRNO 가격,Current KRNO price
-CURRENT_REWARD_YIELD_TITLE,현재 보상이자,Current Reward Yield (%)
-CURRENT_NFT_TOTAL_SKRNO_TITLE,보유한 NFT의 총 sKRNO,Total NFT sKrono
-REWARD_YIELD_INPUT,보상이자,Reward Yield (%)
-CURRENT_BUTTON,Current,Current
-SKRNO_AMOUNT_TITLE,sKRNO 수량,Your sKRNO Amount
-KRNO_PRICE_AT_PURCHASE_TITLE,민팅 당시 sKRNO 가격 ($),Purchase Price
-REWARD YIELD_TITLE,보상이자 (%),Reward Yield (%)
-CURRENT_KRNO_MARKET_PRICE_TITLE,현재 sKRNO 가격 ($),Current KRNO Price
-FUTURE_KRNO_MARKET_PRICE_TITLE,예상 KRNO 가격 ($),Future KRNO Price
-INITIAL_INVESTMENT_TITLE,최초 재산,Principal
-CURRENT_WEALTH_TITLE,현재 재산,Current Asset
-KRNO_REWARDS_ESTIMATION_TITLE,KRNO 보상,Estimated KRNO Reward
-POTENTIAL_RETURN_TITLE,예상재산,Potential Return
-MACBOOK_TITLE,{each} 맥북,{each} MacBook
-MACBOOK_DESC,맥북 M1 프로 16인치,MacBook Pro 16 inch
-BIRKINGBAG_TITLE,{each} 버킨백,{each} Birkin Bag
-BIRKINGBAG_DESC,헤르메스 버킨백,Hermes Birkin Bag
-TESLA_TITLE,{each} 테슬라,{each} Tesla
-TESLA_DESC,테슬라 모델S 옵션 없음,Tesla Model S
-ETERNO_CHEONGDAM_TITLE,{each} 에테르노 청담,{each} Eterno Cheongdam
-ETERNO_CHEONGDAM_DESC,에테르노 청담 488.18㎡,Eterno Cheongdam 5254.72579sqft
+TITLE,Gaia Protocol,Gaia Protocol,,
+DASHBOARD_MENU,DASHBOARD,DASHBOARD,,
+MINING_MENU,MINING,MINING,,
+BUYBACK_MENU,BUYBACK,BUYBACK,,
+HOURGLASS_MENU,HOURGLASS,HOURGLASS,,
+CONNECT_WALLET_BUTTON,지갑연결,Connect Wallet,,
+DASHBOARD_TITLE,가이아 프로토콜,Gaia Protocol,,
+DASHBOARD_DESC,소유한 NFT 요약,Your NFT Status,,
+KRNO_PRICE_TITLE,KRNO 가격,KRNO Price,,
+ARY_TITLE,APY,APY,,
+DASHBOARD_BUYBACK_TITLE,바이백 펀드,Buyback Fund,,
+SKRNO_TITLE,소유한 sKRNO 수량,Your sKRNO,,
+MINING_TITLE,채굴,Mining,,
+MINING_DESC,소유한 NFT 채굴,Check out how much did you earn from NFTs,,
+CHECK_INTEREST_TITLE,이자 확인,Check Interest,,
+CHECK_INTEREST_DESC,GAIA #{id} 에는 {krnoAmount} KRNO ({klayAmount} KLAY)가 쌓여 있습니다.,"GAIA #{id}, {krnoAmount} mined KRNO ({klayAmount} KLAY)",,
+MY_NFT_TITLE,나의 NFT,My NFTs,,
+MY_INTEREST_KRNO_DESC,총 이자: {amount} KRNO,Total interest: {amount} KRNO,,
+MY_INTEREST_KLAY_DESC,총 이자: {amount} KLAY,Total interest: {amount} KLAY,,
+MY_INTEREST_DESC,총 이자,Total Interest,,
+CLAIM_ALL_BUTTON,모든 받기,Claim All,,
+ALL_CLAIM_KRNO_TITLE,모두 KRNO 받기,Claim All (KRNO),,
+ALL_CLAIM_KLAY_TITLE,모두 KLAY로 받기,Claim All (KLAY),,
+CLAIM_KRNO_BUTTON,KRNO 받기,Claim (KRNO),,
+CLAIM_KLAY_BUTTON,KLAY로 받기,Claim (KLAY),,
+CLAIM_KRNO_ALERT_TITLE,KRNO 받기,Claim KRNO,,
+CLAIM_KLAY_ALERT_TITLE,KLAY로 받기,Claim Klay,,
+CLAIM_ALERT_DESC,이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다.,"Do you want to claim the interest? If you receive the interest frequently, it is difficult to maximize your returns",,
+CLAIM_KLAY_ALERT_DESC,"이자를 수령하시겠습니까? 이자를 자주 수령하시면 복리 효과를 누리기 어려울 수 있습니다. 만약 트랜잭션에 실패하면, 슬리피지로 인한 것일 수 있으니 조금 여유분을 남기고 KLAY를 수령해주시기 바랍니다.","Do you want to claim the interest? If you receive the interest frequently, it is difficult to maximize your returns",,
+CLAIM_ALERT_BUTTON,계속 진행,Claim anyway,,
+BUYBACK_TITLE,Buyback,Buyback,,
+BUYBACK_DESC,Gaia Buyback Fund,Gaia Buyback Fund,,
+GENESIS_GAIA_TITLE,최초의 가이아,Genesis Gaia,,
+MINT_PRICE_TITLE,민팅가,Minted Price,,
+COMPOUND_INTEREST_TITLE,쌓인 복리 이자,Accumulated Compound Interest,,
+RECEIVE_KLAY_TITLE,받을 수 있는 KLAY 수량,Buyback Price (Klay),,
+BUYBACK_BUTTON,바이백,Buyback,,
+BUYBACK_CONFIRM_TITLE,바이백 확인,Confirm Buyback,,
+BUYBACK_CONFIRM_DESC,정말 바이백 하시겠습니까? 바이백 이후에는 다시는 NFT를 되찾을 수 없습니다.,"Do you really want to porceed a buyback? After the buyback, ownership will move to the team",,
+BUYBACK_CONFIRM_BUTTON,바이백 진행,Progress Buyback,,
+HOURGLASS_TITLE,Hour Glass,Hour Glass,,
+HOURGLASS_DESC,수익률 산정,Calculate Your Estimate Return,,
+CURRENT_KRNO_PRICE_TITLE,현재 KRNO 가격,Current KRNO price,,
+CURRENT_REWARD_YIELD_TITLE,현재 보상이자,Current Reward Yield (%),,
+CURRENT_NFT_TOTAL_SKRNO_TITLE,보유한 NFT의 총 sKRNO,Total NFT sKrono,,
+REWARD_YIELD_INPUT,보상이자,Reward Yield (%),,
+CURRENT_BUTTON,Current,Current,,
+SKRNO_AMOUNT_TITLE,sKRNO 수량,Your sKRNO Amount,,
+KRNO_PRICE_AT_PURCHASE_TITLE,민팅 당시 sKRNO 가격 ($),Purchase Price,,
+REWARD YIELD_TITLE,보상이자 (%),Reward Yield (%),,
+CURRENT_KRNO_MARKET_PRICE_TITLE,현재 sKRNO 가격 ($),Current KRNO Price,,
+FUTURE_KRNO_MARKET_PRICE_TITLE,예상 KRNO 가격 ($),Future KRNO Price,,
+INITIAL_INVESTMENT_TITLE,최초 재산,Principal,,
+CURRENT_WEALTH_TITLE,현재 재산,Current Asset,,
+KRNO_REWARDS_ESTIMATION_TITLE,KRNO 보상,Estimated KRNO Reward,,
+POTENTIAL_RETURN_TITLE,예상재산,Potential Return,,
+MACBOOK_TITLE,{each} 맥북,{each} MacBook,,
+MACBOOK_DESC,맥북 M1 프로 16인치,MacBook Pro 16 inch,,
+BIRKINGBAG_TITLE,{each} 버킨백,{each} Birkin Bag,,
+BIRKINGBAG_DESC,헤르메스 버킨백,Hermes Birkin Bag,,
+TESLA_TITLE,{each} 테슬라,{each} Tesla,,
+TESLA_DESC,테슬라 모델S 옵션 없음,Tesla Model S,,
+ETERNO_CHEONGDAM_TITLE,{each} 에테르노 청담,{each} Eterno Cheongdam,,
+ETERNO_CHEONGDAM_DESC,에테르노 청담 488.18㎡,Eterno Cheongdam 5254.72579sqft,,
 CONFIRM_BUTTON,확인,Confirm,確認,确认
 CANCEL_BUTTON,취소,Cancel,取消,取消
-DAYS_TITLE,일,Days
-HOLDER_CHECK_TITLE,가이아 홀더 인증,Gaia Holder Verification
-HOLDER_CHECK_DESC,투자자를 위한 커뮤니티,Gaia Holdder Community
-HOLDER_CHECK_BUTTON,디스코드 로그인,Login Discord
-HOLDER_CHECK_SUCCESS_DESC,홀더 인증 성공,Holder Verificaion Success
-HOLDER_CHECK_FAIL_DESC,홀더 인증 실패,Holder Verification Fail
-SEND_PROMPT_TITLE,전송하기,Send
-SEND_PROMPT_DESC,"전송받을 지갑 주소를 입력해주시기 바랍니다. 전송이 완료되면 절대 되찾을 수 없으니, 지갑 주소를 여러번 확인하시기 바랍니다.","Please enter the wallet address to be sent. Once the transmission is completed, you can never get it back, so please check your wallet address several times."
-SEND_PROMPT_BUTTON,전송,Send
-KLIP_POPUP_TITLE,QR 코드로 Klip 접속,Connect Klip via QR code
-KLIP_POPUP_DESC1,QR 코드 리더기 또는 카카오톡 앱을 통해 QR 코드를 스캔해주세요.,Please scan the QR code through a QR Code Reader or Kakao Talk Application
-KLIP_POPUP_DESC2,카카오톡 실행 ▶ 상단 검색창 클릭 ▶ 코드 스캔 후 로그인,Run Kakao Talk Application ▶ Click the search bar on the top ▶ Scan the code to log in
-KLIP_POPUP_DESC3,* Klip > 코드스캔 (사이드메뉴)에서도 스캔이 가능합니다.,"* You can also scan the at ""Code Scan"" from side menu of Klip"
-CONNECT_WALLET_TITLE,지갑 연결,Connect Wallet
-CONNECT_WALLET_DESC,가이아 프로토콜은 클레이튼 블록체인과의 연결이 필요합니다. 카이카스 혹은 카카오톡 클립에서 연결해주시기 바랍니다.,Gaia Protocol needs a connection with the Klayton blockchain. Please connect from Kaikas or Kakao Talk Klip.
-CONNECT_WALLET_BUTTON1,카이카스 연결,Connect Kaikas
-CONNECT_WALLET_BUTTON2,카카오톡 클립으로 연결,Connect with Kakao Talk Klip
-CONNECT_WALLET_BUTTON3,연결하지 않고 둘러보기,Explore without Wallet Connection
-CLAIM_ERROR_ALERT_TITLE,오류,ERROR
-CLAIM_ERROR_ALERT_DESC,출금할 이자의 양이 적습니다.,The withdrawl interest amount is too small.
-CLAIM_PLACEHOLDER_INPUT,"Claim 할 수량을 넣어주세요. ",Please type the claim amount
-REBASE_TIME_DESC,다음 리베이스({round}라운드)까지 {hour}시간 {min}분 남았습니다.,You have {hour} : {min} minutes left until the next {round} rebase.
-TOTAL_GAIA_INTEREST_TITLE,0번 가이아가 받은 이자,Gaia received KLAY.
-REBASE_ROUND_TITLE,Rebase 라운드,Rebase Round
-FIRST_HOLD_SKRNO_TITLE,보유한 NFT의 최초 sKRNO,NFT's first sKRNO.
+DAYS_TITLE,일,Days,,
+HOLDER_CHECK_TITLE,가이아 홀더 인증,Gaia Holder Verification,,
+HOLDER_CHECK_DESC,투자자를 위한 커뮤니티,Gaia Holdder Community,,
+HOLDER_CHECK_BUTTON,디스코드 로그인,Login Discord,,
+HOLDER_CHECK_SUCCESS_DESC,홀더 인증 성공,Holder Verificaion Success,,
+HOLDER_CHECK_FAIL_DESC,홀더 인증 실패,Holder Verification Fail,,
+SEND_PROMPT_TITLE,전송하기,Send,,
+SEND_PROMPT_DESC,"전송받을 지갑 주소를 입력해주시기 바랍니다. 전송이 완료되면 절대 되찾을 수 없으니, 지갑 주소를 여러번 확인하시기 바랍니다.","Please enter the wallet address to be sent. Once the transmission is completed, you can never get it back, so please check your wallet address several times.",,
+SEND_PROMPT_BUTTON,전송,Send,,
+KLIP_POPUP_TITLE,QR 코드로 Klip 접속,Connect Klip via QR code,,
+KLIP_POPUP_DESC1,QR 코드 리더기 또는 카카오톡 앱을 통해 QR 코드를 스캔해주세요.,Please scan the QR code through a QR Code Reader or Kakao Talk Application,,
+KLIP_POPUP_DESC2,카카오톡 실행 ▶ 상단 검색창 클릭 ▶ 코드 스캔 후 로그인,Run Kakao Talk Application ▶ Click the search bar on the top ▶ Scan the code to log in,,
+KLIP_POPUP_DESC3,* Klip > 코드스캔 (사이드메뉴)에서도 스캔이 가능합니다.,"* You can also scan the at ""Code Scan"" from side menu of Klip",,
+CONNECT_WALLET_TITLE,지갑 연결,Connect Wallet,,
+CONNECT_WALLET_DESC,가이아 프로토콜은 클레이튼 블록체인과의 연결이 필요합니다. 카이카스 혹은 카카오톡 클립에서 연결해주시기 바랍니다.,Gaia Protocol needs a connection with the Klayton blockchain. Please connect from Kaikas or Kakao Talk Klip.,,
+CONNECT_WALLET_BUTTON1,카이카스 연결,Connect Kaikas,,
+CONNECT_WALLET_BUTTON2,카카오톡 클립으로 연결,Connect with Kakao Talk Klip,,
+CONNECT_WALLET_BUTTON3,연결하지 않고 둘러보기,Explore without Wallet Connection,,
+CLAIM_ERROR_ALERT_TITLE,오류,ERROR,,
+CLAIM_ERROR_ALERT_DESC,출금할 이자의 양이 적습니다.,The withdrawl interest amount is too small.,,
+CLAIM_PLACEHOLDER_INPUT,Claim 할 수량을 넣어주세요. ,Please type the claim amount,,
+REBASE_TIME_DESC,다음 리베이스({round}라운드)까지 {hour}시간 {min}분 남았습니다.,You have {hour} : {min} minutes left until the next {round} rebase.,,
+TOTAL_GAIA_INTEREST_TITLE,0번 가이아가 받은 이자,Gaia received KLAY.,,
+REBASE_ROUND_TITLE,Rebase 라운드,Rebase Round,,
+FIRST_HOLD_SKRNO_TITLE,보유한 NFT의 최초 sKRNO,NFT's first sKRNO.,,
