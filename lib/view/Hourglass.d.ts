@@ -4,7 +4,6 @@ export default class Hourglass implements View {
     private krnoPriceDisplay;
     private rewardDisplay;
     private totalSKRNODisplay;
-    private initWealthDisplay;
     private kronRewardDisplay;
     private currentWealthDisplay;
     private futureWealthDisplay;
@@ -13,17 +12,17 @@ export default class Hourglass implements View {
     private birkinBagRewardDisplay;
     private eternoRewardDisplay;
     private daysDisplay;
-    private amountInput;
-    private priceInput;
+    private initPriceInput;
+    private currentPriceInput;
     private rewardInput;
     private futureInput;
     private slider;
     private interval;
+    private totalSKRNO;
     constructor();
     private init;
     private loadKRNOPrice;
     private loadReward;
-    private setCurrentKRNOPrice;
     private setCurrentKRNOPriceOnFuture;
     private loadTotalSKRNO;
     private setSwiper;

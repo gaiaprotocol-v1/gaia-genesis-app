@@ -4,6 +4,7 @@ export default class Mining implements View {
     private idInput;
     private totalKRNODisplay;
     private totalKlayDisplay;
+    private rebaseDisplay;
     private nftList;
     private interval;
     private tokenIds;
@@ -12,6 +13,7 @@ export default class Mining implements View {
     constructor();
     private resizeDebouncer;
     private loadNFTs;
+    private loadRebase;
     changeParams(params: ViewParams, uri: string): void;
     close(): void;
 }

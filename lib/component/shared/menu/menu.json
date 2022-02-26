@@ -1,0 +1,20 @@
+{
+    "menu": [
+        {
+            "uri": "",
+            "key": "DASHBOARD_MENU"
+        },
+        {
+            "uri": "mining",
+            "key": "MINING_MENU"
+        },
+        {
+            "uri": "buyback",
+            "key": "BUYBACK_MENU"
+        },
+        {
+            "uri": "hourglass",
+            "key": "HOURGLASS_MENU"
+        }
+    ]
+}

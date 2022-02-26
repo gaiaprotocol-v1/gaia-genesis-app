@@ -8,6 +8,7 @@ declare class ExtWallet extends EventContainer {
     loadAddress(): Promise<string | undefined>;
     loadChainId(): Promise<any>;
     loadBlockNumber(): Promise<any>;
+    loadBlockTime(): Promise<any>;
     connected(): Promise<boolean>;
     connect(): Promise<void>;
     createContract(address: string, abi: any): any;

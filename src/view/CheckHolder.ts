@@ -24,7 +24,7 @@ export default class CheckHolder implements View {
             el("article",
                 el("img", { src: "/images/shared/img/earth.png", alt: "earth" }),
                 el("a.discord-login-button", msg("HOLDER_CHECK_BUTTON"), {
-                    href: "https://discord.com/api/oauth2/authorize?client_id=939800869740871693&redirect_uri=https%3A%2F%2Fapp.gaiaprotocol.com%2Fcheckholder&response_type=code&scope=identify",
+                    href: "https://discord.com/api/oauth2/authorize?client_id=939800869740871693&redirect_uri=https%3A%2F%2Fapp.gaiakronos.com%2Fcheckholder&response_type=code&scope=identify",
                 }),
             ),
         ));
