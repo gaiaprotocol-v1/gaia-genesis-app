@@ -1,4 +1,4 @@
-# Gaia Protocol App
+# Gaia Kronos App
 
 A decentralized mining type NFT with Kronos DAO.
 
