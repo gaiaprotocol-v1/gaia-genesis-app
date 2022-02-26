@@ -23,7 +23,7 @@ export default class Layout implements View {
                 el("header.header",
                     el(".nav",
                         el(".logo",
-                            el("a", { href: "/" }, el("img", { src: "/images/shared/img/logo.png", alt: "gaia protocol logo" })),
+                            el("a", { href: "/" }, el("img", { src: "/images/shared/img/logo.png", alt: "gaia kronos logo" })),
                         ),
                         new PCMenu(),
                         el(".right",
@@ -74,7 +74,7 @@ export default class Layout implements View {
     }
 
     public set title(title: string) {
-        document.title = `${title} | Gaia Protocol `;
+        document.title = `${title} | Gaia Kronos `;
     }
 
     private async init() {
