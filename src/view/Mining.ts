@@ -1,11 +1,11 @@
 import Debouncer from "@hanul/debouncer";
 import { DomNode, el } from "@hanul/skynode";
+import dayjs from 'dayjs';
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import { BigNumber, utils } from "ethers";
 import msg from "msg.js";
 import { View, ViewParams } from "skyrouter";
 import SkyUtil from "skyutil";
-import dayjs from 'dayjs';
-import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import CommonUtil from "../CommonUtil";
 import MiningItem from "../component/MiningItem";
 import Alert from "../component/shared/dialogue/Alert";
@@ -13,7 +13,7 @@ import Confirm from "../component/shared/dialogue/Confirm";
 import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
 import StakingContract from "../contracts/StakingContract";
-import ExtWallet from "../klaytn/ExtWallet";
+import Klaytn from "../klaytn/Klaytn";
 import Wallet from "../klaytn/Wallet";
 import Layout from "./Layout";
 import ViewUtil from "./ViewUtil";
@@ -130,7 +130,7 @@ export default class Mining implements View {
 
     private async loadRebase() {
         const stakingRebaseTime = (await StakingContract.epoch()).endTime;
-        const blockNumber = await ExtWallet.loadBlockTime();
+        const blockNumber = await Klaytn.loadBlockTime();
         const diff = stakingRebaseTime - blockNumber;
         const hour = Math.floor(diff / 3600);
         const min = Math.floor((diff % 3600) / 60);

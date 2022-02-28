@@ -4,6 +4,7 @@ declare class Klaytn {
     createContract(address: string, abi: any): any;
     balanceOf(address: string): Promise<BigNumber>;
     loadBlockNumber(): Promise<any>;
+    loadBlockTime(): Promise<any>;
 }
 declare const _default: Klaytn;
 export default _default;

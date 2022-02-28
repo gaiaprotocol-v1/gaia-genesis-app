@@ -1,4 +1,3 @@
-import { BigNumber } from "@ethersproject/bignumber";
 import EventContainer from "eventcontainer";
 
 class ExtWallet extends EventContainer {
@@ -27,16 +26,6 @@ class ExtWallet extends EventContainer {
 
     public async loadChainId() {
         return this.caver === undefined ? -1 : await this.caver.klay.getChainId();
-    }
-
-    public async loadBlockNumber() {
-        return this.caver === undefined ? -1 : await this.caver.klay.getBlockNumber();
-    }
-
-    public async loadBlockTime() {
-        const current = this.caver === undefined ? -1 : await this.caver.klay.getBlockNumber();
-        const block = this.caver === undefined ? -1 : await this.caver.klay.getBlock(current);
-        return this.caver.utils.hexToNumber(block.timestamp);
     }
 
     public async connected() {

@@ -22,6 +22,12 @@ class Klaytn {
     public async loadBlockNumber() {
         return await this.caver.klay.getBlockNumber();
     }
+
+    public async loadBlockTime() {
+        const current = await this.caver.klay.getBlockNumber();
+        const block = await this.caver.klay.getBlock(current);
+        return this.caver.utils.hexToNumber(block.timestamp);
+    }
 }
 
 export default new Klaytn();
