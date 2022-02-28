@@ -2,7 +2,6 @@ import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
 import EventContainer from "eventcontainer";
 import QRCode from "qrcode";
 import KlipQRPopup from "../component/shared/KlipQRPopup";
-import KlipSignerContract from "../contracts/KlipSignerContract";
 import Store from "../Store";
 
 const klipSDK = require("klip-sdk");
@@ -85,13 +84,6 @@ class Klip extends EventContainer {
     public async disconnect() {
         this.address = undefined;
         location.reload();
-    }
-
-    public async sign() {
-        const result = await fetch(`https://api.gaiaprotocol.com/klipsignkey/${this.address}`);
-        const key = await result.text();
-        await KlipSignerContract.sign(key);
-        return key;
     }
 }
 

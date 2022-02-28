@@ -1,4 +1,3 @@
-import { BigNumber } from "@ethersproject/bignumber";
 import EventContainer from "eventcontainer";
 import ConnectWalletPopup from "../component/shared/ConnectWalletPopup";
 import ExtWallet from "./ExtWallet";
@@ -42,7 +41,7 @@ class Wallet extends EventContainer {
 
     public async signMessage(message: string): Promise<{
         signedMessage?: string,
-        klipSignKey?: string,
+        klipAddress?: string,
     }> {
         if (ExtWallet.installed === true) {
             return {
@@ -50,7 +49,7 @@ class Wallet extends EventContainer {
             };
         } else {
             return {
-                klipSignKey: await Klip.sign(),
+                klipAddress: Klip.address,
             };
         }
     }
