@@ -33,23 +33,20 @@ export default class CheckHolder implements View {
 
     private async checkDiscordLogin() {
 
-        let code = this.codeStore.get<string>("code");
-        if (code === undefined) {
-            code = new URLSearchParams(window.location.search).get("code")!;
-            if (code !== null) {
-                try {
-                    await superagent.get("https://api.gaiaprotocol.com/discord/token").query({
-                        code,
-                        redirect_uri: `${window.location.protocol}//${window.location.host}/checkholder`,
-                    });
-                    this.codeStore.set("code", code, true);
-                } catch (error) {
-                    console.error(error);
-                    code = undefined;
-                }
-            } else {
+        let code: string | undefined = new URLSearchParams(window.location.search).get("code")!;
+        if (code !== null) {
+            try {
+                await superagent.get("https://api.gaiaprotocol.com/discord/token").query({
+                    code,
+                    redirect_uri: `${window.location.protocol}//${window.location.host}/checkholder`,
+                });
+                this.codeStore.set("code", code, true);
+            } catch (error) {
+                console.error(error);
                 code = undefined;
             }
+        } else {
+            code = undefined;
         }
 
         if (code === undefined) {
