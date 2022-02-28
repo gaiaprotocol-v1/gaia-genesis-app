@@ -682,6 +682,8 @@ body {
   font-size: 0.75rem;
   border-radius: 4px;
   margin-right: 8px;
+  background-color: white;
+  color: black;
 }
 .mining-item > .content-wrap > .button-wrap > .krno-button:hover {
   background-color: rgba(224, 216, 200, 0.9);
@@ -742,6 +744,8 @@ body {
   padding: 8px 12px 9px;
   font-weight: 700;
   border-radius: 4px;
+  background-color: white;
+  color: black;
 }
 .team-nft-container {
   display: flex;
@@ -1057,6 +1061,8 @@ body {
   font-size: 0.725rem;
   border-radius: 4px;
   margin-right: 8px;
+  background-color: white;
+  color: black;
 }
 .mining-view > header > .input-container > button:hover {
   background-color: rgba(224, 216, 200, 0.9);
@@ -1102,6 +1108,8 @@ body {
   border-radius: 4px;
   margin-bottom: 32px;
   margin-right: 8px;
+  background-color: white;
+  color: black;
 }
 .mining-view > article > .tool-box > .button-container > .all-mining-button:hover {
   background-color: rgba(224, 216, 200, 0.9);
