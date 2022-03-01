@@ -1,12 +1,12 @@
 import { BodyNode, DomNode, el } from "@hanul/skynode";
 import AOS from "aos";
-import msg from "msg.js";
+import * as Sentry from "@sentry/browser";
+import { BrowserTracing } from "@sentry/tracing";
 import { View, ViewParams } from "skyrouter";
 import BrowserInfo from "../BrowserInfo";
 import MobileMenu from "../component/shared/menu/MobileMenu";
 import PCMenu from "../component/shared/menu/PCMenu";
 import UserInfo from "../component/UserInfo";
-import ViewUtil from "./ViewUtil";
 
 export default class Layout implements View {
 
@@ -79,6 +79,11 @@ export default class Layout implements View {
 
     private async init() {
         AOS.init();
+        Sentry.init({
+            dsn: "https://37374b4d9f9042b9bfb21700d0dba387@o1156298.ingest.sentry.io/6237477",
+            integrations: [new BrowserTracing()],
+            tracesSampleRate: 1.0,
+        });
     }
 
     public changeParams(params: ViewParams, uri: string): void { }
