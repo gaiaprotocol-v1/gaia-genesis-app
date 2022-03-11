@@ -933,9 +933,30 @@ body {
   margin-top: 32px;
   margin-bottom: 32px;
 }
-.layout > footer .footer-container > .sns img {
+.layout > footer .footer-container > .sns > a > img {
   padding: 8px;
   width: 42px;
+}
+.layout > footer .footer-container > .link-tree {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.75rem;
+  margin-bottom: 16px;
+}
+.layout > footer .footer-container > .link-tree > .kronos {
+  color: #CCCCCC;
+}
+.layout > footer .footer-container > .link-tree > .kronos:hover {
+  color: #b19c76;
+}
+.layout > footer .footer-container > .link-tree > .hr {
+  margin: 8px;
+}
+.layout > footer .footer-container > .link-tree > .supernova {
+  color: #CCCCCC;
+}
+.layout > footer .footer-container > .link-tree > .supernova:hover {
+  color: #990013;
 }
 .layout > footer .footer-container > .copyright {
   font-size: 0.75rem;
