@@ -19,6 +19,7 @@ export default class Mining implements View {
     private krnoPriceDisplay: DomNode;
     private apyDisplay: DomNode;
     private buybackBalanceDisplay: DomNode;
+    private genesisInterestBalanceDisplay: DomNode;
     private interestBalanceDisplay: DomNode;
     private roundBalanceDisplay: DomNode;
     private interval: any;
@@ -46,8 +47,12 @@ export default class Mining implements View {
                         this.buybackBalanceDisplay = el("p", "... KLAY"),
                     ),
                     el(".content-wrap",
-                        el("header", msg("TOTAL_GAIA_INTEREST_TITLE")),
+                        el("header", msg("TOTAL_INTEREST_TITLE")),
                         this.interestBalanceDisplay = el("p", "... KLAY"),
+                    ),
+                    el(".content-wrap",
+                        el("header", msg("TOTAL_GAIA_INTEREST_TITLE")),
+                        this.genesisInterestBalanceDisplay = el("p", "... KLAY"),
                     ),
                     el(".content-wrap",
                         el("header", msg("REBASE_ROUND_TITLE")),
@@ -65,6 +70,7 @@ export default class Mining implements View {
         this.loadBuybackBalance();
         this.loadGenesisGaiaKlay();
         this.loadRebaseRound();
+        this.loadGaiaKlay();
     }
 
     private async loadRebaseRound() {
@@ -85,7 +91,15 @@ export default class Mining implements View {
     private async loadGenesisGaiaKlay() {
         const klay = await GaiaOperationContract.claimableKlay([0]);
         if (this.container.deleted !== true) {
-            this.interestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay))} KLAY`);
+            this.genesisInterestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay))} KLAY`);
+        }
+    }
+
+    private async loadGaiaKlay() {
+        const klay = await GaiaOperationContract.claimableKlay([0]);
+        if (this.container.deleted !== true) {
+            const total = Number(utils.formatEther(klay)) * 2177;
+            this.interestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(total))} KLAY`);
         }
     }
 
