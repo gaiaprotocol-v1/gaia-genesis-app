@@ -113,8 +113,9 @@ export default class Mining implements View {
                         item.delete();
                     } else {
                         item.init(tokenId);
+                        const krno = await GaiaOperationContract.claimableKRNO([tokenId]);
                         this.tokenIds.push(tokenId);
-                        this.krnos.push(await GaiaOperationContract.claimableKRNO([tokenId]));
+                        this.krnos.push(krno);
                     }
                 };
                 promises.push(promise(i));

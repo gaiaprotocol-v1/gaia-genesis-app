@@ -1,4 +1,5 @@
 import { BigNumber, BigNumberish } from "ethers";
+import SkyUtil from "skyutil";
 import Config from "../Config";
 import GaiaOperationArtifact from "./abi/gaia-kronos/artifacts/contracts/GaiaOperation.sol/GaiaOperation.json";
 import Contract from "./Contract";
@@ -18,12 +19,7 @@ class GaiaOperationContract extends Contract {
     }
 
     public async claim(ids: BigNumberish[], amounts: BigNumber[]) {
-        //console.log(ids);
         if (ids.length > 25) {
-            /*const start = 200;
-            const end = 251;
-            ids = ids.slice(start, end);
-            amounts = amounts.slice(start, end);*/
             await this.runWalletMethodWithLargeGas("claim", ids, amounts);
         } else {
             await this.runWalletMethod("claim", ids, amounts);
@@ -32,7 +28,7 @@ class GaiaOperationContract extends Contract {
 
     public async claimKlayViaZap(ids: BigNumberish[], amounts: BigNumber[], minAmount: BigNumber, swapRouteArray: string[]) {
         if (ids.length > 25) {
-            await this.runWalletMethodWithLargeGas("claimKlayViaZap", ids, amounts);
+            await this.runWalletMethodWithLargeGas("claimKlayViaZap", ids, amounts, minAmount, swapRouteArray);
         } else {
             await this.runWalletMethod("claimKlayViaZap", ids, amounts, minAmount, swapRouteArray);
         }

@@ -4,7 +4,6 @@ import { View, ViewParams } from "skyrouter";
 import superagent from "superagent";
 import DiscordUserInfo from "../DiscordUserInfo";
 import Wallet from "../klaytn/Wallet";
-import Store from "../Store";
 import Layout from "./Layout";
 
 export default class CheckHolder implements View {
@@ -12,7 +11,6 @@ export default class CheckHolder implements View {
     private container: DomNode;
 
     public discordUser: DiscordUserInfo | undefined;
-    private codeStore = new Store("codeStore");
 
     constructor() {
         Layout.current.title = msg("HOLDER_CHECK_TITLE");
@@ -40,7 +38,6 @@ export default class CheckHolder implements View {
                     code,
                     redirect_uri: `${window.location.protocol}//${window.location.host}/checkholder`,
                 });
-                this.codeStore.set("code", code, true);
             } catch (error) {
                 console.error(error);
                 code = undefined;
@@ -49,16 +46,13 @@ export default class CheckHolder implements View {
             code = undefined;
         }
 
-        if (code === undefined) {
-            this.codeStore.delete("code");
-        } else {
+        if (code !== undefined) {
             try {
                 const result = await superagent.get("https://api.gaiaprotocol.com/discord/me").query({ code });
                 this.discordUser = result.body;
                 this.checkWalletConnected(code);
             } catch (error) {
                 console.error(error);
-                this.codeStore.delete("code");
             }
         }
     }
