@@ -88,6 +88,6 @@ CLAIM_ERROR_ALERT_DESC,출금할 이자의 양이 적습니다.,The withdrawl in
 CLAIM_PLACEHOLDER_INPUT,Claim 할 수량을 넣어주세요. ,Please type the claim amount,,
 REBASE_TIME_DESC,다음 리베이스({round}라운드)까지 {hour}시간 {min}분 남았습니다.,You have {hour} : {min} minutes left until the next {round} rebase.,,
 TOTAL_GAIA_INTEREST_TITLE,0번 가이아가 받은 이자,Genesis Gaia received KLAY.,,
-TOTAL_INTEREST_TITLE,모든 nft에 분배된 이자,Total Gaia received KLAY.,,
+TOTAL_INTEREST_TITLE,모든 NFT에 분배된 이자,Total Gaia received KLAY.,,
 REBASE_ROUND_TITLE,Rebase 라운드,Rebase Round,,
 FIRST_HOLD_SKRNO_TITLE,보유한 NFT의 최초 sKRNO,NFT's first sKRNO.,,
