@@ -133,8 +133,12 @@ export default class Mining implements View {
         const stakingRebaseTime = (await StakingContract.epoch()).endTime;
         const blockNumber = await Klaytn.loadBlockTime();
         const diff = stakingRebaseTime - blockNumber;
-        const hour = Math.floor(diff / 3600);
-        const min = Math.floor((diff % 3600) / 60);
+        let hour = Math.floor(diff / 3600);
+        let min = Math.floor((diff % 3600) / 60);
+
+        if (Math.sign(hour) <= 0) {
+            hour = 0;
+        }
 
         let round = dayjs().diff('2022-02-11', 'days') * 3;
         const current = dayjs();
