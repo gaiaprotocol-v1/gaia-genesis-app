@@ -59,7 +59,7 @@ export default class Layout implements View {
                             el("a.twitter", { href: "https://twitter.com/gaia_protocol", target: "_blank" },
                                 el("img", { src: "/images/shared/icn/twitter.svg" }),
                             ),
-                            el("a.gitbook", { href: "https://docs.gaiakronos.com/kr/", target: "_blank" },
+                            el("a.gitbook", { href: "https://gaiaprotocol.notion.site/Gaia-Kronos-Docs-3268938f02a34b3eb9e86179bdc8b767", target: "_blank" },
                                 el("img", { src: "/images/shared/icn/gitbook.svg" }),
                             ),
                         ),
