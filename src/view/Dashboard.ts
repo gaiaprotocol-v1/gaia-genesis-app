@@ -21,6 +21,7 @@ export default class Mining implements View {
     private buybackBalanceDisplay: DomNode;
     private genesisInterestBalanceDisplay: DomNode;
     private interestBalanceDisplay: DomNode;
+    private krnoDisplay: DomNode;
     private roundBalanceDisplay: DomNode;
     private interval: any;
 
@@ -53,6 +54,7 @@ export default class Mining implements View {
                     el(".content-wrap",
                         el("header", msg("TOTAL_GAIA_INTEREST_TITLE")),
                         this.genesisInterestBalanceDisplay = el("p", "... KLAY"),
+                        this.krnoDisplay = el("p.caption", "... KRNO"),
                     ),
                     el(".content-wrap",
                         el("header", msg("REBASE_ROUND_TITLE")),
@@ -90,8 +92,10 @@ export default class Mining implements View {
 
     private async loadGenesisGaiaKlay() {
         const klay = await GaiaOperationContract.claimableKlay([0]);
+        const krno = await GaiaOperationContract.claimableKRNO([0]);
         if (this.container.deleted !== true) {
             this.genesisInterestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay))} KLAY`);
+            this.krnoDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))} KRNO`);
         }
     }
 

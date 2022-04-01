@@ -8,6 +8,7 @@ import GaiaOperationContract from "../contracts/GaiaOperationContract";
 export default class TeamNFT extends DomNode {
 
     private klayDisplay: DomNode;
+    private krnoDisplay: DomNode;
     private refundableKlayDisplay: DomNode;
 
     constructor() {
@@ -26,6 +27,7 @@ export default class TeamNFT extends DomNode {
                     el(".content-wrap",
                         el("h2", msg("COMPOUND_INTEREST_TITLE")),
                         this.klayDisplay = el("p", "... KLAY"),
+                        this.krnoDisplay = el("p.caption", "... KRNO"),
                     ),
                     el(".content-wrap",
                         el("h2", msg("RECEIVE_KLAY_TITLE")),
@@ -41,6 +43,9 @@ export default class TeamNFT extends DomNode {
 
         const klay = await GaiaOperationContract.claimableKlay([0]);
         this.klayDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay))} KLAY`);
+
+        const krno = await GaiaOperationContract.claimableKRNO([1]);
+        this.krnoDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))} KRNO`);
 
         const refundableKlay = await GaiaBuyBackFundContract.refundableKlay();
         this.refundableKlayDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(refundableKlay))} KLAY`);

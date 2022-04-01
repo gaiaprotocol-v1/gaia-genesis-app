@@ -800,6 +800,11 @@ body {
   font-weight: 700;
   margin-top: 8px;
 }
+.team-nft-container > .content > .team-info .content-wrap > .caption {
+  font-size: 0.825rem;
+  font-weight: 300;
+  margin-top: 8px;
+}
 .layout {
   width: 100%;
 }
@@ -1017,6 +1022,11 @@ body {
 .dashboard-view > article .content-wrap > p {
   font-size: 1.5rem;
   font-weight: 700;
+  margin-top: 8px;
+}
+.dashboard-view > article .content-wrap > .caption {
+  font-size: 0.825rem;
+  font-weight: 300;
   margin-top: 8px;
 }
 .mining-view {
