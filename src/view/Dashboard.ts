@@ -18,7 +18,7 @@ export default class Mining implements View {
     private container: DomNode;
     private krnoPriceDisplay: DomNode;
     private apyDisplay: DomNode;
-    private buybackBalanceDisplay: DomNode;
+    //private buybackBalanceDisplay: DomNode;
     private genesisInterestBalanceDisplay: DomNode;
     private interestBalanceDisplay: DomNode;
     private roundBalanceDisplay: DomNode;
@@ -35,16 +35,8 @@ export default class Mining implements View {
                 el("img", { src: "/images/view/dashboard/banner.png" }),
                 el("article",
                     el(".content-wrap",
-                        el("header", msg("KRNO_PRICE_TITLE")),
-                        this.krnoPriceDisplay = el("p", "$..."),
-                    ),
-                    el(".content-wrap",
-                        el("header", msg("ARY_TITLE")),
-                        this.apyDisplay = el("p", "...%"),
-                    ),
-                    el(".content-wrap",
-                        el("header", msg("DASHBOARD_BUYBACK_TITLE")),
-                        this.buybackBalanceDisplay = el("p", "... KLAY"),
+                        el("header", "총 발행량"),
+                        el("p", "2177 개"),
                     ),
                     el(".content-wrap",
                         el("header", msg("TOTAL_INTEREST_TITLE")),
@@ -53,6 +45,14 @@ export default class Mining implements View {
                     el(".content-wrap",
                         el("header", msg("TOTAL_GAIA_INTEREST_TITLE")),
                         this.genesisInterestBalanceDisplay = el("p", "... KLAY"),
+                    ),
+                    el(".content-wrap",
+                        el("header", msg("KRNO_PRICE_TITLE")),
+                        this.krnoPriceDisplay = el("p", "$..."),
+                    ),
+                    el(".content-wrap",
+                        el("header", msg("ARY_TITLE")),
+                        this.apyDisplay = el("p", "...%"),
                     ),
                     el(".content-wrap",
                         el("header", msg("REBASE_ROUND_TITLE")),
@@ -121,7 +121,7 @@ export default class Mining implements View {
     private async loadBuybackBalance() {
         const balance = await Klaytn.balanceOf(GaiaBuyBackFundContract.address);
         if (this.container.deleted !== true) {
-            this.buybackBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(balance))} KLAY`);
+            //this.buybackBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(balance))} KLAY`);
         }
     }
 
