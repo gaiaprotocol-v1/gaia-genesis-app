@@ -963,6 +963,12 @@ body {
 .layout > footer .footer-container > .link-tree > .supernova:hover {
   color: #990013;
 }
+.layout > footer .footer-container > .link-tree > .stableDAO {
+  color: #CCCCCC;
+}
+.layout > footer .footer-container > .link-tree > .stableDAO:hover {
+  color: #00445a;
+}
 .layout > footer .footer-container > .copyright {
   font-size: 0.75rem;
   margin-bottom: 32px;
