@@ -44,7 +44,7 @@ export default class TeamNFT extends DomNode {
         const klay = await GaiaOperationContract.claimableKlay([0]);
         this.klayDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay))} KLAY`);
 
-        const krno = await GaiaOperationContract.claimableKRNO([1]);
+        const krno = await GaiaOperationContract.claimableKRNO([0]);
         this.krnoDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))} KRNO`);
 
         const refundableKlay = await GaiaBuyBackFundContract.refundableKlay();
