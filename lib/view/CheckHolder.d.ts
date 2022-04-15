@@ -3,7 +3,6 @@ import DiscordUserInfo from "../DiscordUserInfo";
 export default class CheckHolder implements View {
     private container;
     discordUser: DiscordUserInfo | undefined;
-    private codeStore;
     constructor();
     private checkDiscordLogin;
     private checkWalletConnected;

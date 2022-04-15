@@ -4,6 +4,7 @@ import msg from "msg.js";
 import CommonUtil from "../CommonUtil";
 import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
+import NFTAirdropContract from "../contracts/NFTAirdropContract";
 import ViewUtil from "../view/ViewUtil";
 import Alert from "./shared/dialogue/Alert";
 import Prompt from "./shared/dialogue/Prompt";
@@ -14,6 +15,7 @@ export default class MiningItem extends DomNode {
     private nameDisplay: DomNode;
     private krnoDisplay: DomNode;
     private klayDisplay: DomNode;
+    private emergencyDisplay: DomNode;
 
     private id = -1;
     private krno = BigNumber.from(0);
@@ -70,15 +72,32 @@ export default class MiningItem extends DomNode {
                     }),
                 ),
             ),
+            el(".content-wrap",
+                el("section",
+                    el("header", "이머전시 리워드"),
+                    el(".amount-wrap",
+                        this.emergencyDisplay = el(".klay", "... KLAY"),
+                    ),
+                ),
+                el(".button-wrap",
+                    el("button.klay-button", "리워드 받기", {
+                        click: async () => {
+                            await NFTAirdropContract.collectAirdropReward(0, [this.id]);
+                            ViewUtil.waitTransactionAndRefresh();
+                        }
+                    }),
+                ),
+            ),
         );
     }
 
-    public init(id: number) {
+    public init(id: number, reward: BigNumber, collected: BigNumber) {
         this.id = id;
         this.imageDisplay.domElement.src = `https://storage.googleapis.com/gaia-protocol/kronos/${id}.png`;
         this.nameDisplay.appendText(`#${this.id}`);
         this.loadKRNO();
         this.loadKlay();
+        this.emergencyDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(reward.sub(collected)), 5)} KLAY`);
     }
 
     private async loadKRNO() {

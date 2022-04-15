@@ -12,6 +12,7 @@ import Alert from "../component/shared/dialogue/Alert";
 import Confirm from "../component/shared/dialogue/Confirm";
 import GaiaNFTContract from "../contracts/GaiaNFTContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
+import NFTAirdropContract from "../contracts/NFTAirdropContract";
 import StakingContract from "../contracts/StakingContract";
 import Klaytn from "../klaytn/Klaytn";
 import Wallet from "../klaytn/Wallet";
@@ -24,6 +25,7 @@ export default class Mining implements View {
     private idInput: DomNode<HTMLInputElement>;
     private totalKRNODisplay: DomNode;
     private totalKlayDisplay: DomNode;
+    private totalEmergencyDisplay: DomNode;
     private rebaseDisplay: DomNode;
     private nftList: DomNode;
     private interval: any;
@@ -64,6 +66,7 @@ export default class Mining implements View {
                             el("header", msg("MY_NFT_TITLE")),
                             this.totalKRNODisplay = el("p", msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String("..."))),
                             this.totalKlayDisplay = el("p", msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String("..."))),
+                            this.totalEmergencyDisplay = el("p", "총 이머전시 리워드: ... KLAY"),
                         ),
                         el(".button-container",
                             el("button.all-mining-button", msg("ALL_CLAIM_KRNO_TITLE"), {
@@ -82,6 +85,12 @@ export default class Mining implements View {
                                     });
                                 },
                             }),
+                            el("button.all-mining-button", "모든 이머전시 리워드 받기", {
+                                click: async () => {
+                                    await NFTAirdropContract.collectAirdropReward(0, this.tokenIds);
+                                    ViewUtil.waitTransactionAndRefresh();
+                                },
+                            }),
                         ),
                     ),
                     this.nftList = el("article.nft-container", { "data-aos": "zoom-in" },),
@@ -89,33 +98,38 @@ export default class Mining implements View {
             ),
         );
 
-        this.resizeDebouncer.run();
+        this.loadNFTsDebouncer.run();
         this.interval = setInterval(() => this.loadRebase(), 1000);
-        Wallet.on("connect", () => this.resizeDebouncer.run());
+        Wallet.on("connect", () => this.loadNFTsDebouncer.run());
     }
 
-    private resizeDebouncer: Debouncer = new Debouncer(200, () => this.loadNFTs());
+    private loadNFTsDebouncer: Debouncer = new Debouncer(200, () => this.loadNFTs());
 
     private async loadNFTs() {
 
         const address = await Wallet.loadAddress();
         if (address !== undefined) {
+            const reward = await NFTAirdropContract.airdropReward(0);
 
             const balance = (await GaiaNFTContract.balanceOf(address)).toNumber();
             const promises: Promise<void>[] = [];
 
             this.tokenIds = [];
+
+            let totalEmergency = BigNumber.from(0);
             SkyUtil.repeat(balance, (i: number) => {
                 const promise = async (index: number) => {
                     const item = new MiningItem().appendTo(this.nftList);
                     const tokenId = (await GaiaNFTContract.tokenOfOwnerByIndex(address, index)).toNumber();
+                    const collected = await NFTAirdropContract.airdropCollected(0, tokenId);
                     if (tokenId === 0) {
                         item.delete();
                     } else {
-                        item.init(tokenId);
+                        item.init(tokenId, reward, collected);
                         const krno = await GaiaOperationContract.claimableKRNO([tokenId]);
                         this.tokenIds.push(tokenId);
                         this.krnos.push(krno);
+                        totalEmergency = totalEmergency.add(reward.sub(collected));
                     }
                 };
                 promises.push(promise(i));
@@ -126,6 +140,7 @@ export default class Mining implements View {
             this.totalKRNODisplay.empty().appendText(`${msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String(utils.formatUnits(totalKRNO, 9)))}`);
             this.totalKlay = await GaiaOperationContract.claimableKlay(this.tokenIds);
             this.totalKlayDisplay.empty().appendText(`${msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String(utils.formatEther(this.totalKlay)))}`);
+            this.totalEmergencyDisplay.empty().appendText(`총 이머전시 리워드: ${String(utils.formatEther(totalEmergency))} KLAY`);
         }
     }
 
@@ -155,7 +170,7 @@ export default class Mining implements View {
         this.rebaseDisplay.empty().appendText(msg("REBASE_TIME_DESC")
             .replace(/{hour}/, String(hour))
             .replace(/{min}/, String(min))
-            .replace(/{round}/, String(round + 1)))
+            .replace(/{round}/, String(round + 1)));
     }
 
     public changeParams(params: ViewParams, uri: string): void { }

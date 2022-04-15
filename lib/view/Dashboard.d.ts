@@ -3,14 +3,16 @@ export default class Mining implements View {
     private container;
     private krnoPriceDisplay;
     private apyDisplay;
-    private buybackBalanceDisplay;
+    private genesisInterestBalanceDisplay;
     private interestBalanceDisplay;
+    private krnoDisplay;
     private roundBalanceDisplay;
     private interval;
     constructor();
     private init;
     private loadRebaseRound;
     private loadGenesisGaiaKlay;
+    private loadGaiaKlay;
     private loadKRNOPrice;
     private loadAPY;
     private loadBuybackBalance;
