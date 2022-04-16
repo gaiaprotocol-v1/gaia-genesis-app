@@ -6,6 +6,7 @@ export default class Mining implements View {
     private genesisInterestBalanceDisplay;
     private interestBalanceDisplay;
     private krnoDisplay;
+    private emergencyDisplay;
     private roundBalanceDisplay;
     private interval;
     constructor();

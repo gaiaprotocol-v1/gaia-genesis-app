@@ -1,7 +1,7 @@
 import EventContainer from "eventcontainer";
 declare class ExtWallet extends EventContainer {
     private klaytn;
-    private caver;
+    caver: any | undefined;
     constructor();
     get installed(): boolean;
     private checkConnected;

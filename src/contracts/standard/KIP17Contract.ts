@@ -21,6 +21,10 @@ export default class KIP17Contract extends Contract {
         await this.runWalletMethod("transferFrom", await Wallet.loadAddress(), to, id);
     }
 
+    public async transferLegacy(to: string, id: BigNumberish) {
+        await this.runMethodNew("transferFrom", await Wallet.loadAddress(), to, id);
+    }
+
     public async isApprovedForAll(owner: string, operator: string): Promise<boolean> {
         return await this.runMethod("isApprovedForAll", owner, operator);
     }

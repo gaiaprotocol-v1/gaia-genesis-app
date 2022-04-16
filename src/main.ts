@@ -7,6 +7,7 @@ import CheckHolder from "./view/CheckHolder";
 import Dashboard from "./view/Dashboard";
 import Hourglass from "./view/Hourglass";
 import Layout from "./view/Layout";
+import NewTransfer from "./view/NewTransfer";
 import Mining from "./view/Mining";
 
 (async () => {
@@ -17,6 +18,7 @@ import Mining from "./view/Mining";
 
     SkyRouter.route("", Dashboard);
     SkyRouter.route("mining", Mining);
+    SkyRouter.route("newtransfer", NewTransfer);
     SkyRouter.route("buyback", Buyback);
     SkyRouter.route("hourglass", Hourglass);
     SkyRouter.route("checkholder", CheckHolder);

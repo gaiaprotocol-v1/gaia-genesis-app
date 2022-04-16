@@ -5,6 +5,7 @@ export default class KIP17Contract extends Contract {
     ownerOf(mateId: BigNumberish): Promise<string>;
     balanceOf(owner: string): Promise<BigNumber>;
     transfer(to: string, id: BigNumberish): Promise<void>;
+    transferLegacy(to: string, id: BigNumberish): Promise<void>;
     isApprovedForAll(owner: string, operator: string): Promise<boolean>;
     setApprovalForAll(operator: string, approved: boolean): Promise<void>;
     tokenURI(id: BigNumberish): Promise<string>;

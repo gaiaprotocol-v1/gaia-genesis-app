@@ -36,6 +36,17 @@ export default abstract class Contract extends EventContainer {
         }
     }
 
+    protected async runMethodNew(methodName: string, ...params: any[]) {
+        const from = await Wallet.loadAddress();
+        await ExtWallet.caver.klay.sendTransaction({
+            type: "SMART_CONTRACT_EXECUTION",
+            from: from,
+            to: this.address,
+            data: Klaytn.caver.abi.encodeFunctionCall(this.findMethodABI(methodName), params),
+            gas: 1500000,
+        })
+    }
+
     protected async runMethod(methodName: string, ...params: any[]) {
         return await this.contract.methods[methodName](...params).call();
     }

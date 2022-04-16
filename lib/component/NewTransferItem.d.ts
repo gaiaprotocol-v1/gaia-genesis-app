@@ -1,6 +1,6 @@
 import { DomNode } from "@hanul/skynode";
 import { BigNumber } from "ethers";
-export default class MiningItem extends DomNode {
+export default class NewTransferItem extends DomNode {
     private imageDisplay;
     private nameDisplay;
     private krnoDisplay;
@@ -15,4 +15,4 @@ export default class MiningItem extends DomNode {
     private loadKlay;
     delete(): void;
 }
-//# sourceMappingURL=MiningItem%20copy.d.ts.map
+//# sourceMappingURL=NewTransferItem.d.ts.map

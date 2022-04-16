@@ -3,7 +3,7 @@ import EventContainer from "eventcontainer";
 class ExtWallet extends EventContainer {
 
     private klaytn: any | undefined = (window as any).klaytn;
-    private caver: any | undefined = (window as any).caver;
+    public caver: any | undefined = (window as any).caver;
 
     constructor() {
         super();
