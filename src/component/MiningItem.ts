@@ -8,6 +8,7 @@ import NFTAirdropContract from "../contracts/NFTAirdropContract";
 import ViewUtil from "../view/ViewUtil";
 import Alert from "./shared/dialogue/Alert";
 import Prompt from "./shared/dialogue/Prompt";
+import TransferPopup from "./transferPopup";
 
 export default class MiningItem extends DomNode {
 
@@ -29,7 +30,7 @@ export default class MiningItem extends DomNode {
             el("a",
                 el("img.send", { src: "/images/shared/icn/send.svg", alt: "send icon" }),
                 {
-                    click: () => new Prompt(msg("SEND_PROMPT_TITLE"), msg("SEND_PROMPT_DESC"), msg("SEND_PROMPT_BUTTON"), async (to) => {
+                    click: () => new TransferPopup(async (to) => {
                         await GaiaNFTContract.transfer(to, this.id);
                         ViewUtil.waitTransactionAndRefresh();
                     }),
