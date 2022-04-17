@@ -75,7 +75,7 @@ SEND_PROMPT_TITLE,전송하기,Send
 SEND_PROMPT_DESC,전송받을 지갑 주소를 입력해주시기 바랍니다.,Please enter the wallet address to be sent.
 SEND_PROMPT_WARNING_DESC,"전송이 완료되면 절대 되찾을 수 없으니, 지갑 주소를 여러번 확인하시기 바랍니다.",Once the transmission is completed, you can never get it back, so please check your wallet address several times.
 SEND_PROMPT_BUTTON,전송,Send
-SEND_PROMPT_INPUT,지갑주소를 입력해주세요.,Wallet Addess
+SEND_PROMPT_INPUT,지갑주소를 입력해주세요.,Wallet Address
 KLIP_POPUP_TITLE,QR 코드로 Klip 접속,Connect Klip via QR code,,
 KLIP_POPUP_DESC1,QR 코드 리더기 또는 카카오톡 앱을 통해 QR 코드를 스캔해주세요.,Please scan the QR code through a QR Code Reader or Kakao Talk Application,,
 KLIP_POPUP_DESC2,카카오톡 실행 ▶ 상단 검색창 클릭 ▶ 코드 스캔 후 로그인,Run Kakao Talk Application ▶ Click the search bar on the top ▶ Scan the code to log in,,
