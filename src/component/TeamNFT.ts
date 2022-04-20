@@ -4,11 +4,13 @@ import msg from "msg.js";
 import CommonUtil from "../CommonUtil";
 import GaiaBuyBackFundContract from "../contracts/GaiaBuyBackFundContract";
 import GaiaOperationContract from "../contracts/GaiaOperationContract";
+import NFTAirdropContract from "../contracts/NFTAirdropContract";
 
 export default class TeamNFT extends DomNode {
 
     private klayDisplay: DomNode;
     private krnoDisplay: DomNode;
+    private emergencyDisplay: DomNode;
     private refundableKlayDisplay: DomNode;
 
     constructor() {
@@ -28,6 +30,7 @@ export default class TeamNFT extends DomNode {
                         el("h2", msg("COMPOUND_INTEREST_TITLE")),
                         this.klayDisplay = el("p", "... KLAY"),
                         this.krnoDisplay = el("p.caption", "... KRNO"),
+                        this.emergencyDisplay = el("p.caption", "Emergency ... KLAY"),
                     ),
                     el(".content-wrap",
                         el("h2", msg("RECEIVE_KLAY_TITLE")),
@@ -46,6 +49,9 @@ export default class TeamNFT extends DomNode {
 
         const krno = await GaiaOperationContract.claimableKRNO([0]);
         this.krnoDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))} KRNO`);
+
+        const reward = await NFTAirdropContract.airdropReward(0);
+        this.emergencyDisplay.empty().appendText(`Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward))} KLAY`);
 
         const refundableKlay = await GaiaBuyBackFundContract.refundableKlay();
         this.refundableKlayDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(refundableKlay))} KLAY`);

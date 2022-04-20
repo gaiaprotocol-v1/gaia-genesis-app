@@ -20,10 +20,12 @@ export default class Mining implements View {
     private krnoPriceDisplay: DomNode;
     private apyDisplay: DomNode;
     //private buybackBalanceDisplay: DomNode;
-    private genesisInterestBalanceDisplay: DomNode;
     private interestBalanceDisplay: DomNode;
-    private krnoDisplay: DomNode;
-    private emergencyDisplay: DomNode;
+    private interestKRNODisplay: DomNode;
+    private interestEmergencyDisplay: DomNode;
+    private genesisInterestBalanceDisplay: DomNode;
+    private genesisKRNODisplay: DomNode;
+    private genesisEmergencyDisplay: DomNode;
     private roundBalanceDisplay: DomNode;
     private interval: any;
 
@@ -44,12 +46,14 @@ export default class Mining implements View {
                     el(".content-wrap",
                         el("header", msg("TOTAL_INTEREST_TITLE")),
                         this.interestBalanceDisplay = el("p", "... KLAY"),
+                        this.interestKRNODisplay = el("p.caption", "... KRNO"),
+                        this.interestEmergencyDisplay = el("p.caption", "Emergency ... KLAY"),
                     ),
                     el(".content-wrap",
                         el("header", msg("TOTAL_GAIA_INTEREST_TITLE")),
                         this.genesisInterestBalanceDisplay = el("p", "... KLAY"),
-                        this.krnoDisplay = el("p.caption", "... KRNO"),
-                        this.emergencyDisplay = el("p.caption", "Emergency ... KLAY"),
+                        this.genesisKRNODisplay = el("p.caption", "... KRNO"),
+                        this.genesisEmergencyDisplay = el("p.caption", "Emergency ... KLAY"),
                     ),
                     el(".content-wrap",
                         el("header", msg("KRNO_PRICE_TITLE")),
@@ -99,17 +103,20 @@ export default class Mining implements View {
         const reward = await NFTAirdropContract.airdropReward(0);
         if (this.container.deleted !== true) {
             this.genesisInterestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay.add(reward)))} KLAY`);
-            this.krnoDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))} KRNO`);
-            this.emergencyDisplay.empty().appendText(`Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward))} KLAY`);
+            this.genesisKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))} KRNO`);
+            this.genesisEmergencyDisplay.empty().appendText(`Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward))} KLAY`);
         }
     }
 
     private async loadGaiaKlay() {
         const klay = await GaiaOperationContract.claimableKlay([0]);
+        const krno = await GaiaOperationContract.claimableKRNO([0]);
         const reward = await NFTAirdropContract.airdropReward(0);
         if (this.container.deleted !== true) {
             const total = Number(utils.formatEther(klay.add(reward))) * 2177;
             this.interestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(total))} KLAY`);
+            this.interestKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno.mul(2177), 9))} KRNO`);
+            this.interestEmergencyDisplay.empty().appendText(`Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward.mul(2177)))} KLAY`);
         }
     }
 
