@@ -19,14 +19,14 @@ export default class BuybackItem extends DomNode {
             this.imageDisplay = el("img"),
             this.nameDisplay = el("h3"),
             el("p", `${CommonUtil.numberWithCommas(utils.formatEther(refundableKlay))} KLAY`),
-            el("button", msg("BUYBACK_BUTTON"), {
-                click: () => {
-                    new Confirm(msg("BUYBACK_CONFIRM_TITLE"), msg("BUYBACK_CONFIRM_DESC"), msg("BUYBACK_CONFIRM_BUTTON"), async () => {
-                        await GaiaBuyBackFundContract.sellGaiaNFT([this.id]);
-                        ViewUtil.waitTransactionAndRefresh();
-                    });
-                },
-            }),
+            // el("button", msg("BUYBACK_BUTTON"), {
+            //     click: () => {
+            //         new Confirm(msg("BUYBACK_CONFIRM_TITLE"), msg("BUYBACK_CONFIRM_DESC"), msg("BUYBACK_CONFIRM_BUTTON"), async () => {
+            //             await GaiaBuyBackFundContract.sellGaiaNFT([this.id]);
+            //             ViewUtil.waitTransactionAndRefresh();
+            //         });
+            //     },
+            // }),
         )
     }
 
