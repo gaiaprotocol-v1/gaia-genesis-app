@@ -26,7 +26,7 @@ export default class Buyback implements View {
                 ),
                 new TeamNFT(),
                 el(".warning-container",
-                    el("p", "Gaia Kronos Buyback을 백킹으로 활용한다는 거버넌스가 통과됨에 따라서 바이백은 종료되었습니다."),
+                    el("p", "Gaia Genesis Buyback을 백킹으로 활용한다는 거버넌스가 통과됨에 따라서 바이백은 종료되었습니다."),
                 ),
                 this.nftList = el(".nft-container"),
             ),
