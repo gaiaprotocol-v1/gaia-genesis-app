@@ -2,6 +2,7 @@ import { DomNode } from "@hanul/skynode";
 export default class TeamNFT extends DomNode {
     private klayDisplay;
     private krnoDisplay;
+    private emergencyDisplay;
     private refundableKlayDisplay;
     constructor();
     private load;

@@ -1,0 +1,1 @@
+{"version":3,"file":"transferPopup.d.ts","sourceRoot":"","sources":["../../src/component/transferPopup.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAM,KAAK,EAAE,MAAM,gBAAgB,CAAC;AAGpD,MAAM,CAAC,OAAO,OAAO,aAAc,SAAQ,KAAK;IAErC,OAAO,EAAE,OAAO,CAAC;IACxB,OAAO,CAAC,KAAK,CAA4B;gBAGrC,OAAO,EAAE,CAAC,KAAK,EAAE,MAAM,KAAK,IAAI;CA4BvC"}
