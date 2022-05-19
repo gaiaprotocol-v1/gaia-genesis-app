@@ -17,16 +17,14 @@ import NFTAirdropContract from "../contracts/NFTAirdropContract";
 export default class Mining implements View {
 
     private container: DomNode;
-    private krnoPriceDisplay: DomNode;
-    private apyDisplay: DomNode;
+    // private krnoPriceDisplay: DomNode;
+    // private apyDisplay: DomNode;
     //private buybackBalanceDisplay: DomNode;
     private interestBalanceDisplay: DomNode;
-    private interestKRNODisplay: DomNode;
+    // private interestKRNODisplay: DomNode;
     private interestEmergencyDisplay: DomNode;
     private genesisInterestBalanceDisplay: DomNode;
-    private genesisKRNODisplay: DomNode;
     private genesisEmergencyDisplay: DomNode;
-    private roundBalanceDisplay: DomNode;
     private interval: any;
 
     constructor() {
@@ -46,27 +44,27 @@ export default class Mining implements View {
                     el(".content-wrap",
                         el("header", msg("TOTAL_INTEREST_TITLE")),
                         this.interestBalanceDisplay = el("p", "... KLAY"),
-                        this.interestKRNODisplay = el("p.caption", "... KRNO"),
+                        // this.interestKRNODisplay = el("p.caption", "... KRNO"),
                         this.interestEmergencyDisplay = el("p.caption", "Emergency ... KLAY"),
                     ),
                     el(".content-wrap",
                         el("header", msg("TOTAL_GAIA_INTEREST_TITLE")),
                         this.genesisInterestBalanceDisplay = el("p", "... KLAY"),
-                        this.genesisKRNODisplay = el("p.caption", "... KRNO"),
+                        // this.genesisKRNODisplay = el("p.caption", "... KRNO"),
                         this.genesisEmergencyDisplay = el("p.caption", "Emergency ... KLAY"),
                     ),
-                    el(".content-wrap",
-                        el("header", msg("KRNO_PRICE_TITLE")),
-                        this.krnoPriceDisplay = el("p", "$..."),
-                    ),
-                    el(".content-wrap",
-                        el("header", msg("ARY_TITLE")),
-                        this.apyDisplay = el("p", "...%"),
-                    ),
-                    el(".content-wrap",
-                        el("header", msg("REBASE_ROUND_TITLE")),
-                        this.roundBalanceDisplay = el("p", "... ROUND"),
-                    ),
+                    // el(".content-wrap",
+                    //     el("header", msg("KRNO_PRICE_TITLE")),
+                    //     this.krnoPriceDisplay = el("p", "$..."),
+                    // ),
+                    // el(".content-wrap",
+                    //     el("header", msg("ARY_TITLE")),
+                    //     this.apyDisplay = el("p", "...%"),
+                    // ),
+                    // el(".content-wrap",
+                    //     el("header", msg("REBASE_ROUND_TITLE")),
+                    //     this.roundBalanceDisplay = el("p", "... ROUND"),
+                    // ),
                 ),
             ),
         );
@@ -94,7 +92,7 @@ export default class Mining implements View {
             result = result + 1;
         }
 
-        this.roundBalanceDisplay.empty().appendText(`${result} ROUND`);
+        // this.roundBalanceDisplay.empty().appendText(`${result} ROUND`);
     }
 
     private async loadGenesisGaiaKlay() {
@@ -103,7 +101,7 @@ export default class Mining implements View {
         const reward = await NFTAirdropContract.airdropReward(0);
         if (this.container.deleted !== true) {
             this.genesisInterestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay.add(reward)))} KLAY`);
-            this.genesisKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))} KRNO`);
+            // this.genesisKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))} KRNO`);
             this.genesisEmergencyDisplay.empty().appendText(`Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward))} KLAY`);
         }
     }
@@ -115,7 +113,7 @@ export default class Mining implements View {
         if (this.container.deleted !== true) {
             const total = Number(utils.formatEther(klay.add(reward))) * 2177;
             this.interestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(total))} KLAY`);
-            this.interestKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno.mul(2177), 9))} KRNO`);
+            // this.interestKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno.mul(2177), 9))} KRNO`);
             this.interestEmergencyDisplay.empty().appendText(`Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward.mul(2177)))} KLAY`);
         }
     }
@@ -123,7 +121,7 @@ export default class Mining implements View {
     private async loadKRNOPrice() {
         const pool = await lpContract.getCurrentPool();
         if (this.container.deleted !== true) {
-            this.krnoPriceDisplay.empty().appendText(`$ ${CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8))}`);
+            // this.krnoPriceDisplay.empty().appendText(`$ ${CommonUtil.numberWithCommas(String(pool[0] / pool[1] / 10e8))}`);
         }
     }
 
@@ -131,7 +129,7 @@ export default class Mining implements View {
         const stakingRebaseValue = (await StakingContract.epoch()).distribute / await sKRNOContract.circulatingSupply();
         const apy = (Math.pow(1 + stakingRebaseValue, 365 * 3) - 1) * 100;
         if (this.container.deleted !== true) {
-            this.apyDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(apy))}%`);
+            // this.apyDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(apy))}%`);
         }
     }
 

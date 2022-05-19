@@ -11,10 +11,6 @@
         {
             "uri": "buyback",
             "key": "BUYBACK_MENU"
-        },
-        {
-            "uri": "hourglass",
-            "key": "HOURGLASS_MENU"
         }
     ]
 }

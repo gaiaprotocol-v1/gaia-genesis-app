@@ -23,10 +23,10 @@ export default class Mining implements View {
 
     private container: DomNode;
     private idInput: DomNode<HTMLInputElement>;
-    private totalKRNODisplay: DomNode;
+    // private totalKRNODisplay: DomNode;
     private totalKlayDisplay: DomNode;
     private totalEmergencyDisplay: DomNode;
-    private rebaseDisplay: DomNode;
+    // private rebaseDisplay: DomNode;
     private nftList: DomNode;
     private interval: any;
 
@@ -41,7 +41,7 @@ export default class Mining implements View {
                 el("header", { "data-aos": "zoom-in" },
                     el(".title-container",
                         el("h1", msg("MINING_TITLE")),
-                        this.rebaseDisplay = el("h2", msg("REBASE_TIME_DESC").replace(/{time}/, String("0"))),
+                        // this.rebaseDisplay = el("h2", msg("REBASE_TIME_DESC").replace(/{time}/, String("0"))),
                     ),
                     el(".input-container",
                         this.idInput = el("input", { placeholder: "NFT ID" }),
@@ -53,7 +53,7 @@ export default class Mining implements View {
                                 new Alert(msg("CHECK_INTEREST_TITLE"),
                                     msg("CHECK_INTEREST_DESC")
                                         .replace(/{id}/, String(id))
-                                        .replace(/{krnoAmount}/, String(CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))))
+                                        // .replace(/{krnoAmount}/, String(CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))))
                                         .replace(/{klayAmount}/, String(CommonUtil.numberWithCommas(utils.formatEther(klay))))
                                 );
                             }
@@ -64,19 +64,19 @@ export default class Mining implements View {
                     el(".tool-box",
                         el(".title-container",
                             el("header", msg("MY_NFT_TITLE")),
-                            this.totalKRNODisplay = el("p", msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String("..."))),
+                            // this.totalKRNODisplay = el("p", msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String("..."))),
                             this.totalKlayDisplay = el("p", msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String("..."))),
                             this.totalEmergencyDisplay = el("p", "총 이머전시 리워드: ... KLAY"),
                         ),
                         el(".button-container",
-                            el("button.all-mining-button", msg("ALL_CLAIM_KRNO_TITLE"), {
-                                click: () => {
-                                    new Confirm(msg("ALL_CLAIM_KRNO_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
-                                        await GaiaOperationContract.claim(this.tokenIds, this.krnos);
-                                        ViewUtil.waitTransactionAndRefresh();
-                                    });
-                                },
-                            }),
+                            // el("button.all-mining-button", msg("ALL_CLAIM_KRNO_TITLE"), {
+                            //     click: () => {
+                            //         // new Confirm(msg("ALL_CLAIM_KRNO_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
+                            //             await GaiaOperationContract.claim(this.tokenIds, this.krnos);
+                            //             ViewUtil.waitTransactionAndRefresh();
+                            //         });
+                            //     },
+                            // }),
                             el("button.all-mining-button", msg("ALL_CLAIM_KLAY_TITLE"), {
                                 click: () => {
                                     new Confirm(msg("ALL_CLAIM_KLAY_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
@@ -137,7 +137,7 @@ export default class Mining implements View {
             await Promise.all(promises);
 
             const totalKRNO = await GaiaOperationContract.claimableKRNO(this.tokenIds);
-            this.totalKRNODisplay.empty().appendText(`${msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String(utils.formatUnits(totalKRNO, 9)))}`);
+            // this.totalKRNODisplay.empty().appendText(`${msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String(utils.formatUnits(totalKRNO, 9)))}`);
             this.totalKlay = await GaiaOperationContract.claimableKlay(this.tokenIds);
             this.totalKlayDisplay.empty().appendText(`${msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String(utils.formatEther(this.totalKlay)))}`);
             this.totalEmergencyDisplay.empty().appendText(`총 이머전시 리워드: ${String(utils.formatEther(totalEmergency))} KLAY`);
@@ -167,10 +167,10 @@ export default class Mining implements View {
             round = round + 1;
         }
 
-        this.rebaseDisplay.empty().appendText(msg("REBASE_TIME_DESC")
-            .replace(/{hour}/, String(hour))
-            .replace(/{min}/, String(min))
-            .replace(/{round}/, String(round + 1)));
+        // this.rebaseDisplay.empty().appendText(msg("REBASE_TIME_DESC")
+        //     .replace(/{hour}/, String(hour))
+        //     .replace(/{min}/, String(min))
+        //     .replace(/{round}/, String(round + 1)));
     }
 
     public changeParams(params: ViewParams, uri: string): void { }
