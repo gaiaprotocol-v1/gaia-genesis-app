@@ -14,7 +14,7 @@ export default class MiningItem extends DomNode {
 
     private imageDisplay: DomNode<HTMLImageElement>;
     private nameDisplay: DomNode;
-    private krnoDisplay: DomNode;
+    // private krnoDisplay: DomNode;
     private klayDisplay: DomNode;
     private emergencyDisplay: DomNode;
 
@@ -39,26 +39,26 @@ export default class MiningItem extends DomNode {
                 el("section",
                     el("header", msg("MY_INTEREST_DESC")),
                     el(".amount-wrap",
-                        this.krnoDisplay = el(".krno", "... KRNO"),
+                        // this.krnoDisplay = el(".krno", "... KRNO"),
                         this.klayDisplay = el(".klay", "... KLAY"),
                     ),
                 ),
                 el(".button-wrap",
-                    el("button.krno-button", msg("CLAIM_KRNO_BUTTON"), {
-                        click: () => {
-                            new Prompt(msg("CLAIM_KRNO_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async (amount) => {
-                                const krno = utils.parseUnits(amount, 9);
+                    // el("button.krno-button", msg("CLAIM_KRNO_BUTTON"), {
+                    //     click: () => {
+                    //         new Prompt(msg("CLAIM_KRNO_ALERT_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async (amount) => {
+                    //             const krno = utils.parseUnits(amount, 9);
 
-                                if (krno > this.krno) {
-                                    new Alert(msg("CLAIM_ERROR_ALERT_TITLE"), msg("CLAIM_ERROR_ALERT_DESC"))
-                                } else {
-                                    await GaiaOperationContract.claim([this.id], [krno]);
-                                    ViewUtil.waitTransactionAndRefresh();
-                                }
-                            }, msg("CLAIM_PLACEHOLDER_INPUT"));
-                        },
-                    }),
-                    el("button.klay-button", msg("CLAIM_KLAY_BUTTON"), {
+                    //             if (krno > this.krno) {
+                    //                 new Alert(msg("CLAIM_ERROR_ALERT_TITLE"), msg("CLAIM_ERROR_ALERT_DESC"))
+                    //             } else {
+                    //                 await GaiaOperationContract.claim([this.id], [krno]);
+                    //                 ViewUtil.waitTransactionAndRefresh();
+                    //             }
+                    //         }, msg("CLAIM_PLACEHOLDER_INPUT"));
+                    //     },
+                    // }),
+                    el("button.krno-button", msg("CLAIM_KLAY_BUTTON"), {
                         click: () => {
                             new Prompt(msg("CLAIM_KLAY_ALERT_TITLE"), msg("CLAIM_KLAY_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async (amount) => {
                                 const klay = utils.parseEther(amount);
@@ -103,7 +103,7 @@ export default class MiningItem extends DomNode {
 
     private async loadKRNO() {
         this.krno = await GaiaOperationContract.claimableKRNO([this.id]);
-        this.krnoDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(this.krno, 9))} KRNO`);
+        // this.krnoDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(this.krno, 9))} KRNO`);
     }
 
     private async loadKlay() {
