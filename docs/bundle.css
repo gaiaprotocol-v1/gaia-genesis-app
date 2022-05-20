@@ -1178,6 +1178,16 @@ body {
   background-color: #e0d8c8;
   color: white;
 }
+.mining-view > article > .warning-container {
+  background-color: rgba(177, 156, 118, 0.7);
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin: 32px 0px;
+}
+.mining-view > article > .warning-container > p {
+  font-weight: 300;
+  margin: 20px 0px;
+}
 .mining-view > article > .tool-box {
   display: flex;
   justify-content: space-between;

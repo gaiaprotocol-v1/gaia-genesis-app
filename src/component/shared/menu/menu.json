@@ -7,10 +7,6 @@
         {
             "uri": "mining",
             "key": "MINING_MENU"
-        },
-        {
-            "uri": "buyback",
-            "key": "BUYBACK_MENU"
         }
     ]
 }

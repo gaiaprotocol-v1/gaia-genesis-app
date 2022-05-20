@@ -13,6 +13,7 @@ import StakingContract from "../contracts/StakingContract";
 import Klaytn from "../klaytn/Klaytn";
 import Layout from "./Layout";
 import NFTAirdropContract from "../contracts/NFTAirdropContract";
+import KrnosJson from "./krnos.json";
 
 export default class Mining implements View {
 
@@ -41,15 +42,15 @@ export default class Mining implements View {
                         el("header", "총 발행량"),
                         el("p", "2177 개"),
                     ),
-                    el(".content-wrap",
-                        el("header", msg("TOTAL_INTEREST_TITLE")),
-                        this.interestBalanceDisplay = el("p", "... KLAY"),
-                        // this.interestKRNODisplay = el("p.caption", "... KRNO"),
-                        this.interestEmergencyDisplay = el("p.caption", "Emergency ... KLAY"),
-                    ),
+                    // el(".content-wrap",
+                    //     el("header", msg("TOTAL_INTEREST_TITLE")),
+                    //     this.interestBalanceDisplay = el("p", "... USDC"),
+                    //     // this.interestKRNODisplay = el("p.caption", "... KRNO"),
+                    //     this.interestEmergencyDisplay = el("p.caption", "Emergency ... KLAY"),
+                    // ),
                     el(".content-wrap",
                         el("header", msg("TOTAL_GAIA_INTEREST_TITLE")),
-                        this.genesisInterestBalanceDisplay = el("p", "... KLAY"),
+                        this.genesisInterestBalanceDisplay = el("p", "... USDC"),
                         // this.genesisKRNODisplay = el("p.caption", "... KRNO"),
                         this.genesisEmergencyDisplay = el("p.caption", "Emergency ... KLAY"),
                     ),
@@ -96,23 +97,24 @@ export default class Mining implements View {
     }
 
     private async loadGenesisGaiaKlay() {
-        const klay = await GaiaOperationContract.claimableKlay([0]);
-        const krno = await GaiaOperationContract.claimableKRNO([0]);
+        // const klay = await GaiaOperationContract.claimableKlay([0]);
+        const krno = utils.parseUnits(KrnosJson[0], 9);
         const reward = await NFTAirdropContract.airdropReward(0);
+        const usdc = Number(Number(utils.formatEther(krno.add(reward))) * 2.4);
         if (this.container.deleted !== true) {
-            this.genesisInterestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatEther(klay.add(reward)))} KLAY`);
+            this.genesisInterestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(usdc.toString())} USDC`);
             // this.genesisKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))} KRNO`);
             this.genesisEmergencyDisplay.empty().appendText(`Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward))} KLAY`);
         }
     }
 
     private async loadGaiaKlay() {
-        const klay = await GaiaOperationContract.claimableKlay([0]);
+        // const klay = await GaiaOperationContract.claimableKlay([0]);
         const krno = await GaiaOperationContract.claimableKRNO([0]);
         const reward = await NFTAirdropContract.airdropReward(0);
         if (this.container.deleted !== true) {
-            const total = Number(utils.formatEther(klay.add(reward))) * 2177;
-            this.interestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(total))} KLAY`);
+            const total = Number(Number(utils.formatEther(krno.add(reward))) * 2.4) * 2177;
+            this.interestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(total))} USDC`);
             // this.interestKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno.mul(2177), 9))} KRNO`);
             this.interestEmergencyDisplay.empty().appendText(`Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward.mul(2177)))} KLAY`);
         }
