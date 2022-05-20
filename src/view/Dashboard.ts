@@ -104,7 +104,7 @@ export default class Mining implements View {
         if (this.container.deleted !== true) {
             this.genesisInterestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(usdc.toString())} USDC`);
             // this.genesisKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))} KRNO`);
-            this.genesisEmergencyDisplay.empty().appendText(`Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward))} KLAY`);
+            this.genesisEmergencyDisplay.empty().appendText(`+ Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward))} KLAY`);
         }
     }
 
@@ -116,7 +116,7 @@ export default class Mining implements View {
             const total = Number(Number(utils.formatEther(krno.add(reward))) * 2.4) * 2177;
             this.interestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(String(total))} USDC`);
             // this.interestKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno.mul(2177), 9))} KRNO`);
-            this.interestEmergencyDisplay.empty().appendText(`Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward.mul(2177)))} KLAY`);
+            this.interestEmergencyDisplay.empty().appendText(`+ Emergency ${CommonUtil.numberWithCommas(utils.formatEther(reward.mul(2177)))} KLAY`);
         }
     }
 
