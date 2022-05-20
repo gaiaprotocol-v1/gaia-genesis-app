@@ -22,9 +22,9 @@ import ViewUtil from "./ViewUtil";
 export default class Mining implements View {
 
     private container: DomNode;
-    private idInput: DomNode<HTMLInputElement>;
+    // private idInput: DomNode<HTMLInputElement>;
     // private totalKRNODisplay: DomNode;
-    private totalKlayDisplay: DomNode;
+    // private totalKlayDisplay: DomNode;
     private totalEmergencyDisplay: DomNode;
     // private rebaseDisplay: DomNode;
     private nftList: DomNode;
@@ -69,32 +69,32 @@ export default class Mining implements View {
                             el("header", msg("MY_NFT_TITLE")),
                             // this.totalKRNODisplay = el("p", msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String("..."))),
                             // this.totalKlayDisplay = el("p", msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String("..."))),
-                            // this.totalEmergencyDisplay = el("p", "총 이머전시 리워드: ... KLAY"),
+                            this.totalEmergencyDisplay = el("p", "총 이머전시 리워드: ... KLAY"),
                         ),
-                        // el(".button-container",
-                        //     // el("button.all-mining-button", msg("ALL_CLAIM_KRNO_TITLE"), {
-                        //     //     click: () => {
-                        //     //         // new Confirm(msg("ALL_CLAIM_KRNO_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
-                        //     //             await GaiaOperationContract.claim(this.tokenIds, this.krnos);
-                        //     //             ViewUtil.waitTransactionAndRefresh();
-                        //     //         });
-                        //     //     },
-                        //     // }),
-                        //     el("button.all-mining-button", msg("ALL_CLAIM_KLAY_TITLE"), {
-                        //         click: () => {
-                        //             new Confirm(msg("ALL_CLAIM_KLAY_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
-                        //                 await GaiaOperationContract.claimKlayViaZap(this.tokenIds, this.krnos, this.totalKlay, []);
-                        //                 ViewUtil.waitTransactionAndRefresh();
-                        //             });
-                        //         },
-                        //     }),
-                        //     el("button.all-mining-button", "모든 이머전시 리워드 받기", {
-                        //         click: async () => {
-                        //             await NFTAirdropContract.collectAirdropReward(0, this.tokenIds);
-                        //             ViewUtil.waitTransactionAndRefresh();
-                        //         },
-                        //     }),
-                        // ),
+                        el(".button-container",
+                            //     // el("button.all-mining-button", msg("ALL_CLAIM_KRNO_TITLE"), {
+                            //     //     click: () => {
+                            //     //         // new Confirm(msg("ALL_CLAIM_KRNO_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
+                            //     //             await GaiaOperationContract.claim(this.tokenIds, this.krnos);
+                            //     //             ViewUtil.waitTransactionAndRefresh();
+                            //     //         });
+                            //     //     },
+                            //     // }),
+                            //     el("button.all-mining-button", msg("ALL_CLAIM_KLAY_TITLE"), {
+                            //         click: () => {
+                            //             new Confirm(msg("ALL_CLAIM_KLAY_TITLE"), msg("CLAIM_ALERT_DESC"), msg("CLAIM_ALERT_BUTTON"), async () => {
+                            //                 await GaiaOperationContract.claimKlayViaZap(this.tokenIds, this.krnos, this.totalKlay, []);
+                            //                 ViewUtil.waitTransactionAndRefresh();
+                            //             });
+                            //         },
+                            //     }),
+                            el("button.all-mining-button", "모든 이머전시 리워드 받기", {
+                                click: async () => {
+                                    await NFTAirdropContract.collectAirdropReward(0, this.tokenIds);
+                                    ViewUtil.waitTransactionAndRefresh();
+                                },
+                            }),
+                        ),
                     ),
                     this.nftList = el("article.nft-container", { "data-aos": "zoom-in" },),
                 ),
@@ -142,7 +142,7 @@ export default class Mining implements View {
             const totalKRNO = await GaiaOperationContract.claimableKRNO(this.tokenIds);
             // this.totalKRNODisplay.empty().appendText(`${msg("MY_INTEREST_KRNO_DESC").replace(/{amount}/, String(utils.formatUnits(totalKRNO, 9)))}`);
             this.totalKlay = await GaiaOperationContract.claimableKlay(this.tokenIds);
-            this.totalKlayDisplay.empty().appendText(`${msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String(utils.formatEther(this.totalKlay)))}`);
+            // this.totalKlayDisplay.empty().appendText(`${msg("MY_INTEREST_KLAY_DESC").replace(/{amount}/, String(utils.formatEther(this.totalKlay)))}`);
             this.totalEmergencyDisplay.empty().appendText(`총 이머전시 리워드: ${String(utils.formatEther(totalEmergency))} KLAY`);
         }
     }
