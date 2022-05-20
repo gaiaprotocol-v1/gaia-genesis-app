@@ -100,7 +100,7 @@ export default class Mining implements View {
         // const klay = await GaiaOperationContract.claimableKlay([0]);
         const krno = utils.parseUnits(KrnosJson[0], 9);
         const reward = await NFTAirdropContract.airdropReward(0);
-        const usdc = Number(Number(utils.formatEther(krno.add(reward))) * 2.4);
+        const usdc = Number(Number(utils.formatEther(krno)) * 2.4);
         if (this.container.deleted !== true) {
             this.genesisInterestBalanceDisplay.empty().appendText(`${CommonUtil.numberWithCommas(usdc.toString())} USDC`);
             // this.genesisKRNODisplay.empty().appendText(`${CommonUtil.numberWithCommas(utils.formatUnits(krno, 9))} KRNO`);
