@@ -2,7 +2,7 @@ import { BigNumber } from "@ethersproject/bignumber";
 
 class Klaytn {
 
-    public caver = new (window as any).Caver(new (window as any).Caver.providers.WebsocketProvider("wss://klaytn01.fandom.finance/ws/", {
+    public caver = new (window as any).Caver(new (window as any).Caver.providers.WebsocketProvider("wss://klaytn04.fandom.finance/ws/", {
         reconnect: {
             auto: true,
             delay: 1000,
